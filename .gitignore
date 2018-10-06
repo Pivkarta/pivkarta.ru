@@ -20,6 +20,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/src/node_modules
-server/node_modules/
-yarn.lock
+# /src/node_modules
+# server/node_modules/
+# yarn.lock

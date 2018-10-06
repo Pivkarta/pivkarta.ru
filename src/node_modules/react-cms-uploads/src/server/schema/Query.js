@@ -1,0 +1,23 @@
+
+const {
+  getUserId,
+} = require('react-cms-graphql-utils/src/auth');
+
+
+const Query = {
+
+  files(parent, args, ctx, info) {
+
+    // const id = getUserId(ctx)
+
+    const where = {
+    }
+
+    return [];
+
+    return ctx.db.query.files({  }, info);
+
+  },
+}
+
+module.exports = {Query}

@@ -1,0 +1,28 @@
+{
+  "name": "map-sidebar-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "'react",
+    "map'"
+  ],
+  "author": "Fi1osof",
+  "license": "ISC",
+  "dependencies": {
+    "google-map-react-control": "^1.0.2",
+    "prop-types": "^15.6.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MODX-Club/map-sidebar-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MODX-Club/map-sidebar-react/issues"
+  },
+  "homepage": "https://github.com/MODX-Club/map-sidebar-react#readme",
+  "description": ""
+}

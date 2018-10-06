@@ -19,6 +19,7 @@
     "build-schema-api": "schemaType=api yarn build-schema",
     "build-schema": "action=build-schema node src/server/index.js",
     "test": "react-scripts test --env=jsdom",
+    "test-nwb": "nwb test",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
@@ -41,7 +42,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "@babel/runtime": "^7.1.2",
-    "@prisma-cms/front": "^1.2.1-beta",
+    "@prisma-cms/front": "^1.2.2-beta",
     "@prisma-cms/prisma-context": "^1.0.1-beta",
     "@prisma-cms/prisma-module": "^1.0.3-beta",
     "@prisma-cms/prisma-processor": "^1.0.2-beta",

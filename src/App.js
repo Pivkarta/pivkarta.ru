@@ -46,7 +46,7 @@ export default class App extends PrismaApp {
 
   static defaultProps = {
     ...PrismaApp.defaultProps,
-    // Renderer: RendererProvider,
+    Renderer: RendererProvider,
   }
 
 }

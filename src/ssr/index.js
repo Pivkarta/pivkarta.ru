@@ -5,7 +5,6 @@ const path = require('path');
 const basepath = process.cwd();
 
 require('@babel/register')({
-  extensions: ['.js'],
   "presets": [
     "@babel/preset-env",
     "@babel/preset-react"
@@ -14,9 +13,7 @@ require('@babel/register')({
     "transform-es2015-modules-commonjs",
     "@babel/plugin-proposal-class-properties"
   ],
-
   ignore: [function (filename) {
-
     return filename.indexOf(basepath + `/node_modules/`) === 0;
   }],
 
