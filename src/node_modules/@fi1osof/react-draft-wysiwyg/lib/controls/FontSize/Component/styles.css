@@ -1,0 +1,12 @@
+.custom-rdw-fontsize-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.custom-rdw-fontsize-dropdown {
+  min-width: 40px;
+}
+.custom-rdw-fontsize-option {
+  white-space: nowrap;
+  text-align: left;
+}
