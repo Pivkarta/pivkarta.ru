@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/static/media/italic.39ecd7ee.svg"
   },
   {
-    "revision": "601a8ea0ae560e1f3066",
+    "revision": "0f1ee74496cc93c16fba",
     "url": "/static/css/main.c46efc04.chunk.css"
   },
   {
@@ -32,6 +32,10 @@ self.__precacheManifest = [
     "url": "/static/media/payments_sprite.ca4ae048.png"
   },
   {
+    "revision": "fa2772327f55d8198301fdb8bcfc8158",
+    "url": "/static/media/glyphicons-halflings-regular.fa277232.woff"
+  },
+  {
     "revision": "f4769f9bdb7466be65088239c12046d1",
     "url": "/static/media/glyphicons-halflings-regular.f4769f9b.eot"
   },
@@ -40,28 +44,24 @@ self.__precacheManifest = [
     "url": "/static/media/glyphicons-halflings-regular.448c34a5.woff2"
   },
   {
-    "revision": "fa2772327f55d8198301fdb8bcfc8158",
-    "url": "/static/media/glyphicons-halflings-regular.fa277232.woff"
-  },
-  {
     "revision": "e18bbf611f2a2e43afc071aa2f4e1512",
     "url": "/static/media/glyphicons-halflings-regular.e18bbf61.ttf"
-  },
-  {
-    "revision": "8b27bc96115c2d24350f0d09e6a9433f",
-    "url": "/static/media/fontawesome-webfont.8b27bc96.eot"
   },
   {
     "revision": "89889688147bd7575d6327160d64e760",
     "url": "/static/media/glyphicons-halflings-regular.89889688.svg"
   },
   {
-    "revision": "3293616ec0c605c7c2db25829a0a509e",
-    "url": "/static/media/fontawesome-webfont.3293616e.woff"
+    "revision": "8b27bc96115c2d24350f0d09e6a9433f",
+    "url": "/static/media/fontawesome-webfont.8b27bc96.eot"
   },
   {
     "revision": "dcb26c7239d850266941e80370e207c1",
     "url": "/static/media/fontawesome-webfont.dcb26c72.ttf"
+  },
+  {
+    "revision": "3293616ec0c605c7c2db25829a0a509e",
+    "url": "/static/media/fontawesome-webfont.3293616e.woff"
   },
   {
     "revision": "0a799148a50bb02c6f380eabd8d97559",
@@ -72,20 +72,20 @@ self.__precacheManifest = [
     "url": "/static/media/preloader.c8ae0ddd.gif"
   },
   {
-    "revision": "b7c9e1e479de3b53f1e4e30ebac2403a",
-    "url": "/static/media/slick.b7c9e1e4.woff"
+    "revision": "f97e3bbf73254b0112091d0192f17aec",
+    "url": "/static/media/slick.f97e3bbf.svg"
   },
   {
     "revision": "ced611daf7709cc778da928fec876475",
     "url": "/static/media/slick.ced611da.eot"
   },
   {
-    "revision": "f97e3bbf73254b0112091d0192f17aec",
-    "url": "/static/media/slick.f97e3bbf.svg"
-  },
-  {
     "revision": "d41f55a78e6f49a5512878df1737e58a",
     "url": "/static/media/slick.d41f55a7.ttf"
+  },
+  {
+    "revision": "b7c9e1e479de3b53f1e4e30ebac2403a",
+    "url": "/static/media/slick.b7c9e1e4.woff"
   },
   {
     "revision": "7833fd3c6d9b21f1b7c6ed248dfcd2dd",
@@ -104,8 +104,8 @@ self.__precacheManifest = [
     "url": "/static/media/bold.e56e3e7c.svg"
   },
   {
-    "revision": "601a8ea0ae560e1f3066",
-    "url": "/static/js/main.601a8ea0.chunk.js"
+    "revision": "0f1ee74496cc93c16fba",
+    "url": "/static/js/main.0f1ee744.chunk.js"
   },
   {
     "revision": "42dfa9411ead9f5b725ee7ce102cf6ae",
@@ -204,7 +204,7 @@ self.__precacheManifest = [
     "url": "/static/css/1.586b92ba.chunk.css"
   },
   {
-    "revision": "62fa6e44b5f08f00db906a1d516a5669",
+    "revision": "cf3be6e36329758e4b2b59fb2e39bb52",
     "url": "/index.html"
   }
 ];

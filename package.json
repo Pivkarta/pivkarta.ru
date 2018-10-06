@@ -5,7 +5,7 @@
   "private": false,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "PUBLIC_URL=/ react-scripts build",
     "start-ssr": "NODE_ENV=production node src/ssr",
     "start-ssr-dev": "NODE_ENV=production nodemon src/ssr",
     "start-server": "Sendmail=true action=start-server node src/server/",
