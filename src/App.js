@@ -17,10 +17,36 @@ import 'moment/locale/ru';
 
 import Scroller from "Scroller";
 
-class RendererProvider extends Component {
+import {
+  cities,
+} from "query";
+import { compose, graphql } from 'react-apollo';
+
+
+
+class RendererProviderClass extends Component {
 
   static contextTypes = {
     client: PropTypes.object.isRequired,
+  }
+
+
+  static childContextTypes = {
+    cities: PropTypes.array,
+  }
+
+
+  getChildContext() {
+
+    const {
+      cities: {
+        objects: cities,
+      },
+    } = this.props;
+
+    return {
+      cities,
+    };
   }
 
 
@@ -41,6 +67,20 @@ class RendererProvider extends Component {
   }
 
 }
+
+
+const RendererProvider = compose(graphql(cities, {
+  name: "cities",
+  options: props => {
+
+    return {
+      varisbles: {
+        orderBy: "name_ASC",
+      },
+    }
+  },
+}))(RendererProviderClass);
+
 
 export default class App extends PrismaApp {
 
