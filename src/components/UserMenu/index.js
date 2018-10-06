@@ -442,10 +442,20 @@ export default class MainMenu extends Component {
               && citiesList && citiesList.length && <li>
                 <a
                   href={`/city/${coordsUrl}`}
-                  title="Бани в городах"
+                  title="Пиво и пабы в городах"
                   className="dropdown-toggle"
                   data-toggle="dropdown"
-                >{mainCity.name} <i className="fa fa-angle-down"></i></a>
+                  onClick={event => {
+                    event.preventDefault()
+                    event.stopPropagation();
+
+                    this.setState({
+                      citiesOpened: !citiesOpened,
+                    });
+                  }}
+                >
+                  {mainCity.name} <i className="fa fa-angle-down"></i>
+                </a>
                 <ul
                   className="dropdown-menu"
                   style={{

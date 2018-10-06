@@ -42,7 +42,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "@babel/runtime": "^7.1.2",
-    "@prisma-cms/front": "^1.2.2-beta",
+    "@prisma-cms/front": "^1.2.3-beta",
     "@prisma-cms/prisma-context": "^1.0.1-beta",
     "@prisma-cms/prisma-module": "^1.0.3-beta",
     "@prisma-cms/prisma-processor": "^1.0.2-beta",
@@ -53,6 +53,7 @@
     "apollo-boost": "^0.1.16",
     "apollo-cache-inmemory": "^1.2.10",
     "apollo-client": "^2.4.2",
+    "apollo-cms": "^1.2.11",
     "apollo-error": "^1.0.2",
     "apollo-fetch-upload": "^1.2.0",
     "apollo-link": "^1.2.3",
