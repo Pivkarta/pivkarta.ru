@@ -51,7 +51,7 @@ const proxy = require('http-proxy-middleware');
 
 
 app.use(proxy('/api/', {
-  target: 'http://localhost:4000/',
+  target: 'http://localhost:4100/',
   ws: true,
   pathRewrite: {
     "^/api/": "/"
@@ -59,7 +59,7 @@ app.use(proxy('/api/', {
 }));
 
 app.use(proxy('/images/', {
-  target: 'http://localhost:4000/',
+  target: 'http://localhost:4100/',
   pathRewrite: {
     "^/images/resized/([^/]+)/uploads/(.+)": "/images/$1/$2",
   }

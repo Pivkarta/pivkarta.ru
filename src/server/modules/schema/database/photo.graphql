@@ -1,0 +1,13 @@
+
+type Photo{
+  id: ID! @unique
+  photo_id: Int @unique
+  user_id: Int
+  type_id: Int
+  name: String
+  description: String
+  num_comments: Int
+  created_at: DateTime
+  updated_at: DateTime
+  file_name: String
+}

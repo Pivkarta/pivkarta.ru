@@ -20,6 +20,17 @@ require('@babel/register')({
 require("@babel/polyfill");
 
 
+const CoreModule = require("./modules").default;
+
+const coreModule = new CoreModule({
+
+});
+
+const resolvers = coreModule.getResolvers();
+
+const imagesMiddleware = require("./middleware/ImageThumb");
+
+
 switch (process.env.action) {
 
   case "build-schema":
@@ -31,10 +42,28 @@ switch (process.env.action) {
   case "start-server":
 
 
+    // const server = require("@prisma-cms/server/lib/server");
+
+    // server({
+    //   typeDefs: 'src/server/schema/generated/api.graphql',
+    // });
+
+
     const server = require("@prisma-cms/server/lib/server");
 
     server({
       typeDefs: 'src/server/schema/generated/api.graphql',
+      resolvers,
+      imagesMiddleware,
+
+      knexOptions: {
+        connection: {
+          host: 'mysql.prisma-1.14',
+          user: 'root',
+          database: 'pivkarta@dev',
+          password: 'prisma',
+        },
+      },
     });
 
     break;

@@ -1,0 +1,66 @@
+# import Post from "../generated/prisma.graphql"
+# import * from "./beer.graphql"
+# import * from "./place.graphql"
+# import * from "./topic.graphql"
+# import * from "./comment.graphql"
+
+# import * from "./mutation.graphql"
+# import * from "./query.graphql"
+
+scalar Upload
+
+
+enum PlaceType{
+  shop
+  bar
+  brewery
+}
+
+input CoordsInput{
+  lat: Float!
+  lng: Float!
+}
+
+
+
+# type GeoObject{
+#   _type: String!
+#   id: ID!
+#   name: String!
+#   lat: Float!
+#   lng: Float!
+# }
+ 
+
+type mapGeoObjectsConnection{
+  aggregate: AggregatePlace!
+  objects: [Place!]!
+}
+
+
+# type Post {
+#   id: ID!
+#   title: String!
+#   secret: Boolean
+#   extra: String
+#   allPosts: [Post!]!
+#   comments(filter: CommentFilter): [Comment!]
+# }
+
+# input CommentFilter {
+#   text_not: String
+# }
+
+
+# type MapPlaces{
+#   places: [Place]!
+# }
+
+
+
+
+
+
+
+
+

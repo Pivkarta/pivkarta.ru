@@ -1,0 +1,28 @@
+
+type Tarif {
+  id: ID! @unique
+  name: String!
+  active: Boolean @default(value: true)
+  maxPriceItems: Int
+  price: Float
+  UserTarifs: [UserTarif!]! @relation(name: "TarifUserTarifs")
+  allowIcon: Boolean
+  allowBanner: Boolean
+}
+
+type UserTarif{
+  id: ID! @unique
+  User: User! @relation(name: "UserTarifs")
+  Tarif: Tarif! @relation(name: "TarifUserTarifs")
+  createdAt: DateTime!
+  dateTill: DateTime
+}
+
+# Временный объект - запрос на подключение тарифа
+type TarifRequest {
+  id: ID! @unique
+  User: User!
+  Tarif: Tarif!
+  createdAt: DateTime!
+  executed: Boolean! @default(value: false)
+}

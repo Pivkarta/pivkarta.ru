@@ -1,0 +1,125 @@
+
+type Place implements Node {
+  # id: ID!
+  # updatedAt: DateTime!
+  # createdAt: DateTime!
+  # place_id: Int
+  # name: String!
+  # description: String
+  # address: String
+  # lng: Float
+  # lat: Float
+  # website: String
+  # phone: String
+  # work_hours: String
+  # metro: String
+  # content: Json
+  # schedules: Json
+  # url_name: String
+  # image: String
+  # gallery: Json
+  # is_bar: Boolean
+  # is_shop: Boolean
+  # is_brewery: Boolean
+  # active: Boolean
+  # email: String
+  # beers(where: PlaceBeerWhereInput, orderBy: PlaceBeerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PlaceBeer!]
+  # Owner(where: UserWhereInput): User
+  # Letters(where: LetterWhereInput, orderBy: LetterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Letter!]
+  # best: Boolean
+
+  # Custom
+  minPrice: Float
+  maxPrice: Float
+  uri: String
+}
+
+
+type PlacePayload{
+  success: Boolean!
+  message: String
+  errors: [Error!]!
+  data: Place
+}
+
+
+type MapPlaceConnectionEdges{
+  node: [Place!]!
+}
+
+type MapPlaceConnection{
+  aggregate: AggregatePlace!
+  # ids: [ID!]!
+  # places: [Place!]!
+  # edges: MapPlaceConnectionEdges!
+  edges: [PlaceEdge!]!
+  # MapPlaces: MapPlaces
+}
+
+
+
+input PlaceCreateInput {
+  # place_id: Int
+  name: String!
+  description: String
+  address: String
+  lng: Float
+  lat: Float
+  website: String
+  phone: String
+  work_hours: String
+  metro: String
+  content: Json
+  schedules: Json
+  url_name: String
+  image: String
+  is_bar: Boolean
+  is_shop: Boolean
+  is_brewery: Boolean
+  active: Boolean
+  email: String
+  best: Boolean
+  # beers: PlaceBeerCreateManyWithoutPlaceInput
+  # Owner: UserCreateOneWithoutPlacesInput
+  # Letters: LetterCreateManyWithoutPlaceInput
+  gallery: Json
+}
+
+
+input PlaceUpdateInput {
+  # place_id: Int
+  name: String
+  description: String
+  address: String
+  lng: Float
+  lat: Float
+  website: String
+  phone: String
+  work_hours: String
+  metro: String
+  content: Json
+  schedules: Json
+  url_name: String
+  image: String
+  is_bar: Boolean
+  is_shop: Boolean
+  is_brewery: Boolean
+  active: Boolean
+  email: String
+  best: Boolean
+  # beers: PlaceBeerUpdateManyWithoutPlaceInput
+  Owner: UserUpdateOneWithoutPlacesInput
+  # Letters: LetterUpdateManyWithoutPlaceInput
+  gallery: Json
+}
+
+input PlaceBeerUpdateInput {
+  price: Float
+  # Place: PlaceUpdateOneWithoutBeersInput
+  # Beer: BeerUpdateOneWithoutPlacesInput
+}
+
+
+input UserUpdateOneWithoutPlacesInput{
+  connect: UserWhereUniqueInput
+}

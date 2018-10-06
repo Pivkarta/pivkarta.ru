@@ -1,0 +1,43 @@
+
+
+type Beer implements Node {
+  # id: ID!
+  # createdAt: DateTime!
+  # updatedAt: DateTime!
+  # beer_id: Int!
+  # name: String
+  # url_name: String
+  # description: String
+  # editor_content: Json
+  # country: String
+  # image: String
+  # num_comments: Int
+  # num_photos: Int
+  # manufacturer: String
+  # region: String
+  # manufacture_years: String
+  # container: Int
+  # alcohol: String
+  # wort_percent: String
+  # components: String
+  # bitter: Int
+  # type_id: Int
+  # color: String
+  # is_request: Int
+  # rating: Float
+  # add_user_id: Int
+  # created_at: Int
+  # gallery: Json
+  # places(where: PlaceBeerWhereInput, orderBy: PlaceBeerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PlaceBeer!]
+
+  container_str: String
+  uri: String
+}
+
+
+type BeerPayload{
+  success: Boolean!
+  message: String
+  errors: [Error!]!
+  data: Beer
+}

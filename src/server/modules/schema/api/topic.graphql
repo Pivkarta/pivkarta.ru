@@ -1,0 +1,19 @@
+
+
+type Topic implements Node {
+  id: ID!
+  topic_id: Int
+  updatedAt: DateTime!
+  createdAt: DateTime!
+  created_at: DateTime!
+  created_by(where: UserWhereInput): User!
+  name: String!
+  editor_content: Json
+  url_name: String
+  type_id: Int!
+  published: Boolean
+  description: String
+
+  # custom
+  uri: String!
+}

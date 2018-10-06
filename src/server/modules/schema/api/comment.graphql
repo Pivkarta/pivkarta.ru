@@ -1,0 +1,18 @@
+
+
+type Comment implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  comment_id: Int
+  object_id: Int
+  type_id: Int!
+  editor_content: Json!
+  is_checked: Int!
+  name: String
+  created_by(where: UserWhereInput): User
+  parent: ID
+
+  #custom
+  uri: String!
+}

@@ -1,0 +1,45 @@
+
+type Place{
+  id: ID! @unique
+  updatedAt: DateTime!
+  createdAt: DateTime!
+  place_id: Int @unique
+  name: String!
+  description: String
+  address: String
+  
+  lng: Float
+  lat: Float
+
+  website: String
+  phone: String
+  work_hours: String
+  metro: String
+  content: Json
+  schedules: Json
+  url_name: String
+  image: String
+  gallery: Json
+  # beers: [Beer!]! @relation(name: "PlaceBeer")
+  is_bar: Boolean @default(value: false)
+  is_shop: Boolean @default(value: false)
+  is_brewery: Boolean @default(value: false)
+  active: Boolean @default(value: true)
+  email: String
+  beers: [PlaceBeer!]! @relation(name: "PlaceBeerPlace")
+
+  Owner: User @relation(name: "UserOwnedPlaces")
+  Letters: [Letter!]! @relation(name: "PlaceLetters", onDelete: CASCADE)
+
+  best: Boolean
+  is_request: Int
+}
+
+# Связка Пиво-Цена
+type PlaceBeer{
+  id: ID! @unique
+  price: Float
+  Place: Place! @relation(name: "PlaceBeerPlace")
+  Beer: Beer! @relation(name: "PlaceBeerBeer")
+}
+

@@ -1,0 +1,29 @@
+
+# Types
+# 1. Личные топики
+# 2. Фотография
+# 3. Заведение
+# 4. Пиво
+# 5. Под вопросом. Вероятно тоже блоги
+# 6. Мероприятие/Событие/Приглашение
+
+type Comment{
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  comment_id: Int @unique
+  object_id: Int
+  type_id: Int! @default(value: 1)
+  editor_content: Json!
+  is_checked: Int! @default(value: 0)
+  name: String
+  created_by: User @relation(name: "UserComments")
+  parent: ID
+}
+
+
+type CommentType{
+  id: ID! @unique
+  name: String! @unique
+  code: Int! @unique
+}

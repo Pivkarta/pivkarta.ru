@@ -1,0 +1,33 @@
+
+type Beer {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  beer_id: Int @unique
+  name: String
+  url_name: String
+  description: String
+  editor_content: Json
+  country: String
+  image: String @default(value: "empty.jpeg")
+  num_comments: Int @default(value: 0)
+  num_photos: Int @default(value: 0)
+  manufacturer: String
+  region: String
+  manufacture_years: String
+  container: Int
+  alcohol: String
+  wort_percent: String
+  components: String
+  bitter: Int
+  type_id: Int
+  color: String
+  is_request: Int
+  rating: Float
+  add_user_id: Int
+  created_at: Int
+  gallery: Json
+  # places: [Place!]!
+  # place: [Place!]! @relation(name: "PlaceBeer")
+  places: [PlaceBeer!]! @relation(name: "PlaceBeerBeer")
+}

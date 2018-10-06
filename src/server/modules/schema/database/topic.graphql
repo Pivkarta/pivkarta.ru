@@ -1,0 +1,14 @@
+type Topic {
+  id: ID! @unique
+  topic_id: Int @unique  # ID из старой базы данных
+  updatedAt: DateTime!
+  createdAt: DateTime!
+  created_at: DateTime!
+  created_by: User! @relation(name: "UserTopics")
+  name: String!
+  editor_content: Json
+  url_name: String @unique
+  type_id: Int!
+  published: Boolean @default(value: true)
+  description: String
+}

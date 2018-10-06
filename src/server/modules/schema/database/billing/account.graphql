@@ -1,0 +1,15 @@
+
+type Account {
+  id: ID! @unique
+  balance: Float! @default(value: 0)
+  User: User! @relation(name: "UserAccount")
+  Transactions: [Transaction!]! @relation(name: "AccountTransactions")
+}
+
+type Transaction{
+  id: ID! @unique
+  createdAt: DateTime!
+  amount: Float!
+  Account: Account! @relation(name: "AccountTransactions")
+  CreatedBy: User! @relation(name: "TransactionCreatedBy")
+}
