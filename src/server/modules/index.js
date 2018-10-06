@@ -22,18 +22,15 @@ import TopicModule from "./topic";
 
 class CoreModule extends CmsModule {
 
-
-
   constructor(options = {}) {
 
     let {
       modules = [],
     } = options;
 
-    // modules.unshift(UsersModule);
-    // modules.unshift(ReactCmsModule);
+    super(options);
 
-    modules = modules.concat([
+    modules = [
       UsersModule,
       BeersModule,
       PlacesModule,
@@ -42,17 +39,9 @@ class CoreModule extends CmsModule {
       MapModule,
       TarifModule,
       TopicModule,
-    ]);
-
-    Object.assign(options, {
-      modules,
-    });
-
-    // console.log(chalk.green("CoreModule constructor"), options);
-
-    // this.modules = this.modules.concat(modules);
-
-    super(options);
+    ];
+    
+    this.mergeModules(modules);
 
   }
 

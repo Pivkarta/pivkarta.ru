@@ -44,7 +44,7 @@ class UserPayload extends Payload {
       where: {
         OR: [{
           username,
-        },{
+        }, {
           email: username,
         }],
       }
@@ -55,7 +55,7 @@ class UserPayload extends Payload {
     if (!user) {
       this.addFieldError("username", "Пользователь не был найден");
     }
-    else if(!await bcrypt.compare(password, user.password)){
+    else if (!await bcrypt.compare(password, user.password)) {
 
       this.addFieldError("password", "Неверный пароль");
     }
@@ -64,9 +64,9 @@ class UserPayload extends Payload {
 
     let token;
 
-    if(!this.hasErrors()){
+    if (!this.hasErrors()) {
       this.data = user;
-      
+
       token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     }
 
@@ -83,10 +83,13 @@ class UserPayload extends Payload {
   async signup(method, source, args, ctx, info) {
 
     let {
-      username,
-      fullname,
-      email,
-      password,
+      data: {
+        username,
+        // fullname,
+        email,
+        password,
+        ...data
+      },
     } = args;
 
     const {
@@ -138,10 +141,16 @@ class UserPayload extends Payload {
 
     if (!this.hasErrors()) {
 
-      password = await bcrypt.hash(args.password, 10);
+      password = await bcrypt.hash(password, 10);
 
       const user = await ctx.db.mutation.createUser({
-        data: { ...args, password },
+        data: {
+          ...data,
+          username,
+          // fullname,
+          email,
+          password,
+        },
       })
         .then(r => {
           console.log("signup result", r);
@@ -526,14 +535,14 @@ const resetPassword = async function (source, args, ctx, info) {
   if (result) {
     console.log(chalk.green("resetPassword result"), result);
   }
-  else{
-    throw(new Error("Ошибка сброса пароля"));
+  else {
+    throw (new Error("Ошибка сброса пароля"));
   }
 
   return true;
 }
 
-  
+
 const User = {
 
   email: (source, args, ctx) => {
@@ -557,7 +566,7 @@ const User = {
   },
 }
 
- 
+
 
 export default class UsersModule extends PrismaModule {
 
@@ -577,11 +586,11 @@ export default class UsersModule extends PrismaModule {
 
     Object.assign(resolvers.Mutation, {
 
-      signin,
+      // signin,
       signup,
       // updateUserData,
       updateUser,
-      resetPassword,
+      // resetPassword,
     });
 
 
@@ -590,17 +599,17 @@ export default class UsersModule extends PrismaModule {
     Object.assign(resolvers, {
       UserResponse: {
         data: (source, args, ctx, info) => {
-    
+
           const {
             id,
           } = source && source.data || {}
-    
+
           return id ? ctx.db.query.user({
             where: {
               id,
             },
           }, info) : null;
-    
+
         },
       },
       User,
