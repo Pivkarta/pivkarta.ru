@@ -142,4 +142,17 @@ export default class AppEditableView extends EditableView{
   }
 
 
+  onChangeSelectBoolable(event, checked) {
+
+
+
+    const {
+      name,
+    } = event.target;
+
+    this.updateObject({
+      [name]: checked,
+    });
+  }
+
 }

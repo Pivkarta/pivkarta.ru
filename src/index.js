@@ -11,7 +11,13 @@ import registerServiceWorker from './registerServiceWorker';
 import App from "./App";
 
 ReactDOM.render(<PrismaCms
+  // lang="en"
   App={App}
+  // themeOptions={{
+  //   direction: 'ltr',
+  //   paletteType: 'light',
+  //   paletteType: 'dark',
+  // }}
 />, document.getElementById('root'));
 registerServiceWorker();
 
