@@ -1,418 +1,424 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
 
-import Grid from 'material-ui/Grid';
-import { Link } from 'react-router-dom';
-import AuthorizedAction from 'src/modules/authorized-action';
+import PageLayout from "@prisma-cms/front/lib/modules/pages/layout";
 
-import CustomComponent from "Component";
+export default PageLayout;
 
-export default class PageLayout extends CustomComponent {
 
-  static propTypes = {
-    ...CustomComponent.propTypes,
-    renderWithPagination: PropTypes.bool.isRequired,
-    createUrl: PropTypes.string,
-  }
+// import React, { Component, Fragment } from 'react'
+// import PropTypes from 'prop-types'
 
-  static defaultProps = {
-    ...CustomComponent.defaultProps,
-    renderWithPagination: false,
-  }
+// import Grid from 'material-ui/Grid';
+// import { Link } from 'react-router-dom';
+// import AuthorizedAction from 'src/modules/authorized-action';
 
-  static contextTypes = {
-    ...CustomComponent.contextTypes,
-    errors: PropTypes.array,
-    // encrypt: PropTypes.func.isRequired,
-    // decrypt: PropTypes.func.isRequired,
-    user: PropTypes.object,
-    // web3: PropTypes.object.isRequired,
-    router: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    client: PropTypes.object.isRequired,
-    // userAction: PropTypes.object.isRequired,
-    getGeoCoords: PropTypes.func.isRequired,
-  }
+// import CustomComponent from "Component";
 
-  static childContextTypes = {
-    ...CustomComponent.childContextTypes,
-    setPageMeta: PropTypes.func,
-  }
+// export default class PageLayout extends CustomComponent {
 
+//   static propTypes = {
+//     ...CustomComponent.propTypes,
+//     renderWithPagination: PropTypes.bool.isRequired,
+//     createUrl: PropTypes.string,
+//   }
 
-  state = {}
+//   static defaultProps = {
+//     ...CustomComponent.defaultProps,
+//     renderWithPagination: false,
+//   }
 
+//   static contextTypes = {
+//     ...CustomComponent.contextTypes,
+//     errors: PropTypes.array,
+//     // encrypt: PropTypes.func.isRequired,
+//     // decrypt: PropTypes.func.isRequired,
+//     user: PropTypes.object,
+//     // web3: PropTypes.object.isRequired,
+//     router: PropTypes.object.isRequired,
+//     location: PropTypes.object.isRequired,
+//     client: PropTypes.object.isRequired,
+//     // userAction: PropTypes.object.isRequired,
+//     getGeoCoords: PropTypes.func.isRequired,
+//   }
 
-  getChildContext() {
+//   static childContextTypes = {
+//     ...CustomComponent.childContextTypes,
+//     setPageMeta: PropTypes.func,
+//   }
 
-    return {
 
-      // Надо биндить, так как иначе не в том контексте вызывается
-      setPageMeta: this.setPageMeta.bind(this),
-    };
-  }
+//   state = {}
 
-  // setPageMeta = (meta) => {
-  setPageMeta(meta = {}) {
 
+//   getChildContext() {
 
+//     return {
 
-    let {
-      title,
-      description = "",
-      // canonical,
-      ...other
-    } = meta;
+//       // Надо биндить, так как иначе не в том контексте вызывается
+//       setPageMeta: this.setPageMeta.bind(this),
+//     };
+//   }
 
-    if (!global.document) {
-      global.document = {}
-    }
+//   // setPageMeta = (meta) => {
+//   setPageMeta(meta = {}) {
 
-    let {
-      document,
-    } = global;
 
 
-    if (title) {
+//     let {
+//       title,
+//       description = "",
+//       // canonical,
+//       ...other
+//     } = meta;
 
+//     if (!global.document) {
+//       global.document = {}
+//     }
 
+//     let {
+//       document,
+//     } = global;
 
-      const suffix = " | Пивная карта";
 
-      // Проверять надо именно так, потому что new RegExp не понимает экранирование |
-      if (!/ \| Пивная карта$|^Пивная карта\:/.test(title)) {
-        title += suffix;
-      }
+//     if (title) {
 
-      if (document.title !== title) {
-        document.title = title;
-      }
 
-    }
 
+//       const suffix = " | Пивная карта";
 
-    if (description !== undefined) {
+//       // Проверять надо именно так, потому что new RegExp не понимает экранирование |
+//       if (!/ \| Пивная карта$|^Пивная карта\:/.test(title)) {
+//         title += suffix;
+//       }
 
-      if (typeof window !== "undefined") {
-        document.head.querySelector("meta[name=description]").content = description || "";
-      }
-      else {
-        document.description = description;
-      }
-
-    }
-
-    Object.assign(document, other);
-
-
-
-
-  }
-
-
-  componentWillMount() {
-
-    this.setPageMeta();
-
-    super.componentWillMount && super.componentWillMount();
-  }
-
-
-  render(content) {
-
-    const {
-      renderWithPagination,
-    } = this.props;
-
-
-    if (renderWithPagination) {
-
-      content = this.renderWithPagination();
-
-    }
-
-
-
-
-    let footer = <footer
-    >
-
-      <Grid
-        container
-        className="footernew"
-      >
-        <Grid
-          // className="mui-col-sm-4 mui-col-xs-12"
-          item
-          xs={12}
-          sm={4}
-        >
-          <ul className="footernew__menu">
-            <li>
-              <Link to="/place/showlist/">Все заведения</Link>
-            </li>
-            <li>
-              <Link to="/place/index/type/shop/">Магазины</Link>
-            </li>
-            <li>
-              <Link to="/place/index/type/bar/">Бары</Link>
-            </li>
-            <li>
-              <Link to="/place/index/type/brewery/">Пивоварни</Link>
-            </li>
-            <li>
-              <Link to="/beer/showlist/">Энциклопедия пива</Link>
-            </li>
-            <li> 
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: `
-                  <!-- Yandex.Metrika informer -->
-                  <a href="https://metrika.yandex.ru/stat/?id=40088775&amp;from=informer"
-                  target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/40088775/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
-                  style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" className="ym-advanced-informer" data-cid="40088775" data-lang="ru" /></a>
-                  <!-- /Yandex.Metrika informer -->
-                  `
-                }}
-              />
-            </li>
-          </ul>
-
-
-        </Grid>
-        <Grid
-          // className="mui-col-sm-4 mui-col-xs-12"
-          item
-          xs={12}
-          sm={4}
-        >
-          <ul className="footernew__menu">
-            <li>
-              <Link to="/blog/showlist/">Блоги</Link>
-            </li>
-            <li>
-              <Link to="/profile/showlist/">Участники</Link>
-            </li>
-            <li>
-              <Link to="/comments/">Комментарии</Link>
-            </li>
-            <li>
-              <Link to="/contacts.html">Контакты</Link>
-            </li>
-          </ul>
-        </Grid>
-        <Grid
-          // className="mui-col-sm-4 mui-col-xs-12"
-          item
-          xs={12}
-          sm={4}
-          className="footernew__buttons"
-        >
-          <Link to="/places/create/" className="mui-btn">
-            <i className="fas fa-plus-circle"></i> ДОБАВИТЬ ЗАВЕДЕНИЕ
-          </Link>
-          <hr />
-          <Link to="/beer/showlist/" className="mui-btn">
-            <i className="fas fa-beer"></i> ЭНЦИКЛОПЕДИЯ ПИВА
-          </Link>
-          <hr />
-          <Link to="/map/" className="mui-btn">
-            <i className="fas fa-map-marker-alt"></i> НАЙТИ ПИВО НА КАРТЕ
-          </Link>
-        </Grid>
-      </Grid>
-
-
-      <div className="mui-row bottomline">
-        <div className="mui-container-fluid">
-          <div className="mui-row">
-            <div className="mui-col-xs-12">
-              <span className="bottomline__slogan">
-                Чрезмерное употребление алкоголя вредит вашему здоровью
-          </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-    </footer>
-
-
-    return content ? <div
-      style={{
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        flexGrow: 1,
-        flexBasis: "100%",
-      }}
-    >
-      <div
-        style={{
-          flexGrow: 1,
-          margin: "20px auto 0",
-          padding: "0 10px",
-          maxWidth: 1260,
-          width: "100%",
-        }}
-      >
-        {content}
-      </div>
-
-      {footer}
-
-    </div> : null;
-
-  }
-
-
-
-  // getCoords() {
-
-  //   const {
-  //     location,
-  //     router,
-  //     user: currentUser,
-  //     getGeoCoords,
-  //   } = this.context;
+//       if (document.title !== title) {
+//         document.title = title;
+//       }
+
+//     }
+
+
+//     if (description !== undefined) {
+
+//       if (typeof window !== "undefined") {
+//         document.head.querySelector("meta[name=description]").content = description || "";
+//       }
+//       else {
+//         document.description = description;
+//       }
+
+//     }
+
+//     Object.assign(document, other);
+
+
+
+
+//   }
+
+
+//   componentWillMount() {
+
+//     this.setPageMeta();
+
+//     super.componentWillMount && super.componentWillMount();
+//   }
+
+
+//   render(content) {
+
+//     const {
+//       renderWithPagination,
+//     } = this.props;
+
+
+//     if (renderWithPagination) {
+
+//       content = this.renderWithPagination();
+
+//     }
+
+
+
+
+//     let footer = <footer
+//     >
+
+//       <Grid
+//         container
+//         className="footernew"
+//       >
+//         <Grid
+//           // className="mui-col-sm-4 mui-col-xs-12"
+//           item
+//           xs={12}
+//           sm={4}
+//         >
+//           <ul className="footernew__menu">
+//             <li>
+//               <Link to="/place/showlist/">Все заведения</Link>
+//             </li>
+//             <li>
+//               <Link to="/place/index/type/shop/">Магазины</Link>
+//             </li>
+//             <li>
+//               <Link to="/place/index/type/bar/">Бары</Link>
+//             </li>
+//             <li>
+//               <Link to="/place/index/type/brewery/">Пивоварни</Link>
+//             </li>
+//             <li>
+//               <Link to="/beer/showlist/">Энциклопедия пива</Link>
+//             </li>
+//             <li> 
+//               <div
+//                 dangerouslySetInnerHTML={{
+//                   __html: `
+//                   <!-- Yandex.Metrika informer -->
+//                   <a href="https://metrika.yandex.ru/stat/?id=40088775&amp;from=informer"
+//                   target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/40088775/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+//                   style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" className="ym-advanced-informer" data-cid="40088775" data-lang="ru" /></a>
+//                   <!-- /Yandex.Metrika informer -->
+//                   `
+//                 }}
+//               />
+//             </li>
+//           </ul>
+
+
+//         </Grid>
+//         <Grid
+//           // className="mui-col-sm-4 mui-col-xs-12"
+//           item
+//           xs={12}
+//           sm={4}
+//         >
+//           <ul className="footernew__menu">
+//             <li>
+//               <Link to="/blog/showlist/">Блоги</Link>
+//             </li>
+//             <li>
+//               <Link to="/profile/showlist/">Участники</Link>
+//             </li>
+//             <li>
+//               <Link to="/comments/">Комментарии</Link>
+//             </li>
+//             <li>
+//               <Link to="/contacts.html">Контакты</Link>
+//             </li>
+//           </ul>
+//         </Grid>
+//         <Grid
+//           // className="mui-col-sm-4 mui-col-xs-12"
+//           item
+//           xs={12}
+//           sm={4}
+//           className="footernew__buttons"
+//         >
+//           <Link to="/places/create/" className="mui-btn">
+//             <i className="fas fa-plus-circle"></i> ДОБАВИТЬ ЗАВЕДЕНИЕ
+//           </Link>
+//           <hr />
+//           <Link to="/beer/showlist/" className="mui-btn">
+//             <i className="fas fa-beer"></i> ЭНЦИКЛОПЕДИЯ ПИВА
+//           </Link>
+//           <hr />
+//           <Link to="/map/" className="mui-btn">
+//             <i className="fas fa-map-marker-alt"></i> НАЙТИ ПИВО НА КАРТЕ
+//           </Link>
+//         </Grid>
+//       </Grid>
+
+
+//       <div className="mui-row bottomline">
+//         <div className="mui-container-fluid">
+//           <div className="mui-row">
+//             <div className="mui-col-xs-12">
+//               <span className="bottomline__slogan">
+//                 Чрезмерное употребление алкоголя вредит вашему здоровью
+//           </span>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+
+//     </footer>
+
+
+//     return content ? <div
+//       style={{
+//         height: "100%",
+//         width: "100%",
+//         display: "flex",
+//         flexDirection: "column",
+//         flexGrow: 1,
+//         flexBasis: "100%",
+//       }}
+//     >
+//       <div
+//         style={{
+//           flexGrow: 1,
+//           margin: "20px auto 0",
+//           padding: "0 10px",
+//           maxWidth: 1260,
+//           width: "100%",
+//         }}
+//       >
+//         {content}
+//       </div>
+
+//       {footer}
+
+//     </div> : null;
+
+//   }
+
+
+
+//   // getCoords() {
+
+//   //   const {
+//   //     location,
+//   //     router,
+//   //     user: currentUser,
+//   //     getGeoCoords,
+//   //   } = this.context;
 
     
-  //   let currentCoords = getGeoCoords();
+//   //   let currentCoords = getGeoCoords();
 
 
 
 
-  //   let {
-  //     route: {
-  //       match: {
-  //         params: {
-  //           lat,
-  //           lng,
-  //         },
-  //       },
-  //     },
-  //   } = router;
+//   //   let {
+//   //     route: {
+//   //       match: {
+//   //         params: {
+//   //           lat,
+//   //           lng,
+//   //         },
+//   //       },
+//   //     },
+//   //   } = router;
 
-  //   let center;
+//   //   let center;
 
-  //   if (!lat || !lng) {
-  //     lat = 55.752;
-  //     lng = 37.621;
-  //   }
-
-
-  //   if (lat && lng) {
-  //     center = {
-  //       lat,
-  //       lng,
-  //     }
-  //   }
-
-  //   return center;
-
-  // }
+//   //   if (!lat || !lng) {
+//   //     lat = 55.752;
+//   //     lng = 37.621;
+//   //   }
 
 
-  getCoords() {
+//   //   if (lat && lng) {
+//   //     center = {
+//   //       lat,
+//   //       lng,
+//   //     }
+//   //   }
 
-    const { 
-      getGeoCoords,
-    } = this.context;
+//   //   return center;
+
+//   // }
+
+
+//   getCoords() {
+
+//     const { 
+//       getGeoCoords,
+//     } = this.context;
 
     
-    let currentCoords = getGeoCoords();
+//     let currentCoords = getGeoCoords();
 
 
  
-    const {
-      lat,
-      lng,
-    } = currentCoords;
+//     const {
+//       lat,
+//       lng,
+//     } = currentCoords;
 
-    let center = {}
+//     let center = {}
 
-    if (lat && lng) {
-      center = {
-        lat,
-        lng,
-      }
-    }
+//     if (lat && lng) {
+//       center = {
+//         lat,
+//         lng,
+//       }
+//     }
 
-    return center;
+//     return center;
 
-  }
+//   }
 
-  renderWithPagination() {
+//   renderWithPagination() {
 
-    const {
-      View,
-      first: limit,
-      createUrl,
-      ...other
-    } = this.props;
-
-
-    const {
-      Renderer,
-    } = this.state;
-
-    const {
-      location,
-      user: currentUser,
-    } = this.context;
+//     const {
+//       View,
+//       first: limit,
+//       createUrl,
+//       ...other
+//     } = this.props;
 
 
-    const {
-      search,
-    } = location;
+//     const {
+//       Renderer,
+//     } = this.state;
+
+//     const {
+//       location,
+//       user: currentUser,
+//     } = this.context;
+
+
+//     const {
+//       search,
+//     } = location;
 
 
 
-    let {
-      page,
-    } = search || {};
+//     let {
+//       page,
+//     } = search || {};
 
-    page = parseInt(page) || 0;
+//     page = parseInt(page) || 0;
 
-    const skip = page ? (page - 1) * limit : 0;
+//     const skip = page ? (page - 1) * limit : 0;
 
 
-    return (<Fragment>
+//     return (<Fragment>
 
-      {createUrl ? <div
-        style={{
-          marginBottom: 20,
-        }}
-      >
-        <AuthorizedAction
-        // onError={event => {
+//       {createUrl ? <div
+//         style={{
+//           marginBottom: 20,
+//         }}
+//       >
+//         <AuthorizedAction
+//         // onError={event => {
 
-        // }}
-        >
-          <Link
-            to={createUrl}
-          >
-            Добавить публикацию
-          </Link>
-        </AuthorizedAction>
-      </div>
-        : null
-      }
+//         // }}
+//         >
+//           <Link
+//             to={createUrl}
+//           >
+//             Добавить публикацию
+//           </Link>
+//         </AuthorizedAction>
+//       </div>
+//         : null
+//       }
 
-      <Renderer
-        addObject={event => {
-          this.addObject(event);
-        }}
-        page={page}
-        skip={skip}
-        first={limit}
-        limit={limit}
-        {...other}
-      />
-    </Fragment>)
+//       <Renderer
+//         addObject={event => {
+//           this.addObject(event);
+//         }}
+//         page={page}
+//         skip={skip}
+//         first={limit}
+//         limit={limit}
+//         {...other}
+//       />
+//     </Fragment>)
 
-  }
+//   }
 
-}
+// }
