@@ -9,9 +9,13 @@
       }
     },
     "prisma": {
-      "schemaPath": "src/server/schema/generated/prisma.graphql",
+      "schemaPath": "src/server/schema/generated/api.graphql",
       "extensions": {
-        "prisma": "src/server/schema/prisma/prisma.yml"
+        "prisma": "src/server/schema/prisma/prisma.yml",
+        "generate-fragments": {
+          "generator": "js",
+          "output": "src/schema/generated/api.fragments.js"
+        }
       }
     }
   }

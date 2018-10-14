@@ -5,6 +5,7 @@ import chalk from "chalk";
 
 // import PrismaModule from "@prisma-cms/prisma-module";
 import { CmsModule } from "@prisma-cms/server";
+import RouterModuleExtended from "@prisma-cms/router";
 
 
 import { fileLoader, mergeTypes } from 'merge-graphql-schemas';
@@ -29,6 +30,11 @@ class CoreModule extends CmsModule {
     } = options;
 
     super(options);
+    
+    this.mergeModules([
+      // ECommerceModule,
+      RouterModuleExtended,
+    ]);
 
     modules = [
       UsersModule,

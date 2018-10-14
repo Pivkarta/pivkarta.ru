@@ -7,7 +7,7 @@ import React, { Component } from "react";
 
 import PropTypes from "prop-types";
 
-import PrismaApp from "@prisma-cms/front/lib/components/App";
+import {App as PrismaApp} from "@prisma-cms/front";
 
 import Renderer from "./components/Renderer";
 
@@ -74,7 +74,7 @@ const RendererProvider = compose(graphql(cities, {
   options: props => {
 
     return {
-      varisbles: {
+      variables: {
         orderBy: "name_ASC",
       },
     }
@@ -87,6 +87,12 @@ export default class App extends PrismaApp {
   static defaultProps = {
     ...PrismaApp.defaultProps,
     Renderer: RendererProvider,
+    queryFragments,
+    lang: "ru",
+    themeOptions: {
+      direction: 'ltr',
+      paletteType: 'light',
+    },
   }
 
 }
