@@ -17,38 +17,39 @@ import { YMaps } from 'react-yandex-maps';
 
 import UserMenu from '../../UserMenu';
 
-import MapPage from 'Page/MapPage';
-import MainPage from 'Page/MainPage';
-import UsersPage from 'Page/Users';
-import UserPage from 'Page/Users/User';
-import TopicsPage from 'Page/Topics';
-import TopicPage from 'Page/Topics/Topic';
-import TopicCreatePage from 'Page/Topics/Topic/Create';
-import CommentsPage from 'Page/Comments';
-import CommentPage from 'Page/Comments/Comment';
-import WalletPage from 'Page/Wallet';
-import TransactionsPage from 'Page/Wallet/Transactions';
-import TransactionPage from 'Page/Wallet/Transactions/Transaction';
+import MapPage from '../../../modules/Page/MapPage';
+import MainPage from '../../../modules/Page/MainPage';
+import UsersPage from '../../../modules/Page/Users';
+import UserPage from '../../../modules/Page/Users/User';
+import TopicsPage from '../../../modules/Page/Topics';
+import TopicPage from '../../../modules/Page/Topics/Topic';
+import TopicCreatePage from '../../../modules/Page/Topics/Topic/Create';
+import CommentsPage from '../../../modules/Page/Comments';
+import CommentPage from '../../../modules/Page/Comments/Comment';
+import WalletPage from '../../../modules/Page/Wallet';
+import TransactionsPage from '../../../modules/Page/Wallet/Transactions';
+import TransactionPage from '../../../modules/Page/Wallet/Transactions/Transaction';
 
-import BeersPage from 'Page/Beers';
-import BeerPage from 'Page/Beers/Beer';
-import BeerCreatePage from 'Page/Beers/Beer/Create';
-import PlacesPage from 'Page/Places';
-import PlacePage from 'Page/Places/Place';
-import PlaceCreatePage from 'Page/Places/Place/Create';
-import ContactsPage from 'Page/Contacts';
-import LettersPage from 'Page/Letters';
-import LetterPage from 'Page/Letters/Letter';
-import LetterCreatePage from 'Page/Letters/Letter/Create';
-import LandingPage from 'Page/Landing';
+import BeersPage from '../../../modules/Page/Beers';
+import BeerPage from '../../../modules/Page/Beers/Beer';
+import BeerCreatePage from '../../../modules/Page/Beers/Beer/Create';
+import PlacesPage from '../../../modules/Page/Places';
+import PlacePage from '../../../modules/Page/Places/Place';
+import PlaceCreatePage from '../../../modules/Page/Places/Place/Create';
+import ContactsPage from '../../../modules/Page/Contacts';
+import LettersPage from '../../../modules/Page/Letters';
+import LetterPage from '../../../modules/Page/Letters/Letter';
+import LetterCreatePage from '../../../modules/Page/Letters/Letter/Create';
+import LandingPage from '../../../modules/Page/Landing';
 
-import CitiesPage from 'Page/Cities/Cities';
-import CityPage from 'Page/Cities/City';
+import CitiesPage from '../../../modules/Page/Cities/Cities';
+import CityPage from '../../../modules/Page/Cities/City';
 
 
-import PageNotFound from 'Page/404';
+import PageNotFound from '../../../modules/Page/404';
 
-import Auth from 'Auth';
+// import Auth from 'Auth';
+import Auth from '@prisma-cms/front/lib/modules/Auth';
 
 // import ReactEncrypt from 'react-encrypt/src';
 
@@ -200,7 +201,7 @@ export default class Renderer extends Component {
 
 
     // Поисковая строка для карты
-    const mapSearchQuery = this.getSearchQuery("query");
+    const mapSearchQuery = this.getSearchQuery("src/modules/query");
     const mapBeerSearchQuery = this.getSearchQuery("beer");
     const mapBeerIdSearchQuery = this.getSearchQuery("beer_id");
 

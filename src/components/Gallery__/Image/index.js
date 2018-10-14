@@ -10,7 +10,7 @@ import Grid from 'material-ui/Grid';
 import Checkbox from 'material-ui/Checkbox';
 import DeleteIcon from 'material-ui-icons/Clear';
 
-import Image from 'ui/Image';
+import Image from 'src/modules/ui/Image';
 
 const defaultProps = {}
 

@@ -11,16 +11,18 @@ import {App as PrismaApp} from "@prisma-cms/front";
 
 import Renderer from "./components/Renderer";
 
-import GeoProvider from "geo-provider";
+import GeoProvider from "src/modules/geo-provider";
 
 import 'moment/locale/ru';
 
-import Scroller from "Scroller";
+import Scroller from "src/modules/Scroller";
 
 import {
   cities,
-} from "query";
+} from "src/modules/query";
 import { compose, graphql } from 'react-apollo';
+
+import * as queryFragments from "./schema/generated/api.fragments";
 
 
 

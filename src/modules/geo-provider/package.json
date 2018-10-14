@@ -1,0 +1,4 @@
+{
+  "name": "src/modules/geo-provider",
+  "main": "src/index.js"
+}

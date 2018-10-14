@@ -9,7 +9,7 @@ import Grid from '@prisma-cms/front/lib/modules/ui/Grid';
 
 // import Span from '@prisma-cms/ui';
 
-// import SingleUploader from '@prisma-cms/front/lib/modules/react-cms-uploads/src/components/uploader/SingleUploader';
+// import SingleUploader from '@prisma-cms/front/lib/modules/src/modules/react-cms-uploads/src/components/uploader/SingleUploader';
 import Typography from 'material-ui/Typography';
 
 import { Uploader } from "@prisma-cms/ui";

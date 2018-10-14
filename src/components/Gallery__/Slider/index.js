@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 import Slider from 'react-slick';
 
-import Image from 'ui/Image';
+import Image from 'src/modules/ui/Image';
 
 export default class GallerySlider extends Component{
 

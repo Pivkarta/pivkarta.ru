@@ -89,6 +89,7 @@
     "jss-theme-reactor": "^0.11.1",
     "linkify-it": "^2.0.3",
     "load-script": "^1.0.0",
+    "map-sidebar-react": "^1.0.0",
     "material-ui": "1.0.0-beta.43",
     "material-ui-icons": "^1.0.0-beta.17",
     "moment": "^2.20.1",

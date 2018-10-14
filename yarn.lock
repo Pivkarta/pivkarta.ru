@@ -6375,6 +6375,10 @@ globule@^1.0.0:
     lodash "~4.17.10"
     minimatch "~3.0.2"
 
+google-map-react-control@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/google-map-react-control/-/google-map-react-control-1.0.2.tgz#20cde43cbfc9f1919073edc859a86c0e66d4a658"
+
 google-map-react@^0.34.0:
   version "0.34.0"
   resolved "http://registry.npmjs.org/google-map-react/-/google-map-react-0.34.0.tgz#c645f8b9a7b3b030547dae2964ff79fc00a402b3"
@@ -9601,6 +9605,13 @@ map-obj@^1.0.0, map-obj@^1.0.1:
 map-obj@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/map-obj/-/map-obj-2.0.0.tgz#a65cd29087a92598b8791257a523e021222ac1f9"
+
+map-sidebar-react@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/map-sidebar-react/-/map-sidebar-react-1.0.0.tgz#a4ad4b186676762b03ab1fbbe7e025f6ce04bd25"
+  dependencies:
+    google-map-react-control "^1.0.2"
+    prop-types "^15.6.0"
 
 map-stream@0.0.6:
   version "0.0.6"

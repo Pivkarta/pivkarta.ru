@@ -10,13 +10,13 @@ import Scroller from "Scroller";
 
 import {
   cities,
-} from "query";
+} from "src/modules/query";
 
 
 import { compose, graphql } from 'react-apollo';
 
 import UriProvider from "uri-provider";
-import GeoProvider from "geo-provider";
+import GeoProvider from "src/modules/geo-provider";
 
 // console.log("cities", cities);
 
