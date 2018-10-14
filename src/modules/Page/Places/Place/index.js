@@ -44,6 +44,8 @@ export default class PlacePage extends PlacesPage {
       Renderer,
     });
 
+    super.componentWillMount && super.componentWillMount();
+
   }
 
   

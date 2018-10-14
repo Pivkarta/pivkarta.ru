@@ -71,16 +71,24 @@ export default class PlacesPage extends Page {
     } = this.props;
 
 
-    const Renderer = compose(
-      graphql(mapPlacesConnection, {
-        // name: 'items', 
-      }),
-
-    )(View);
-
-    Object.assign(this.state, {
+    const {
       Renderer,
-    });
+    } = this.state;
+
+    if(!Renderer){
+
+      const Renderer = compose(
+        graphql(mapPlacesConnection, {
+          // name: 'items', 
+        }),
+  
+      )(View);
+  
+      Object.assign(this.state, {
+        Renderer,
+      });
+      
+    }
 
 
     super.componentWillMount && super.componentWillMount();

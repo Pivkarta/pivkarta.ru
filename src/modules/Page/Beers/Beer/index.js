@@ -25,6 +25,22 @@ export default class BeerPage extends BeersPage {
   static defaultProps = defaultProps;
 
 
+  setPageMeta(meta) {
+    // ToDo: добавить город
+
+    if(meta === undefined){
+
+      let title = "Все сорта пива";
+  
+      meta = {
+        title,
+      }
+      
+    }
+
+    return super.setPageMeta(meta);
+  }
+
 
   componentWillMount(){
 

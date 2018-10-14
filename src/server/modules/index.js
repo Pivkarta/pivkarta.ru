@@ -19,6 +19,7 @@ import CommentModule from "./comment";
 import MapModule from "./map";
 import TarifModule from "./tarif";
 import TopicModule from "./topic";
+import LetterModule from "./letter";
 
 
 class CoreModule extends CmsModule {
@@ -45,6 +46,7 @@ class CoreModule extends CmsModule {
       MapModule,
       TarifModule,
       TopicModule,
+      LetterModule,
     ];
     
     this.mergeModules(modules);

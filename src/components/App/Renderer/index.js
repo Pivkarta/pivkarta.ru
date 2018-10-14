@@ -46,10 +46,12 @@ import CitiesPage from '../../../modules/Page/Cities/Cities';
 import CityPage from '../../../modules/Page/Cities/City';
 
 
-import PageNotFound from '../../../modules/Page/404';
+// import PageNotFound from '../../../modules/Page/404';
 
 // import Auth from 'Auth';
 import Auth from '@prisma-cms/front/lib/modules/Auth';
+
+import PageNotFound from '@prisma-cms/front/lib/modules/pages/404/';
 
 // import ReactEncrypt from 'react-encrypt/src';
 

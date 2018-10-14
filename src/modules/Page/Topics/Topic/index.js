@@ -53,6 +53,8 @@ export default class TopicPage extends TopicsPage {
       Renderer,
     });
 
+    super.componentWillMount && super.componentWillMount();
+
   }
   
 

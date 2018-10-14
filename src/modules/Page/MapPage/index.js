@@ -85,13 +85,30 @@ export class MapPage extends Page {
 	}
 
 
-  componentWillMount(){
- 
-    this.setPageMeta({
-      title: "Пивная карта: все бары, пабы, пивные рестораны на карте. Магазины разливного пива и все сорта пива",
-    });
+  setPageMeta(meta) {
+    // ToDo: добавить город
 
+    if(meta === undefined){
+
+      let title = "Пивная карта: все бары, пабы, пивные рестораны на карте. Магазины разливного пива и все сорта пива";
+  
+      meta = {
+        title,
+      }
+      
+    }
+
+    return super.setPageMeta(meta);
   }
+
+  // componentWillMount(){
+ 
+  //   this.setPageMeta({
+  //     title: "Пивная карта: все бары, пабы, пивные рестораны на карте. Магазины разливного пива и все сорта пива",
+  //   });
+
+	// 	super.componentWillMount && super.componentWillMount();
+  // }
 
 
 	mapSearch = (value, field = "src/modules/query") => {

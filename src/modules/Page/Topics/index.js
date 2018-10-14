@@ -64,19 +64,25 @@ export default class TopicsPage extends Page {
       View,
     } = this.props;
 
-
-    const Renderer = compose(
-      graphql(topicsConnection, {
-        // name: 'items', 
-      }),
-      graphql(updateTopicProcessor, {
-      }),
-    
-    )(View);
-
-    Object.assign(this.state, {
+    const {
       Renderer,
-    });
+    } = this.state;
+
+    if(!Renderer){
+      const Renderer = compose(
+        graphql(topicsConnection, {
+          // name: 'items', 
+        }),
+        graphql(updateTopicProcessor, {
+        }),
+      
+      )(View);
+  
+      Object.assign(this.state, {
+        Renderer,
+      });
+    }
+
 
     super.componentWillMount && super.componentWillMount();
 

@@ -74,6 +74,8 @@ export default class UsersPage extends Page {
       title: "Пользователи",
     });
 
+    super.componentWillMount && super.componentWillMount();
+    
   }
 
 
