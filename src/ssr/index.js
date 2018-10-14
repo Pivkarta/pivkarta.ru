@@ -46,6 +46,7 @@ const cwd = process.cwd();
 
 const proxy = require('http-proxy-middleware');
 
+const setupProxy = require("@prisma-cms/front/lib/setupProxy");
 
 app.use(proxy('/api/', {
   target: 'http://localhost:4100/',

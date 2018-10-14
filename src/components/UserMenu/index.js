@@ -40,6 +40,7 @@ export default class MainMenu extends Component {
       ratingsOpened: false,
       citiesOpened: false,
       opened: false,
+      mobileMenuOpened: false,
     }
 
     // console.log("menu constructor");
@@ -153,7 +154,7 @@ export default class MainMenu extends Component {
   }
 
 
-  getDistDiff(coords, coords2){
+  getDistDiff(coords, coords2) {
 
     let {
       lat,
@@ -171,10 +172,10 @@ export default class MainMenu extends Component {
       pow,
     } = Math;
 
-    
+
     lat = lat && parseFloat(lat) || 0;
     lng = lng && parseFloat(lng) || 0;
-    
+
     lat2 = lat2 && parseFloat(lat2) || 0;
     lng2 = lng2 && parseFloat(lng2) || 0;
 
@@ -212,10 +213,11 @@ export default class MainMenu extends Component {
     // } = currentUser || {};
 
     let {
-      ratings,
-      ratingsOpened,
+      // ratings,
+      // ratingsOpened,
       citiesOpened,
-      opened,
+      // opened,
+      mobileMenuOpened,
     } = this.state;
 
     let base_url = "/";
@@ -246,9 +248,9 @@ export default class MainMenu extends Component {
 
     let mainCity
 
-    if(cities){
+    if (cities) {
 
-      cities = cities.filter(({lat, lng}) => lat && lng);
+      cities = cities.filter(({ lat, lng }) => lat && lng);
 
       /**
        * Пересортировываем
@@ -263,25 +265,25 @@ export default class MainMenu extends Component {
       const center = getGeoCoords();
 
 
-      if(center){
+      if (center) {
 
-        cities = cities.sort((a,b) => {
-  
+        cities = cities.sort((a, b) => {
+
           const aDiff = this.getDistDiff(a, center);
           const bDiff = this.getDistDiff(b, center);
 
           // console.log("Distance diff ", aDiff, bDiff, center);
 
-          if(aDiff > bDiff){
+          if (aDiff > bDiff) {
             return 1;
           }
-          else if(aDiff < bDiff){
+          else if (aDiff < bDiff) {
             return -1;
           }
           else {
             return 0
           }
-  
+
         });
 
       }
@@ -290,7 +292,7 @@ export default class MainMenu extends Component {
       cities.map((city, index) => {
 
 
-        if(index > 100){
+        if (index > 100) {
           return null;
         }
 
@@ -303,17 +305,17 @@ export default class MainMenu extends Component {
           lat,
           lng,
         } = city;
-  
+
         // if (!lat || !lng) {
         //   return;
         // }
-  
+
         // const {
         // } = coords;
-  
+
         const link = `/${alias}/@` + [lat, lng, 12].join(",");
-  
-  
+
+
         citiesList.push(<li
           key={id}
         >
@@ -321,19 +323,19 @@ export default class MainMenu extends Component {
             to={link}
             // href={link}
             onClick={event => {
-  
+
               const {
                 map,
                 maps,
               } = global;
-  
+
               const LatLng = new maps.LatLng({
                 lat,
                 lng,
               })
-  
+
               map.setZoom(12);
-  
+
               map.panTo(LatLng);
               this.closeMenu();
             }}
@@ -341,13 +343,13 @@ export default class MainMenu extends Component {
             {name}
           </Link>
         </li>);
-  
+
       });
 
       mainCity = cities && cities[0];
     }
 
-    
+
 
 
 
@@ -423,14 +425,29 @@ export default class MainMenu extends Component {
               <span className="str">Пивная карта</span>
             </div>
           </Link>
-          <button className="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+          <button
+            className="navbar-toggle"
+            type="button"
+          //  data-toggle="collapse" 
+          //  data-target="#navbar-main"
+            onClick={event => {
+              event.preventDefault();
+              event.stopPropagation();
+              this.setState({
+                mobileMenuOpened: !mobileMenuOpened,
+              });
+            }}
+          >
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
         </div>
 
-        <div id="navbar-main" className="collapse navbar-collapse navbar-right">
+        <div
+          id="navbar-main"
+          className={["navbar-collapse navbar-right", mobileMenuOpened ? "" : "collapse"].join(" ")}
+        >
           <ul
             className="nav navbar-nav flex align-center"
             style={{

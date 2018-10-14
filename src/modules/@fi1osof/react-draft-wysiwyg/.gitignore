@@ -1,0 +1,7 @@
+/coverage
+/demo/dist
+# /lib
+/node_modules
+/umd
+*.log*
+/yarn.lock
