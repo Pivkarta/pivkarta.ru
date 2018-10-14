@@ -3,12 +3,12 @@ import React, {Component} from 'react';
 
 import PropTypes from 'prop-types';
 
-import Modal from 'Modal';
+import Modal from 'src/modules/Modal';
 
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
-import TextField from 'ui/TextField';
+import TextField from 'src/modules/ui/TextField';
 
 
 import { graphql, compose } from 'react-apollo';
@@ -18,7 +18,7 @@ import { graphql, compose } from 'react-apollo';
 import {
   signin,
   signup,
-} from 'query';
+} from 'src/modules/query';
 
 
 import CustomComponent from "Component";
