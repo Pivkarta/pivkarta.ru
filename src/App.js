@@ -7,20 +7,22 @@ import React, { Component } from "react";
 
 import PropTypes from "prop-types";
 
-import PrismaApp from "@prisma-cms/front/lib/components/App";
+import {App as PrismaApp} from "@prisma-cms/front";
 
 import Renderer from "./components/Renderer";
 
-import GeoProvider from "geo-provider";
+import GeoProvider from "src/modules/geo-provider";
 
 import 'moment/locale/ru';
 
-import Scroller from "Scroller";
+import Scroller from "src/modules/Scroller";
 
 import {
   cities,
-} from "query";
+} from "src/modules/query";
 import { compose, graphql } from 'react-apollo';
+
+import * as queryFragments from "./schema/generated/api.fragments";
 
 
 
@@ -74,7 +76,7 @@ const RendererProvider = compose(graphql(cities, {
   options: props => {
 
     return {
-      varisbles: {
+      variables: {
         orderBy: "name_ASC",
       },
     }
@@ -87,6 +89,12 @@ export default class App extends PrismaApp {
   static defaultProps = {
     ...PrismaApp.defaultProps,
     Renderer: RendererProvider,
+    queryFragments,
+    lang: "ru",
+    themeOptions: {
+      direction: 'ltr',
+      paletteType: 'light',
+    },
   }
 
 }

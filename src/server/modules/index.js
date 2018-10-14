@@ -5,6 +5,7 @@ import chalk from "chalk";
 
 // import PrismaModule from "@prisma-cms/prisma-module";
 import { CmsModule } from "@prisma-cms/server";
+import RouterModuleExtended from "@prisma-cms/router";
 
 
 import { fileLoader, mergeTypes } from 'merge-graphql-schemas';
@@ -18,6 +19,7 @@ import CommentModule from "./comment";
 import MapModule from "./map";
 import TarifModule from "./tarif";
 import TopicModule from "./topic";
+import LetterModule from "./letter";
 
 
 class CoreModule extends CmsModule {
@@ -29,6 +31,11 @@ class CoreModule extends CmsModule {
     } = options;
 
     super(options);
+    
+    this.mergeModules([
+      // ECommerceModule,
+      RouterModuleExtended,
+    ]);
 
     modules = [
       UsersModule,
@@ -39,6 +46,7 @@ class CoreModule extends CmsModule {
       MapModule,
       TarifModule,
       TopicModule,
+      LetterModule,
     ];
     
     this.mergeModules(modules);
