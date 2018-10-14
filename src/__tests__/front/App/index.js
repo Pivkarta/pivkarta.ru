@@ -44,3 +44,6 @@ export default class TestApp extends Component {
   }
 }
 
+it("", () => {
+  return;
+})
