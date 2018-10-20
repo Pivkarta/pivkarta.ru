@@ -1,0 +1,4 @@
+Host: https://pivkarta.ru
+
+User-agent: *
+Disallow:
