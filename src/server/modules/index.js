@@ -3,7 +3,6 @@ import fs from "fs";
 
 import chalk from "chalk";
 
-// import PrismaModule from "@prisma-cms/prisma-module";
 import { CmsModule } from "@prisma-cms/server";
 import RouterModuleExtended from "@prisma-cms/router";
 
@@ -33,8 +32,7 @@ class CoreModule extends CmsModule {
     super(options);
     
     this.mergeModules([
-      // ECommerceModule,
-      RouterModuleExtended,
+      // RouterModuleExtended,
     ]);
 
     modules = [
