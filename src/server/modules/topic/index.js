@@ -1,11 +1,12 @@
- 
-import { 
+
+import {
   Payload,
 } from '../utilites';
 
 import PrismaModule from "@prisma-cms/prisma-module";
 
-import translit from "translit";
+const translit = require('translit')({
+})
 
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -16,6 +17,8 @@ const {
 
 
 const moment = require('moment');
+
+const chalk = require('chalk');
 
 // const users = function(parent, args, ctx, info) {
 //   return ctx.db.query.users({}, info)
@@ -35,16 +38,21 @@ class TopicPayload extends Payload {
 
   async create(method, args, info) {
 
+
+    // console.log(chalk.green("Create topic args"), args);
+
     const {
       db,
     } = this.ctx;
 
-    const currentUser = await this.getUser();
+    const currentUser = await this.getUser(true);
 
     if (!currentUser) {
       throw (new Error("Необходимо авторизоваться"));
     }
 
+
+    // return;
 
     // this.addFieldError("name", "dsfgsgddsg");
     // this.addFieldError("editor_content", "editor_contentdsf sdfd");
@@ -56,9 +64,7 @@ class TopicPayload extends Payload {
     } = currentUser;
 
 
-    // console.log("createTopic", args);
-
-    // const userId = getUserId(ctx);
+    // console.log(chalk.green("Create topic currentUser"), currentUser);
 
     let {
       data,
@@ -95,6 +101,11 @@ class TopicPayload extends Payload {
     else {
       url_name = translit(name);
 
+      url_name = url_name && url_name.toLowerCase() || undefined;
+
+      // console.log(chalk.green("Create topic translit"), translit);
+      // console.log(chalk.green("Create topic url_name"), url_name);
+
       /**
        * Получаем пиво с таким же алиасом
        */
@@ -129,8 +140,6 @@ class TopicPayload extends Payload {
 
         }
 
-        // console.log("Exists places", places);
-
       }
       else {
         this.addFieldError("name", "Не удалось сформировать алиас");
@@ -164,7 +173,7 @@ class TopicPayload extends Payload {
       db,
     } = this.ctx;
 
-    const currentUser = await this.getUser();
+    const currentUser = await this.getUser(true);
 
     if (!currentUser) {
       throw (new Error("Необходимо авторизоваться"));
@@ -302,8 +311,8 @@ class TopicPayload extends Payload {
       return;
     }
 
-    
-    if(sudo !== true){
+
+    if (sudo !== true) {
 
       data = {
         name,
@@ -316,20 +325,20 @@ class TopicPayload extends Payload {
       };
 
     }
- 
+
 
     const result = await super.mutate(method, {
       ...otherArgs,
       data,
     }, info);
 
-    
+
     return result;
-    
+
   }
-  
-  
-  async prepareNotificationLetter(method, object){
+
+
+  async prepareNotificationLetter(method, object) {
 
     const currentUser = await this.getUser();
 
@@ -341,17 +350,17 @@ class TopicPayload extends Payload {
 
     // console.log("prepareNotificationLetter", method, object);
 
-    if(object && sudo !== true){
-  
+    if (object && sudo !== true) {
+
       const {
         name,
         topic_id,
         url_name,
       } = object;
-  
-  
+
+
       const url = "https://pivkarta.ru" + (url_name ? `/topics/${url_name}` : `/blog/show/${topic_id}/`);
-      
+
       return {
         email: "info@pivkarta.ru",
         subject: "Отредактирован топик",
@@ -364,7 +373,7 @@ class TopicPayload extends Payload {
           </p>
         `,
       };
-  
+
     }
 
     return null;
@@ -383,7 +392,7 @@ const topic = function (parent, args, ctx, info) {
   return ctx.db.query.topic({}, info)
 }
 
- 
+
 
 
 const createTopicProcessor = async function (parent, args, ctx, info) {
@@ -467,7 +476,7 @@ const updateTopicData__ = async function (parent, args, ctx, info) {
   }, info)
 }
 
- 
+
 
 const Topic = {
 
@@ -482,7 +491,7 @@ const Topic = {
   },
 }
 
- 
+
 
 
 export default class TopicModule extends PrismaModule {
@@ -493,13 +502,13 @@ export default class TopicModule extends PrismaModule {
 
     const resolvers = super.getResolvers();
 
-    Object.assign(resolvers.Query, { 
+    Object.assign(resolvers.Query, {
       topicsConnection,
       topic,
     });
 
 
-    Object.assign(resolvers.Mutation, { 
+    Object.assign(resolvers.Mutation, {
       createTopicProcessor,
       updateTopicProcessor,
     });
@@ -507,20 +516,20 @@ export default class TopicModule extends PrismaModule {
 
 
 
-    Object.assign(resolvers, { 
+    Object.assign(resolvers, {
       TopicResponse: {
         data: (source, args, ctx, info) => {
-    
+
           const {
             id,
           } = source.data || {};
-    
+
           return id ? ctx.db.query.topic({
             where: {
               id,
             },
           }, info) : null;
-    
+
         },
       },
       Topic,

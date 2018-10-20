@@ -40,18 +40,27 @@ export default class TopicPage extends TopicsPage {
       View,
     } = this.props;
 
-
-    const Renderer = compose(
-      graphql(topic, {
-      }),
-      graphql(updateTopicProcessor, {
-      }),
-    
-    )(View);
-
-    Object.assign(this.state, {
+    const {
       Renderer,
-    });
+    } = this.state;
+
+
+    if(!Renderer){
+
+      const Renderer = compose(
+        graphql(topic, {
+        }),
+        graphql(updateTopicProcessor, {
+        }),
+      
+      )(View);
+  
+      Object.assign(this.state, {
+        Renderer,
+      });
+      
+    }
+
 
     super.componentWillMount && super.componentWillMount();
 

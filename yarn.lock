@@ -830,6 +830,16 @@
     roddeh-i18n "^1.1.1"
     urijs "^1.19.1"
 
+"@prisma-cms/component@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@prisma-cms/component/-/component-1.0.6.tgz#106468640c3e380d4c2f220c045c8094c46e59bc"
+  dependencies:
+    material-ui "1.0.0-beta.43"
+    react "^16.5.2"
+    react-dom "^16.5.2"
+    roddeh-i18n "^1.1.1"
+    urijs "^1.19.1"
+
 "@prisma-cms/connector@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@prisma-cms/connector/-/connector-1.0.0.tgz#95b9300681c8f130a7009beb7d61aaff715301e3"
@@ -950,16 +960,16 @@
     sharp "0.21.0"
     shortid "^2.2.13"
 
-"@prisma-cms/prisma-uploads@^1.1.0-beta":
-  version "1.1.0-beta"
-  resolved "https://registry.yarnpkg.com/@prisma-cms/prisma-uploads/-/prisma-uploads-1.1.0-beta.tgz#b8f4400be06557a27aee2a3ed41ddce4d67cea73"
+"@prisma-cms/prisma-uploads@^1.1.2-beta":
+  version "1.1.2-beta"
+  resolved "https://registry.yarnpkg.com/@prisma-cms/prisma-uploads/-/prisma-uploads-1.1.2-beta.tgz#90959b1f32e868e4bf28597e2412f1500f0357c4"
   dependencies:
-    "@babel/preset-react" "^7.0.0"
-    apollo-client "^2.4.2"
+    blob-to-stream "^1.0.3"
     graphql "^0.13.2"
     graphql-tag "2.6.1"
     react "^16.5.2"
     react-apollo "^2.2.3"
+    react-dom "^16.5.2"
     sharp "0.21.0"
     shortid "^2.2.13"
 
@@ -967,15 +977,15 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@prisma-cms/router/-/router-1.0.2.tgz#0701b375575ad33b29b93a6626b8eb530d40bc17"
 
-"@prisma-cms/server@^1.6.4-beta":
-  version "1.6.4-beta"
-  resolved "https://registry.yarnpkg.com/@prisma-cms/server/-/server-1.6.4-beta.tgz#b1b5880b772910e5332975e64bed18ec67610e4e"
+"@prisma-cms/server@^1.6.5-beta":
+  version "1.6.5-beta"
+  resolved "https://registry.yarnpkg.com/@prisma-cms/server/-/server-1.6.5-beta.tgz#b04d8d0fe2c34e46c84bc76ab7f6f05423bccc32"
   dependencies:
     "@prisma-cms/prisma-context" "^1.0.4-beta"
     "@prisma-cms/prisma-module" "^1.0.3-beta"
     "@prisma-cms/prisma-processor" "^1.0.2-beta"
     "@prisma-cms/prisma-schema" "^1.0.3-beta"
-    "@prisma-cms/prisma-uploads" "^1.1.0-beta"
+    "@prisma-cms/prisma-uploads" "^1.1.2-beta"
     "@prisma-cms/router" "^1.0.2"
     bcryptjs "^2.4.3"
     chalk "^2.4.1"
@@ -1774,6 +1784,36 @@ apollo-cms@^1.4.2:
   resolved "https://registry.yarnpkg.com/apollo-cms/-/apollo-cms-1.4.2.tgz#669b0331e970e6d15ea24abf6c810c3173130495"
   dependencies:
     "@prisma-cms/component" "^1.0.3"
+    apollo-boost "^0.1.16"
+    apollo-cache-inmemory "^1.1.7"
+    apollo-client "^2.2.3"
+    apollo-link "^1.1.0"
+    apollo-link-error "^1.0.5"
+    apollo-link-http "^1.5.5"
+    apollo-link-http-common "^0.2.5"
+    apollo-link-ws "^1.0.5"
+    apollo-utilities "^1.0.6"
+    babel-runtime "^6.26.0"
+    core-js "^2.5.3"
+    extract-files "^4.0.0"
+    graphql "^0.12.3"
+    graphql-tag "^2.7.3"
+    material-ui "1.0.0-beta.43"
+    material-ui-icons "^1.0.0-beta.17"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+    query-string "^5.1.0"
+    react "^16.2.0"
+    react-apollo "^2.0.4"
+    react-dom "^16.2.0"
+    react-scripts "^2.0.4"
+    subscriptions-transport-ws "^0.9.5"
+
+apollo-cms@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/apollo-cms/-/apollo-cms-1.4.4.tgz#f9dc73246b377108e3f44cc3c2b9697bd556c2c2"
+  dependencies:
+    "@prisma-cms/component" "^1.0.6"
     apollo-boost "^0.1.16"
     apollo-cache-inmemory "^1.1.7"
     apollo-client "^2.2.3"
@@ -3303,6 +3343,16 @@ bl@~1.1.2:
   resolved "http://registry.npmjs.org/bl/-/bl-1.1.2.tgz#fdca871a99713aa00d19e3bbba41c44787a65398"
   dependencies:
     readable-stream "~2.0.5"
+
+blob-to-buffer@^1.2.6:
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/blob-to-buffer/-/blob-to-buffer-1.2.8.tgz#78eeeb332f1280ed0ca6fb2b60693a8c6d36903a"
+
+blob-to-stream@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/blob-to-stream/-/blob-to-stream-1.0.3.tgz#0bc46a433fb34581f2e2489a36cdf9248b36b9f5"
+  dependencies:
+    blob-to-buffer "^1.2.6"
 
 blob@0.0.2:
   version "0.0.2"

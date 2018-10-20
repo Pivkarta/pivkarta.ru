@@ -69,6 +69,8 @@ export default class TopicCreatePage extends TopicPage {
       },
     });
 
+    super.componentWillMount && super.componentWillMount();
+
   }
 
 
