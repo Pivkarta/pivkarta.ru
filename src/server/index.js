@@ -11,10 +11,10 @@ require('@babel/register')({
     "@babel/plugin-proposal-class-properties"
   ],
 
-  ignore: [function (filename) {
+  // ignore: [function (filename) {
 
-    return filename.indexOf(cwd + `/node_modules/`) === 0;
-  }],
+  //   return filename.indexOf(cwd + `/node_modules/`) === 0;
+  // }],
 });
 
 require("@babel/polyfill");
@@ -41,18 +41,12 @@ switch (process.env.action) {
 
   case "start-server":
 
+    const startServer = require("@prisma-cms/server").default;
 
-    // const server = require("@prisma-cms/server/lib/server");
+    // console.log("startServer", startServer); 
 
-    // server({
-    //   typeDefs: 'src/server/schema/generated/api.graphql',
-    // });
-
-
-    const server = require("@prisma-cms/server/lib/server");
-
-    server({
-      typeDefs: 'src/server/schema/generated/api.graphql',
+    startServer({
+      typeDefs: 'src/schema/generated/api.graphql',
       resolvers,
       imagesMiddleware,
 

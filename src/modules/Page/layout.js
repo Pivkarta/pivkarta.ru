@@ -108,9 +108,9 @@ export default class PivkartaPageLayout extends PageLayout {
 
         let head = document.querySelector("head");
 
-        if(head){
+        if (head) {
           let descMeta = head.querySelector("meta[name=description]");
-          if(descMeta){
+          if (descMeta) {
             descMeta.content = description || "";
           }
         }
@@ -183,7 +183,7 @@ export default class PivkartaPageLayout extends PageLayout {
             <li>
               <Link to="/beer/showlist/">Энциклопедия пива</Link>
             </li>
-            <li> 
+            <li>
               <div
                 dangerouslySetInnerHTML={{
                   __html: `
@@ -298,7 +298,7 @@ export default class PivkartaPageLayout extends PageLayout {
   //     getGeoCoords,
   //   } = this.context;
 
-    
+
   //   let currentCoords = getGeoCoords();
 
 
@@ -337,21 +337,24 @@ export default class PivkartaPageLayout extends PageLayout {
 
   getCoords() {
 
-    const { 
+    const {
       getGeoCoords,
     } = this.context;
 
-    
+
     let currentCoords = getGeoCoords();
 
 
- 
-    const {
+
+    let {
       lat,
       lng,
     } = currentCoords;
 
     let center = {}
+
+    lat = lat && parseFloat(lat) || undefined;
+    lng = lng && parseFloat(lng) || undefined;
 
     if (lat && lng) {
       center = {

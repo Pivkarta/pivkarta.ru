@@ -173,7 +173,7 @@ export default class BeersPageConnector extends Component {
     }
 
     if (container) {
-      where.container = container;
+      where.container = parseInt(container);
     }
 
     if (name) {

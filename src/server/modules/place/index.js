@@ -9,8 +9,8 @@ import {
 
 import chalk from 'chalk';
  
-import translit from "translit";
-
+const translit = require('translit')({
+})
 
 class PlacePayload extends Payload {
 
@@ -161,6 +161,8 @@ class PlacePayload extends Payload {
 
     // let url_name = cyrillicToTranslit().transform(name, "_");
     let url_name;
+
+    url_name = url_name && url_name.toLowerCase() || undefined;
 
     let data = {
     };

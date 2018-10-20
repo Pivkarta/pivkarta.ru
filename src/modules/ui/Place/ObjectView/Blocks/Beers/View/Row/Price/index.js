@@ -41,7 +41,15 @@ export default class Price extends EditableView {
 
         <TextField
           name="price"
-          onChange={event => this.onChange(event)}
+          onChange={event => {
+            const {
+              value,
+            } = event.target;
+
+            this.updateObject({
+              price: value && parseFloat(value) || null,
+            });
+          }}
           value={price || ""}
         />
 

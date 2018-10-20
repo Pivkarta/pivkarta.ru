@@ -38,7 +38,7 @@ class BeerPlacesBlock extends Component {
         orderBy="createdAt_DESC"
         where={{
           active: true,
-          image_not: true,
+          image_not: null,
           beers_some: {
             Beer: {
               id: beerId,

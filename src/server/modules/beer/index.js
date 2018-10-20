@@ -5,11 +5,13 @@ import {
   Payload,
 } from '../utilites';
 
-import translit from "translit";
+import chalk from "chalk";
 
+const translit = require('translit')({
+})
 
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+// const bcrypt = require('bcryptjs')
+// const jwt = require('jsonwebtoken')
 
 const {
   getUserId,
@@ -54,10 +56,10 @@ class BeerPayload extends Payload {
     //   throw(error);
     // });
 
-    console.log("BeerPayload create", args);
+    console.log(chalk.green("BeerPayload create"), args);
 
 
-    const {
+    let {
       name,
       ...other
     } = args.data;
@@ -68,27 +70,34 @@ class BeerPayload extends Payload {
 
     // console.log("name", name);
 
-    // let url_name = cyrillicToTranslit().transform(name, "_");
-    let url_name = translit(name);
+    name = name && name.trim() || "";
 
-    let data = {
-      url_name,
-    };
-
-    // console.log("createBeer data", data);
-
+    let url_name;
+    
     if (!name) {
       // this.errors.push({
-      //   key: "name",
-      //   message: "Заполните название",
-      // });
+        //   key: "name",
+        //   message: "Заполните название",
+        // });
       this.addFieldError("name", "Заполните название");
     }
-
+    
     else {
+      
+      // let url_name = cyrillicToTranslit().transform(name, "_");
+      url_name = translit(name);
+  
+      url_name = url_name && url_name.toLowerCase() || undefined;
+  
+      let data = {
+        url_name,
+      };
+  
+      console.log(chalk.green("createBeer url_name"), url_name);
+
       /**
-     * Получаем пиво с таким же алиасом
-     */
+       * Получаем пиво с таким же алиасом
+       */
 
       if (url_name) {
 
@@ -97,10 +106,11 @@ class BeerPayload extends Payload {
             url_name_starts_with: url_name,
           },
         })
-          .catch(error => {
-            console.error("Create beer db.query.beers error", error);
-          });
+          // .catch(error => {
+          //   console.error("Create beer db.query.beers error", error);
+          // });
 
+        console.log(chalk.green("beers"), beers);
 
         // Если пиво найдено, делаем перебор айдишника
         if (beers && beers.length) {

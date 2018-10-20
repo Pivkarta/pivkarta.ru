@@ -10,9 +10,31 @@ export default class BeerContainerSelect extends Component {
     // prop: PropTypes
   }
 
+
+  // onChange(event) {
+
+  //   const {
+  //     onChange,
+  //   } = this.props;
+
+  //   if (!onChange) {
+  //     return false;
+  //   }
+    
+  //   let {
+  //     value,
+  //   } = event.target;
+    
+  //   event.target.value = value && parseInt(value) || null;
+
+  //   return onChange(event);
+  // }
+
+
   render() {
 
     const {
+      // onChange,
       ...other
     } = this.props;
 
@@ -21,6 +43,7 @@ export default class BeerContainerSelect extends Component {
         name="container"
         label="Тара"
         helperText="Выберите из списка"
+        onChange={event => this.onChange(event)}
         {...other}
       >
         <option value=""></option>

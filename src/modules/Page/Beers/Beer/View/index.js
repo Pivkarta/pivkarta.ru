@@ -327,7 +327,17 @@ export default class BeerView extends EditableView {
 										</td>
 											<td>
 												<BeerContainer
-													onChange={event => this.onChange(event)}
+													onChange={event => {
+
+														const {
+															value,
+														} = event.target;
+
+														this.updateObject({
+															container: value && parseInt(value) || null,
+														});
+
+													}}
 													value={container || ""}
 												/>
 											</td>

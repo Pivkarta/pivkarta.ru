@@ -5,34 +5,12 @@ import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 // import IconButton from 'material-ui/IconButton';
 
-// import EditIcon from 'material-ui-icons/ModeEdit';
-// import ResetIcon from 'material-ui-icons/Restore';
-
-// import EditableView from 'View/Editable';
-
-// import {
-//   styles,
-//   TableView,
-// } from 'apollo-cms/lib/DataView/Object/Editable';
-
 import EditableView from 'apollo-cms/lib/DataView/Object/Editable';
 
-import { graphql, compose } from 'react-apollo';
-import gql from 'graphql-tag';
-
-import WalletIcon from 'material-ui-icons/AccountBalanceWallet';
-
-// import SingleUploaderInput from 'src/modules/react-cms-uploads/src/components/uploader/SingleUploader';
-// import MultipleUploaderInput from 'src/modules/react-cms-uploads/src/components/uploader/MultiUploader';
 
 import UserAvatar from './Avatar';
+ 
 
-import Button from 'material-ui/Button/Button';
-import withStyles from 'material-ui/styles/withStyles';
-
-import SendMoney from './SendMoney';
-
-// import Tarifs from './Tarifs';
 import Places from './Places';
 
 let propTypes = { ...EditableView.propTypes }
@@ -272,38 +250,7 @@ export default class UserPageView extends EditableView {
 
       </Grid>
 
-
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        md={4}
-      >
-
-
-        {callPrice > 0 ? <p>
-          Private Audio / Video chat: €{callPrice}
-        </p> : null}
-
-        {chatPrice > 0 ? <p>
-          Conference up to 10 people: €{chatPrice}
-        </p> : null}
-
-        {etherwallet && curruserEtherwallet && etherwallet !== curruserEtherwallet
-          ?
-          <SendMoney
-            to={user}
-          />
-          :
-          null
-        }
-
-
-
-      </Grid>
-
-
-      {/* {this.renderTarifs()} */}
+  
 
       <Grid
         item

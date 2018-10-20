@@ -252,7 +252,7 @@ export default class Renderer extends Component {
 
     if (mapBeerIdSearchQuery) {
       BeersWhereAND.push({
-        beer_id: mapBeerIdSearchQuery,
+        beer_id: parseInt(mapBeerIdSearchQuery),
       });
     }
 
@@ -268,7 +268,7 @@ export default class Renderer extends Component {
       });
     }
 
-    console.log("where", where);
+    // console.log("where", where);
 
 
     return <MapPage
@@ -358,7 +358,7 @@ export default class Renderer extends Component {
     return <PlacePage
       key={placeId}
       where={{
-        place_id: placeId,
+        place_id: parseInt(placeId),
       }}
       {...props}
     />
@@ -440,7 +440,7 @@ export default class Renderer extends Component {
     // return null;
     return <BeerPage
       key={beerId}
-      beer_id={beerId}
+      beer_id={parseInt(beerId)}
       {...props}
     />
   }
@@ -668,7 +668,7 @@ export default class Renderer extends Component {
                 return <TopicPage
                   key={topicId}
                   where={{
-                    topic_id: topicId,
+                    topic_id: parseInt(topicId),
                   }}
                   {...props}
                 />
@@ -889,7 +889,7 @@ export default class Renderer extends Component {
                 return <PlacePage
                   key={placeId}
                   where={{
-                    place_id: placeId,
+                    place_id: parseInt(placeId),
                   }}
                   {...props}
                 />
@@ -923,7 +923,7 @@ export default class Renderer extends Component {
                 return <UserPage
                   key={`${user_id}_${username}`}
                   where={{
-                    user_id,
+                    user_id: parseInt(user_id),
                     username,
                   }}
                   {...props}
@@ -962,7 +962,7 @@ export default class Renderer extends Component {
                 return <LetterPage
                   key={letterId}
                   where={{
-                    id: letterId,
+                    id: parseInt(letterId),
                   }}
                   {...props}
                 />

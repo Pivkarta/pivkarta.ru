@@ -87,6 +87,8 @@ export default class TopicView extends EditableView {
   componentWillMount() {
 
     this.setPageMeta();
+
+    super.componentWillMount && super.componentWillMount();
   }
 
 
