@@ -137,7 +137,7 @@ export default class MainPage extends PageLayout {
           orderBy="createdAt_DESC"
           where={{
             active: true,
-            image_not: true,
+            image_not: null,
             OR: [{
               is_request: null
             }, {
@@ -161,7 +161,7 @@ export default class MainPage extends PageLayout {
           orderBy="createdAt_DESC"
           where={{
             active: true,
-            image_not: true,
+            image_not: null,
             OR: [{
               is_request: null
             }, {
