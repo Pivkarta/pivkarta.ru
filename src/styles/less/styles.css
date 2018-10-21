@@ -322,6 +322,13 @@ a:hover {
   font-size: 20px;
   font-weight: 900;
 }
+.bottomline__18plus {
+  color: #fff;  
+  border: #fff 1px solid;
+  padding: 9px 4px;
+  border-radius: 30px;
+  margin-right: 10px;
+}
 .place {
   font-family: Arial, sans-serif;
 }
