@@ -248,7 +248,10 @@ export default class PivkartaPageLayout extends PageLayout {
           <div className="mui-row">
             <div className="mui-col-xs-12">
               <span className="bottomline__slogan">
-                Чрезмерное употребление алкоголя вредит вашему здоровью
+                <span className="bottomline__18plus">
+                  18+
+                </span>
+               Чрезмерное употребление алкоголя вредит вашему здоровью
           </span>
             </div>
           </div>

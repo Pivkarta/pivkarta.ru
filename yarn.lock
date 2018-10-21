@@ -820,16 +820,6 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@mapbox/point-geometry/-/point-geometry-0.1.0.tgz#8a83f9335c7860effa2eeeca254332aa0aeed8f2"
 
-"@prisma-cms/component@^1.0.3", "@prisma-cms/component@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@prisma-cms/component/-/component-1.0.4.tgz#0e9084e739aac3c447c4535fbc905dd42bf1c4d0"
-  dependencies:
-    material-ui "1.0.0-beta.43"
-    react "^16.5.2"
-    react-dom "^16.5.2"
-    roddeh-i18n "^1.1.1"
-    urijs "^1.19.1"
-
 "@prisma-cms/component@^1.0.6":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@prisma-cms/component/-/component-1.0.6.tgz#106468640c3e380d4c2f220c045c8094c46e59bc"
@@ -840,9 +830,19 @@
     roddeh-i18n "^1.1.1"
     urijs "^1.19.1"
 
-"@prisma-cms/connector@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@prisma-cms/connector/-/connector-1.0.0.tgz#95b9300681c8f130a7009beb7d61aaff715301e3"
+"@prisma-cms/component@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@prisma-cms/component/-/component-1.0.7.tgz#0670f8bdb452e16a2adf6f83b0d99d09d8a68191"
+  dependencies:
+    material-ui "1.0.0-beta.43"
+    react "^16.5.2"
+    react-dom "^16.5.2"
+    roddeh-i18n "^1.1.1"
+    urijs "^1.19.1"
+
+"@prisma-cms/connector@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@prisma-cms/connector/-/connector-1.0.1.tgz#2dd1663db583f382b3f3ad4884ad2d34ba2f1209"
 
 "@prisma-cms/e-commerce@^1.0.1":
   version "1.0.1"
@@ -853,48 +853,48 @@
     graphql "^14.0.2"
     merge-graphql-schemas "^1.5.7"
 
-"@prisma-cms/front@^1.9.3-beta":
-  version "1.9.3-beta"
-  resolved "https://registry.yarnpkg.com/@prisma-cms/front/-/front-1.9.3-beta.tgz#51af15c84389c373bde9cb356ccfb92fb59270ca"
+"@prisma-cms/front@^1.9.4-beta":
+  version "1.9.4-beta"
+  resolved "https://registry.yarnpkg.com/@prisma-cms/front/-/front-1.9.4-beta.tgz#725deeda074bf4cfd206811a7519bd71df01279c"
   dependencies:
-    "@prisma-cms/component" "^1.0.3"
-    "@prisma-cms/connector" "^1.0.0"
-    "@prisma-cms/ui" "^1.2.0"
-    "@types/react" "^16.1.0"
+    "@prisma-cms/component" "^1.0.7"
+    "@prisma-cms/connector" "^1.0.1"
+    "@prisma-cms/ui" "^1.2.1"
+    "@types/react" "^16.4.18"
     apollo-boost "^0.1.16"
     apollo-cache-inmemory "^1.2.10"
     apollo-client "^2.4.2"
-    apollo-cms "^1.4.2"
+    apollo-cms "^1.4.5"
     apollo-error "^1.0.2"
     apollo-fetch-upload "^1.2.0"
     apollo-link "^1.2.3"
     apollo-link-batch-http "^1.0.4"
     apollo-link-error "^1.1.1"
-    apollo-link-http "1.3.2"
+    apollo-link-http "1.5.5"
     apollo-link-ws "^1.0.9"
     apollo-upload-client "^9.0.0"
     apollo-utilities "^1.0.21"
     babel-preset-stage-0 "^6.24.1"
     babel-register "^6.26.0"
-    debug "^3.1.0"
+    debug "^4.1.0"
     dom-scroll-into-view "^1.2.1"
     draft-js "^0.10.5"
-    graphql "^0.13.2"
+    graphql "^14.0.2"
     graphql-cli "^2.15.13"
-    graphql-tag "2.6.1"
+    graphql-tag "2.10.0"
     jss-theme-reactor "^0.11.1"
     load-script "^1.0.0"
     material-ui "1.0.0-beta.43"
     material-ui-icons "^1.0.0-beta.17"
     moment "^2.20.1"
     moment-timezone "^0.5.14"
-    node-less-chokidar "^0.1.2"
+    node-less-chokidar "^0.3.1"
     node-sass-chokidar "^1.1.0"
     prisma-binding "^2.1.6"
     react "^16.3.1"
     react-apollo "^2.2.3"
     react-dom "^16.3.0"
-    react-router-dom "4.2.2"
+    react-router-dom "4.3.1"
     shortid "^2.2.8"
     socket.io "^2.0.4"
     socket.io-parser "^3.1.2"
@@ -1618,13 +1618,6 @@ ajv@5, ajv@^5.1.0, ajv@^5.2.3, ajv@^5.3.0, ajv@^5.5.1:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.3.0"
 
-ajv@^4.9.1:
-  version "4.11.8"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.8.tgz#82ffb02b29e662ae53bdc20af15947706739c536"
-  dependencies:
-    co "^4.6.0"
-    json-stable-stringify "^1.0.1"
-
 ajv@^6.0.1, ajv@^6.1.0, ajv@^6.5.3:
   version "6.5.4"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.5.4.tgz#247d5274110db653706b550fcc2b797ca28cfc59"
@@ -1779,11 +1772,11 @@ apollo-client@^2.2.3, apollo-client@^2.4.2:
   optionalDependencies:
     "@types/async" "2.0.49"
 
-apollo-cms@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/apollo-cms/-/apollo-cms-1.4.2.tgz#669b0331e970e6d15ea24abf6c810c3173130495"
+apollo-cms@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/apollo-cms/-/apollo-cms-1.4.4.tgz#f9dc73246b377108e3f44cc3c2b9697bd556c2c2"
   dependencies:
-    "@prisma-cms/component" "^1.0.3"
+    "@prisma-cms/component" "^1.0.6"
     apollo-boost "^0.1.16"
     apollo-cache-inmemory "^1.1.7"
     apollo-client "^2.2.3"
@@ -1809,9 +1802,9 @@ apollo-cms@^1.4.2:
     react-scripts "^2.0.4"
     subscriptions-transport-ws "^0.9.5"
 
-apollo-cms@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/apollo-cms/-/apollo-cms-1.4.4.tgz#f9dc73246b377108e3f44cc3c2b9697bd556c2c2"
+apollo-cms@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/apollo-cms/-/apollo-cms-1.4.5.tgz#8b5c152d719eae5102bc36103f1c7e76bcde11fa"
   dependencies:
     "@prisma-cms/component" "^1.0.6"
     apollo-boost "^0.1.16"
@@ -1914,12 +1907,6 @@ apollo-link-http-common@^0.2.5:
   dependencies:
     apollo-link "^1.2.3"
 
-apollo-link-http@1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/apollo-link-http/-/apollo-link-http-1.3.2.tgz#63537ee5ecf9c004efb0317f1222b7dbc6f21559"
-  dependencies:
-    apollo-link "^1.0.7"
-
 apollo-link-http@1.5.5, apollo-link-http@^1.3.1, apollo-link-http@^1.5.5:
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/apollo-link-http/-/apollo-link-http-1.5.5.tgz#7dbe851821771ad67fa29e3900c57f38cbd80da8"
@@ -1954,7 +1941,7 @@ apollo-link@1.2.2:
     apollo-utilities "^1.0.0"
     zen-observable-ts "^0.8.9"
 
-apollo-link@^1.0.0, apollo-link@^1.0.6, apollo-link@^1.0.7, apollo-link@^1.1.0, apollo-link@^1.2.1, apollo-link@^1.2.2, apollo-link@^1.2.3:
+apollo-link@^1.0.0, apollo-link@^1.0.6, apollo-link@^1.1.0, apollo-link@^1.2.1, apollo-link@^1.2.2, apollo-link@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.3.tgz#9bd8d5fe1d88d31dc91dae9ecc22474d451fb70d"
   dependencies:
@@ -7054,14 +7041,6 @@ form-data@~2.0.0:
     combined-stream "^1.0.5"
     mime-types "^2.1.11"
 
-form-data@~2.1.1:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.1.4.tgz#33c183acf193276ecaa98143a69e94bfee1750d1"
-  dependencies:
-    asynckit "^0.4.0"
-    combined-stream "^1.0.5"
-    mime-types "^2.1.12"
-
 form-data@~2.3.0, form-data@~2.3.2:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.3.3.tgz#dcce52c05f644f298c6a7ab936bd724ceffbf3a6"
@@ -8071,10 +8050,6 @@ handlebars@^4.0.1, handlebars@^4.0.3:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-har-schema@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-1.0.5.tgz#d263135f43307c02c602afc8fe95970c0151369e"
-
 har-schema@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-2.0.0.tgz#a94c2224ebcac04782a0d9035521f24735b7ec92"
@@ -8087,13 +8062,6 @@ har-validator@~2.0.6:
     commander "^2.9.0"
     is-my-json-valid "^2.12.4"
     pinkie-promise "^2.0.0"
-
-har-validator@~4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/har-validator/-/har-validator-4.2.1.tgz#33481d0f1bbff600dd203d75812a6a5fba002e2a"
-  dependencies:
-    ajv "^4.9.1"
-    har-schema "^1.0.5"
 
 har-validator@~5.0.3:
   version "5.0.3"
@@ -10431,19 +10399,6 @@ left-pad@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/left-pad/-/left-pad-1.3.0.tgz#5b8a3a7765dfe001261dde915589e782f8c94d1e"
 
-less@^2.7.2:
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/less/-/less-2.7.3.tgz#cc1260f51c900a9ec0d91fb6998139e02507b63b"
-  optionalDependencies:
-    errno "^0.1.1"
-    graceful-fs "^4.1.2"
-    image-size "~0.5.0"
-    mime "^1.2.11"
-    mkdirp "^0.5.0"
-    promise "^7.1.1"
-    request "2.81.0"
-    source-map "^0.5.3"
-
 less@^3.7.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/less/-/less-3.8.1.tgz#f31758598ef5a1930dd4caefa9e4340641e71e1d"
@@ -11341,7 +11296,7 @@ mime@1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.4.1.tgz#121f9ebc49e3766f311a76e1fa1c8003c4b03aa6"
 
-mime@^1.2.11, mime@^1.3.4, mime@^1.4.1:
+mime@^1.3.4, mime@^1.4.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
 
@@ -11787,18 +11742,6 @@ node-gyp@^3.8.0:
 node-int64@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
-
-node-less-chokidar@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/node-less-chokidar/-/node-less-chokidar-0.1.2.tgz#1246e7a59443d263ac44f0f79e231aab059c1b58"
-  dependencies:
-    async-foreach "^0.1.3"
-    chokidar "^1.7.0"
-    get-stdin "^5.0.1"
-    glob "^7.1.2"
-    less "^2.7.2"
-    meow "^3.7.0"
-    stdout-stream "^1.4.0"
 
 node-less-chokidar@^0.3.1:
   version "0.3.1"
@@ -14058,7 +14001,7 @@ prop-types-extra@^1.0.1:
     react-is "^16.3.2"
     warning "^3.0.0"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -14198,10 +14141,6 @@ qs@~0.5.4:
 qs@~6.2.0:
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.2.3.tgz#1cfcb25c10a9b2b483053ff39f5dfc9233908cfe"
-
-qs@~6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
 
 query-string@^5.0.1, query-string@^5.1.0:
   version "5.1.1"
@@ -14517,17 +14456,6 @@ react-proxy@^1.1.7:
     lodash "^4.6.1"
     react-deep-force-update "^1.0.0"
 
-react-router-dom@4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.2.2.tgz#c8a81df3adc58bba8a76782e946cbd4eae649b8d"
-  dependencies:
-    history "^4.7.2"
-    invariant "^2.2.2"
-    loose-envify "^1.3.1"
-    prop-types "^15.5.4"
-    react-router "^4.2.0"
-    warning "^3.0.0"
-
 react-router-dom@4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.3.1.tgz#4c2619fc24c4fa87c9fd18f4fb4a43fe63fbd5c6"
@@ -14539,7 +14467,7 @@ react-router-dom@4.3.1:
     react-router "^4.3.1"
     warning "^4.0.1"
 
-react-router@^4.2.0, react-router@^4.3.1:
+react-router@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-4.3.1.tgz#aada4aef14c809cb2e686b05cee4742234506c4e"
   dependencies:
@@ -15078,33 +15006,6 @@ request@2.75.x:
     stringstream "~0.0.4"
     tough-cookie "~2.3.0"
     tunnel-agent "~0.4.1"
-
-request@2.81.0:
-  version "2.81.0"
-  resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
-  dependencies:
-    aws-sign2 "~0.6.0"
-    aws4 "^1.2.1"
-    caseless "~0.12.0"
-    combined-stream "~1.0.5"
-    extend "~3.0.0"
-    forever-agent "~0.6.1"
-    form-data "~2.1.1"
-    har-validator "~4.2.1"
-    hawk "~3.1.3"
-    http-signature "~1.1.0"
-    is-typedarray "~1.0.0"
-    isstream "~0.1.2"
-    json-stringify-safe "~5.0.1"
-    mime-types "~2.1.7"
-    oauth-sign "~0.8.1"
-    performance-now "^0.2.0"
-    qs "~6.4.0"
-    safe-buffer "^5.0.1"
-    stringstream "~0.0.4"
-    tough-cookie "~2.3.0"
-    tunnel-agent "^0.6.0"
-    uuid "^3.0.0"
 
 request@2.87.0:
   version "2.87.0"
@@ -17450,7 +17351,7 @@ uuid@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
 
-uuid@^3.0.0, uuid@^3.0.1, uuid@^3.1.0, uuid@^3.3.2:
+uuid@^3.0.1, uuid@^3.1.0, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
 

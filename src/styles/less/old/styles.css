@@ -393,7 +393,7 @@ p.date {
 .panel-heading .title,
 .page-header .title {
   display: inline-block;
-  background: url("img/leaf.png") no-repeat scroll 10px center rgba(0, 0, 0, 0);
+  background: url("./img/leaf.png") no-repeat scroll 10px center rgba(0, 0, 0, 0);
   padding: 6px 0 6px 40px;
   margin: 0;
 }
@@ -416,7 +416,7 @@ p.date {
   background-repeat: no-repeat;
 }
 .navbar-header .navbar-brand .logo .leaf.leaf-l {
-  background-image: url(img/logo-pivkarta.png);
+  background-image: url(./img/logo-pivkarta.png);
   background-size: contain;
   margin-right: 5px;
 }
@@ -431,7 +431,7 @@ p.date {
   margin: 10px 5px 0 0;
 }
 .social {
-  background: url("img/se-icon.png") no-repeat scroll 0 0 transparent;
+  background: url("./img/se-icon.png") no-repeat scroll 0 0 transparent;
   display: inline-block;
   height: 16px;
   vertical-align: middle;
@@ -450,7 +450,7 @@ p.date {
   background-position: 0 -17px;
 }
 #robokassa .sprite {
-  background-image: url("img/payments_sprite.png");
+  background-image: url("./img/payments_sprite.png");
 }
 #robokassa .submit {
   background-repeat: no-repeat;
