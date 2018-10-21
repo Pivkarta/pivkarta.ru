@@ -114,7 +114,7 @@ a:focus {
   height: 30px;
 }
 .preloader {
-  background: url(img/preloader.gif) center no-repeat rgba(0, 0, 0, 0.1);
+  background: url(./img/preloader.gif) center no-repeat rgba(0, 0, 0, 0.1);
   height: 100%;
 }
 .DraftEditor-root {
@@ -323,7 +323,7 @@ a:hover {
   font-weight: 900;
 }
 .bottomline__18plus {
-  color: #fff;  
+  color: #fff;
   border: #fff 1px solid;
   padding: 9px 4px;
   border-radius: 30px;
@@ -385,7 +385,7 @@ table.card-table > tbody > tr > td:first-child {
   user-select: none;
   font-size: 14px;
   font-family: inherit;
-  letter-spacing: .03em;
+  letter-spacing: 0.03em;
   position: relative;
   overflow: hidden;
 }
