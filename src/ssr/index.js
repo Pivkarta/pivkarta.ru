@@ -41,7 +41,8 @@ var bodyParser = require('body-parser');
 const cwd = process.cwd();
  
 
-const setupProxy = require("@prisma-cms/front/lib/setupProxy");
+// const setupProxy = require("@prisma-cms/front/lib/setupProxy");
+const proxy = require('http-proxy-middleware');
 
 app.use(proxy('/api/', {
   target: 'http://localhost:4100/',
