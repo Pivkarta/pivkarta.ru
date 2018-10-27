@@ -25,6 +25,15 @@ switch (process.env.action) {
       typeDefs: 'src/schema/generated/api.graphql',
       resolvers,
       imagesMiddleware,
+
+      knexOptions: {
+        connection: {
+          host: 'mysql.prisma-1.14',
+          user: 'root',
+          database: 'pivkarta@dev',
+          password: 'prisma',
+        },
+      },
     });
 
     break;
