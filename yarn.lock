@@ -818,6 +818,12 @@
   dependencies:
     jsonwebtoken "^8.3.0"
 
+"@prisma-cms/prisma-auth@^1.0.5-beta":
+  version "1.0.5-beta"
+  resolved "https://registry.yarnpkg.com/@prisma-cms/prisma-auth/-/prisma-auth-1.0.5-beta.tgz#9a4cb6b30d823da6479125a771bd9fb1d018994f"
+  dependencies:
+    jsonwebtoken "^8.3.0"
+
 "@prisma-cms/prisma-context@^1.0.6-beta":
   version "1.0.6-beta"
   resolved "https://registry.yarnpkg.com/@prisma-cms/prisma-context/-/prisma-context-1.0.6-beta.tgz#7171ed12bf8b57ffe40f565fc9bb62da1bcd20dd"
@@ -13360,6 +13366,10 @@ tr46@^1.0.1:
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-1.0.1.tgz#a8b13fd6bfd2489519674ccde55ba3693b706d09"
   dependencies:
     punycode "^2.1.0"
+
+translit@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/translit/-/translit-0.1.0.tgz#696c381c89ec04e474797e6fb5e17ae6f366a1cb"
 
 traverse-chain@~0.1.0:
   version "0.1.0"

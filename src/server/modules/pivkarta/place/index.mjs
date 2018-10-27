@@ -9,13 +9,23 @@ import {
 
 import chalk from 'chalk';
  
-const translit = require('translit')({
-})
+
+import Translit from "translit";
+
+const translit = Translit({});
+
 
 class PlacePayload extends Payload {
 
 
-  objectType = "Place";
+  
+  constructor(props){
+    
+    super(props);
+    
+    this.objectType = "Place";
+    
+  }
 
   async mutate(method, args, info) {
 
@@ -159,7 +169,7 @@ class PlacePayload extends Payload {
 
     // console.log("name", name);
 
-    // let url_name = cyrillicToTranslit().transform(name, "_");
+    // let url_name = cyrillicToTranslit({}).transform(name, "_");
     let url_name;
 
     url_name = url_name && url_name.toLowerCase() || undefined;

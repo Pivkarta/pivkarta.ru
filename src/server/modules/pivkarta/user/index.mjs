@@ -6,16 +6,17 @@ import PrismaModule from "@prisma-cms/prisma-module";
 import shortid from "shortid";
 import chalk from "chalk";
 
-const isemail = require("isemail");
+import isemail from "isemail";
 
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+import bcrypt from "bcryptjs";
 
-const {
+import jwt from "jsonwebtoken";
+
+
+import {
   getUserId,
   Payload,
-} = require('../utilites');
-// } = require('react-cms-graphql-utils/src/auth');
+} from '../utilites';
 
 
 const createPassword = async (password) => {
@@ -30,6 +31,13 @@ const createPassword = async (password) => {
 
 class UserPayload extends Payload {
 
+  constructor(props) {
+
+    super(props);
+
+    this.objectType = "User"
+
+  }
 
   async signin(source, args, ctx, info) {
 

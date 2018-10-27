@@ -9,15 +9,30 @@ import PrismaModule from '@prisma-cms/prisma-module';
 
 class LetterPayload extends Payload {
 
-  objectType = "Letter";
+
+
+  constructor(props) {
+
+    super(props);
+
+    this.objectType = "Letter";
+
+  }
 
   async mutate(objectType, args, info) {
 
-    const user = await this.getUser();
+    const {
+      currentUser,
+    } = ctx;
 
-    if(!user || user.sudo !== true){
-      throw(new Error("Access denied"));
+    const {
+      sudo,
+    } = currentUser || {}
+
+    if (!sudo) {
+      throw (new Error("Access denied"));
     }
+
 
     let {
       data: {
@@ -28,16 +43,16 @@ class LetterPayload extends Payload {
     } = args;
 
 
-    if(Place !== undefined){
+    if (Place !== undefined) {
 
-      if(Place && Place.id){
+      if (Place && Place.id) {
         Place = {
           connect: {
             id: Place.id,
           },
         }
       }
-      else{
+      else {
         Place = undefined;
       }
 
@@ -58,15 +73,18 @@ class LetterPayload extends Payload {
   }
 
 
-  letter = async (args, info) => {
+  letter(args, info) {
 
     const {
       db,
+      currentUser,
     } = this.ctx;
 
-    const user = await this.getUser();
+    const {
+      sudo,
+    } = currentUser || {}
 
-    if (!user) {
+    if (!sudo) {
       throw (new Error("Access denied"));
     }
 
@@ -74,33 +92,43 @@ class LetterPayload extends Payload {
   }
 
 
-  letters = async (args, info) => {
+  letters(args, info) {
 
     const {
       db,
+      currentUser,
     } = this.ctx;
 
-    const user = await this.getUser();
 
-    if (!user) {
+    const {
+      sudo,
+    } = currentUser || {}
+
+    if (!sudo) {
       throw (new Error("Access denied"));
     }
+
 
     return db.query.letters({}, info);
   }
 
 
-  lettersConnection = async (args, info) => {
+  lettersConnection(args, info) {
 
     const {
       db,
+      currentUser,
     } = this.ctx;
 
-    const user = await this.getUser();
 
-    if (!user) {
+    const {
+      sudo,
+    } = currentUser || {}
+
+    if (!sudo) {
       throw (new Error("Access denied"));
     }
+
 
     return db.query.lettersConnection({}, info);
   }
@@ -129,7 +157,7 @@ const createLetter = (source, args, ctx, info) => {
   return new LetterPayload(ctx).create("Letter", args, info);
 }
 
- 
+
 
 
 export default class CityModule extends PrismaModule {
@@ -140,21 +168,21 @@ export default class CityModule extends PrismaModule {
 
     const resolvers = super.getResolvers();
 
-    Object.assign(resolvers.Query, { 
+    Object.assign(resolvers.Query, {
       letter,
       letters,
       lettersConnection,
     });
 
 
-    Object.assign(resolvers.Mutation, { 
+    Object.assign(resolvers.Mutation, {
       createLetter,
     });
 
 
 
 
-    Object.assign(resolvers, { 
+    Object.assign(resolvers, {
     });
 
 

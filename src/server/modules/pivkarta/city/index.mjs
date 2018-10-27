@@ -37,6 +37,14 @@ const city = async (source, args, ctx, info) => {
 
 export default class CityModule extends PrismaModule {
 
+  
+  constructor(props){
+    
+    super(props);
+
+    this.objectType = "City";
+    
+  }
 
   getResolvers() {
 

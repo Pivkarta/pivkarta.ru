@@ -7,9 +7,16 @@ import PrismaModule from "@prisma-cms/prisma-module";
 
 class CommentsPayload extends Payload {
 
-  objectTypes = "Comment"
+  
+  
+  
+  constructor(props){
+    
+    super(props);
+    
+    this.objectType = "Comment"
 
-
+  }
 
   /**
    * ToDo:

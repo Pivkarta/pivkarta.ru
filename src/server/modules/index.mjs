@@ -14,6 +14,7 @@ import UserModule from "@prisma-cms/user-module";
 import MailModule from "@prisma-cms/mail-module";
 import UploadModule from "@prisma-cms/upload-module";
 
+import PivkartaModule from "./pivkarta";
 
 import path from 'path';
 
@@ -36,6 +37,8 @@ class CoreModule extends CmsModule {
       LogModule,
       MailModule,
       UploadModule,
+
+      PivkartaModule,
     ]);
 
   }

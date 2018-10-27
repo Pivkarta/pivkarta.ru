@@ -5,35 +5,27 @@ import {
 
 import PrismaModule from "@prisma-cms/prisma-module";
 
-const translit = require('translit')({
-})
 
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+import Translit from "translit";
+
+const translit = Translit({});
+
+
+import Auth from '@prisma-cms/prisma-auth';
 
 const {
   getUserId,
-} = require('react-cms-graphql-utils/src/auth');
-
-
-const moment = require('moment');
-
-const chalk = require('chalk');
-
-// const users = function(parent, args, ctx, info) {
-//   return ctx.db.query.users({}, info)
-// }
-
-// const user = function(parent, args, ctx, info) {
-//   return ctx.db.query.user({
-
-//   }, info)
-// }
-
+} = Auth;
 
 class TopicPayload extends Payload {
 
-  objectType = "Topic";
+  constructor(props) {
+
+    super(props);
+
+    this.objectType = "Topic";
+
+  }
 
 
   async create(method, args, info) {

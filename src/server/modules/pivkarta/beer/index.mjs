@@ -7,18 +7,20 @@ import {
 
 import chalk from "chalk";
 
-const translit = require('translit')({
-})
+import moment from "moment";
 
-// const bcrypt = require('bcryptjs')
-// const jwt = require('jsonwebtoken')
+
+import Auth from '@prisma-cms/prisma-auth';
 
 const {
   getUserId,
-} = require('react-cms-graphql-utils/src/auth');
+} = Auth;
 
 
-const moment = require('moment');
+import Translit from "translit";
+
+const translit = Translit({});
+
 
 
 const prepareBeerData = function (data) {
@@ -27,15 +29,6 @@ const prepareBeerData = function (data) {
     bitter,
   } = data;
 
-
-  // if(bitter !== undefined && !bitter){
-  //   bitter = null;
-  // }
-
-
-  // Object.assign(data, {
-  //   bitter,
-  // });
 
   return data;
 
@@ -47,7 +40,13 @@ const prepareBeerData = function (data) {
 class BeerPayload extends Payload {
 
 
-  objectType = "Beer";
+  constructor(props) {
+
+    super(props);
+
+    this.objectType = "Beer";
+
+  }
 
   async create(objectType, args, info) {
 
@@ -73,26 +72,26 @@ class BeerPayload extends Payload {
     name = name && name.trim() || "";
 
     let url_name;
-    
+
     if (!name) {
       // this.errors.push({
-        //   key: "name",
-        //   message: "Заполните название",
-        // });
+      //   key: "name",
+      //   message: "Заполните название",
+      // });
       this.addFieldError("name", "Заполните название");
     }
-    
+
     else {
-      
-      // let url_name = cyrillicToTranslit().transform(name, "_");
+
+      // let url_name = cyrillicToTranslit({}).transform(name, "_");
       url_name = translit(name);
-  
+
       url_name = url_name && url_name.toLowerCase() || undefined;
-  
+
       let data = {
         url_name,
       };
-  
+
       console.log(chalk.green("createBeer url_name"), url_name);
 
       /**
@@ -106,9 +105,9 @@ class BeerPayload extends Payload {
             url_name_starts_with: url_name,
           },
         })
-          // .catch(error => {
-          //   console.error("Create beer db.query.beers error", error);
-          // });
+        // .catch(error => {
+        //   console.error("Create beer db.query.beers error", error);
+        // });
 
         console.log(chalk.green("beers"), beers);
 
