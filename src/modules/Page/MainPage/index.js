@@ -3,9 +3,16 @@ import PropTypes from 'prop-types'
 
 import PageLayout from '../layout';
 
+
+
+
+import Beers from "./Beers";
+
+
 import Places from "./Places";
 import Topics from "./Topics";
 import Comments from "./Comments";
+
 
 
 import Typography from "material-ui/Typography";
@@ -119,6 +126,7 @@ export default class MainPage extends PageLayout {
         </Typography> */}
 
 
+       
         <h3 className="h3main">
           <i className="fas fa-award"></i> ЛУЧШИЕ ЗАВЕДЕНИЯ
         </h3>
@@ -330,10 +338,22 @@ export default class MainPage extends PageLayout {
 
 
         <h3 className="h3main">
+          <i className="fas fa-beer"></i> ПОСЛЕДНИЕ ДОБАВЛЕННЫЕ СОРТА ПИВА
+        </h3>
+
+        <Beers
+         
+          first={6}
+          orderBy="createdAt_DESC"
+          
+        />
+
+
+        <h3 className="h3main">
           <Link
             to="/blog/showlist/"
           >
-            НОВЫЕ ПУБЛИКАЦИИ
+           <i class="fas fa-feather-alt"></i> НОВЫЕ ПУБЛИКАЦИИ
           </Link>
         </h3>
 
@@ -365,7 +385,7 @@ export default class MainPage extends PageLayout {
           <Link
             to="/comments/"
           >
-            НОВЫЕ КОММЕНТАРИИ
+           <i class="far fa-comments"></i> НОВЫЕ КОММЕНТАРИИ
           </Link>
         </h3>
 

@@ -31,20 +31,15 @@ const ws = require('ws');
 
 global.WebSocket = ws;
 
-const express = require('express');
-// const logger = require('./logger');
+const express = require('express'); 
 
-const argv = require('minimist')(process.argv.slice(2));
-// const setup = require('./middlewares/frontendMiddleware');
-const isDev = process.env.NODE_ENV !== 'production';
-const resolve = require('path').resolve;
+const argv = require('minimist')(process.argv.slice(2)); 
 const app = express();
 
 var bodyParser = require('body-parser');
 
 const cwd = process.cwd();
-
-const proxy = require('http-proxy-middleware');
+ 
 
 const setupProxy = require("@prisma-cms/front/lib/setupProxy");
 
