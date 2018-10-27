@@ -44,6 +44,11 @@ export default class TestApp extends Component {
   }
 }
 
+<<<<<<< HEAD:src/__tests__/front/App/index.js
 it("", () => {
   return;
 })
+=======
+it("", () => {})
+
+>>>>>>> 10ba39ea98d38a61984528798b8bdb526472782d:src/__tests__/front/App/index.js
