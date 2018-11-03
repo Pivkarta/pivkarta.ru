@@ -1,3 +1,6 @@
-{
-    "ignore": "uploads"
+{ 
+  "ignore": [
+    "uploads",
+    "*/generated/*"
+  ] 
 }
