@@ -353,7 +353,7 @@ export default class MainPage extends PageLayout {
           <Link
             to="/blog/showlist/"
           >
-           <i class="fas fa-feather-alt"></i> НОВЫЕ ПУБЛИКАЦИИ
+           <i className="fas fa-feather-alt"></i> НОВЫЕ ПУБЛИКАЦИИ
           </Link>
         </h3>
 
@@ -385,7 +385,7 @@ export default class MainPage extends PageLayout {
           <Link
             to="/comments/"
           >
-           <i class="far fa-comments"></i> НОВЫЕ КОММЕНТАРИИ
+           <i className="far fa-comments"></i> НОВЫЕ КОММЕНТАРИИ
           </Link>
         </h3>
 

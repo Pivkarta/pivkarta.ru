@@ -1,7 +1,7 @@
 
 import startServer from "@prisma-cms/server";
+import CoreModule from "./modules";
 
-import CoreModule from "./modules"; 
 
 import imagesMiddleware from "./middleware/ImageThumb";
 
@@ -10,7 +10,6 @@ const coreModule = new CoreModule({
 
 const resolvers = coreModule.getResolvers();
 
-// const imagesMiddleware = new ImagesMiddleware().processRequest;
 
 
 startServer({

@@ -11,7 +11,9 @@ import TableView from '../../../GridView/Table';
 
 import AuthorizedAction from 'src/modules/authorized-action';
 
-import Bitter from "src/modules/ui/Bitter";
+
+import BeerView from "modules/ui/Beer/List/View";
+
 
 let { ...defaultProps } = TableView.defaultProps;
 
@@ -109,40 +111,8 @@ export default class BeersPageView extends TableView {
 
         let {
           id,
-          beer_id,
-          name,
-          url_name,
-          description,
-          editor_content,
-          country,
-          image,
-          num_comments,
-          num_photos,
-          manufacturer,
-          alcohol,
-          wort_percent,
-          components,
-          bitter,
-          type_id,
-          color,
-          is_request,
-          rating,
         } = item;
 
-
-        // let url = cityAlias ? `/${cityAlias}/sort/show/${id}/${alias}/` : `/${uri}`;
-        let url = `/beer/${beer_id}/${url_name}`;
-
-        // const {
-        //   slider_thumb: image,
-        // } = imageFormats || {};
-
-        // if (!image) {
-        //   return null;
-        // }
-
-        // image = image ? `/images/avatar/uploads/${image}` : "";
-        image = image ? `/images/resized/place_avatar/${image}` : "";
 
         return <Grid
           key={id}
@@ -158,134 +128,23 @@ export default class BeersPageView extends TableView {
             marginBottom: 20,
           }}
         >
-          <Link
-            to={url}
-            href={url}
-            title={name}
-            style={{
-              display: "flex",
-              height: "100%",
-              // border: "1px solid",
-              flexDirection: "column",
-              flexBasis: "100%",
-            }}
-            className="barblock__card"
-          >
-            <img
-              src={image}
-              alt={name}
-              title={name}
-              width="100%"
-            />
-            <div className="barblock__nameblock">
-              <div className="barblock__name">
-                {name}
-              </div>
-              <div className="barblock__address">
-                {color
-                  ?
-                  <div>
-                    <i className="fas fa-palette"></i> {color}
-                  </div>
-                  :
-                  null
-                }
 
-                {bitter
-                  ?
-                  <div>
-                    <i className="fab fa-hotjar"></i> <Bitter
-                      bitter={bitter}
-                    />
-                  </div>
-                  :
-                  null
-                }
+          <BeerView
+            beer={item}
+          />
 
-              </div>
-            </div>
-            <div className="barblock__type">
-              <span className="barblock__type__active">
-                {manufacturer}
-              </span>
-            </div>
-
-          </Link>
         </Grid>
 
 
-        return <Grid
-          key={id}
-          item
-          xs={12}
-          sm={6}
-          md={4}
-          lg={3}
-          style={{
-            // paddingLeft: 10,
-            // paddingRight: 10,
-            marginBottom: 20,
-          }}
-        >
-          <Link
-            to={url}
-            href={url}
-            title={name}
-            style={{
-              display: "flex",
-              height: "100%",
-              // border: "1px solid",
-              flexDirection: "column",
-              flexBasis: "100%",
-            }}
-          >
-            <Typography
-              variant="title"
-              style={{
-                flexGrow: 1,
-                marginBottom: 3,
-              }}
-            >
-              {name}
-            </Typography>
 
-            <img
-              src={image}
-              style={{
-                width: "100%",
-              }}
-            />
-
-          </Link>
-        </Grid>
 
       })}
 
-      {/* {beers ? <Grid
-        item
-        xs={12}
-        
-      >
-        <Pagination
-          limit={limit}
-          total={count}
-          page={page || 1}
-        />
-      </Grid> : null} */}
 
     </Grid>);
 
 
 
-    // return beers.map(({node}) => {
-
-    //   const {
-    //     id,
-    //   } = node;
-
-    //   return null
-
-    // });
   }
 
 }
