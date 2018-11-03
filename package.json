@@ -92,6 +92,7 @@
     "mocha": "^5.2.0"
   },
   "resolutions": {
+    "@prisma-cms/component": "latest",
     "graphql": "14.0.2"
   },
   "browserslist": [

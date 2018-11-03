@@ -775,8 +775,8 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
 
 "@prisma-cms/component@^1.0.9", "@prisma-cms/component@latest":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@prisma-cms/component/-/component-1.0.9.tgz#ba098730ad17260cbc49426f4a959c9f103cc6cc"
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@prisma-cms/component/-/component-1.0.11.tgz#023e30798c2e718231d1c4e43dc9f784ebf75165"
   dependencies:
     material-ui "1.0.0-beta.43"
     react "^16.6.0"

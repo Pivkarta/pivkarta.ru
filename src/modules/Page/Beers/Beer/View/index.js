@@ -392,9 +392,24 @@ export default class BeerView extends EditableView {
 												{this.renderField(<TextField
 													name="bitter"
 													value={bitter || ""}
+													type="number"
 													helperText={bitter ? <Bitter
 														bitter={bitter}
 													/> : "10, 20, 40 и более до 100"}
+													onChange={event => {
+
+														const {
+															name,
+															value,
+														} = event.target;
+
+														console.log("onChange", name, value, event.target);
+
+														this.updateObject({
+															[name]: value ? parseInt(value) : null,
+														});
+
+													}}
 												/>)}
 
 											</td>
