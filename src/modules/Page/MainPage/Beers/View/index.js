@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import BeerView from "src/modules/ui/BeersMainPage";
+import BeerView from "modules/ui/Beer/List/View";
 
 import Grid from "material-ui/Grid";
 
@@ -38,16 +38,12 @@ export default class BeersView extends Component {
             xs={12}
             sm={4}
             md={2}
-            // lg={2}
           >
 
-
             <BeerView
-              data={{
-                object: n,
-              }}
+              beer={n}
             />
-            
+
           </Grid>
         })}
       </Grid>
