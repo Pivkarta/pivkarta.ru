@@ -9,13 +9,9 @@ import chalk from "chalk";
 
 import moment from "moment";
 
-
-import Auth from '@prisma-cms/prisma-auth';
-
-const {
+import {
   getUserId,
-} = Auth;
-
+} from "../utilites";
 
 import Translit from "translit";
 

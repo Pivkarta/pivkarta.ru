@@ -1,12 +1,8 @@
 
 import Payload from '@prisma-cms/prisma-processor';
-import Auth from '@prisma-cms/prisma-auth';
 
 import moment from "moment";
 
-const {
-  getUserId,
-} = Auth;
 
 const getTime = function () {
 
@@ -15,7 +11,15 @@ const getTime = function () {
 }
 
 
+const getUserId = function (ctx) {
 
+  const {
+    currentUser,
+  } = ctx;
+
+  return currentUser && currentUser.id || null;
+  
+}
 
 const hasPermission = async (ctx, userId, permission) => {
 

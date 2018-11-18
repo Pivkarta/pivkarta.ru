@@ -5,17 +5,14 @@ import {
 
 import PrismaModule from "@prisma-cms/prisma-module";
 
+import {
+  getUserId,
+} from "../utilites";
 
 import Translit from "translit";
 
 const translit = Translit({});
-
-
-import Auth from '@prisma-cms/prisma-auth';
-
-const {
-  getUserId,
-} = Auth;
+ 
 
 class TopicPayload extends Payload {
 
