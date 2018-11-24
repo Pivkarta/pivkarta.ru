@@ -11,8 +11,9 @@ import chalk from 'chalk';
  
 
 import Translit from "translit";
+import TranslitRussian from "translit-russian";
 
-const translit = Translit({});
+const translit = Translit(TranslitRussian);
 
 
 class PlacePayload extends Payload {
@@ -186,7 +187,9 @@ class PlacePayload extends Payload {
       });
     }
     else {
-      url_name = translit(name);
+      url_name = translit(name).replace(/[\/\? ]+/g, '-').replace(/\-+/g, '-');
+      
+      url_name = url_name && url_name.toLowerCase() || undefined;
 
       data.url_name = url_name;
 

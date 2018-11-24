@@ -10,8 +10,9 @@ import chalk from "chalk";
 import moment from "moment";
 
 import Translit from "translit";
+import TranslitRussian from "translit-russian";
 
-const translit = Translit({});
+const translit = Translit(TranslitRussian);
 
 
 
@@ -76,7 +77,7 @@ class BeerPayload extends Payload {
     else {
 
       // let url_name = cyrillicToTranslit({}).transform(name, "_");
-      url_name = translit(name);
+      url_name = translit(name).replace(/[\/\? ]+/g, '-').replace(/\-+/g, '-');
 
       url_name = url_name && url_name.toLowerCase() || undefined;
 
@@ -141,6 +142,8 @@ class BeerPayload extends Payload {
     //   data,
     // }
 
+    // this.addError(url_name);
+
 
     Object.assign(args, {
       data: {
@@ -151,7 +154,7 @@ class BeerPayload extends Payload {
 
     const result = await super.create(objectType, args);
 
-    console.log("CreateBeer result", result);
+    // console.log("CreateBeer result", result);
 
     return result;
 

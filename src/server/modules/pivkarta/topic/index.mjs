@@ -7,8 +7,9 @@ import PrismaModule from "@prisma-cms/prisma-module";
 
 
 import Translit from "translit";
+import TranslitRussian from "translit-russian";
 
-const translit = Translit({});
+const translit = Translit(TranslitRussian);
 
  
 
@@ -86,7 +87,7 @@ class TopicPayload extends Payload {
       return;
     }
     else {
-      url_name = translit(name);
+      url_name = translit(name).replace(/[\/\? ]+/g, '-').replace(/\-+/g, '-');
 
       url_name = url_name && url_name.toLowerCase() || undefined;
 
