@@ -1223,6 +1223,7 @@ const Place = {
     return sudo ? email : null;
 
   },
+  Letters: () => [],
   uri,
 }
 

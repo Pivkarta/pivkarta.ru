@@ -8747,7 +8747,7 @@ merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
 
-merge-graphql-schemas@^1.5.7, merge-graphql-schemas@latest:
+merge-graphql-schemas@^1.5.7, merge-graphql-schemas@^1.5.8, merge-graphql-schemas@latest:
   version "1.5.8"
   resolved "https://registry.yarnpkg.com/merge-graphql-schemas/-/merge-graphql-schemas-1.5.8.tgz#89457b60312aabead44d5b2b7625643f8ab9e369"
   dependencies:
