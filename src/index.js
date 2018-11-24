@@ -9,6 +9,10 @@ import registerServiceWorker from './registerServiceWorker';
 
 import App from "./App";
 
+import {
+  UserNoNestingFragment,
+} from "./schema/generated/api.fragments";
+
 ReactDOM.render(<PrismaCms
   // lang="en"
   App={App}
@@ -17,6 +21,15 @@ ReactDOM.render(<PrismaCms
   //   paletteType: 'light',
   //   paletteType: 'dark',
   // }}
+  apolloOptions={{
+    apiQuery: `{
+      user:me{
+        ...UserNoNesting
+      } 
+    }
+    ${UserNoNestingFragment}
+    `,
+  }}
 />, document.getElementById('root'));
 registerServiceWorker();
 

@@ -9,17 +9,10 @@ import chalk from "chalk";
 
 import moment from "moment";
 
-
-import Auth from '@prisma-cms/prisma-auth';
-
-const {
-  getUserId,
-} = Auth;
-
-
 import Translit from "translit";
+import TranslitRussian from "translit-russian";
 
-const translit = Translit({});
+const translit = Translit(TranslitRussian);
 
 
 
@@ -84,7 +77,7 @@ class BeerPayload extends Payload {
     else {
 
       // let url_name = cyrillicToTranslit({}).transform(name, "_");
-      url_name = translit(name);
+      url_name = translit(name).replace(/[\/\? ]+/g, '-').replace(/\-+/g, '-');
 
       url_name = url_name && url_name.toLowerCase() || undefined;
 
@@ -149,6 +142,8 @@ class BeerPayload extends Payload {
     //   data,
     // }
 
+    // this.addError(url_name);
+
 
     Object.assign(args, {
       data: {
@@ -159,7 +154,7 @@ class BeerPayload extends Payload {
 
     const result = await super.create(objectType, args);
 
-    console.log("CreateBeer result", result);
+    // console.log("CreateBeer result", result);
 
     return result;
 
@@ -190,39 +185,39 @@ const beer = function (parent, args, ctx, info) {
 
 
 
-const createBeerData = async function (parent, args, ctx, info) {
+// const createBeerData = async function (parent, args, ctx, info) {
 
 
-  const userId = getUserId(ctx);
+//   const userId = getUserId(ctx);
 
-  const {
-    object_data,
-  } = args;
+//   const {
+//     object_data,
+//   } = args;
 
-  const {
-    name,
-    text,
-    isPublished,
-  } = object_data;
+//   const {
+//     name,
+//     text,
+//     isPublished,
+//   } = object_data;
 
-  const date = moment();
+//   const date = moment();
 
-  const created_on = `${date.format('YYYY-MM-DD')}T${date.format('HH:mm:ss')}`;
+//   const created_on = `${date.format('YYYY-MM-DD')}T${date.format('HH:mm:ss')}`;
 
-  return ctx.db.mutation.createBeer({
-    data: {
-      name,
-      text,
-      isPublished,
-      created_on,
-      created_by: {
-        connect: {
-          id: userId,
-        },
-      },
-    },
-  }, info)
-}
+//   return ctx.db.mutation.createBeer({
+//     data: {
+//       name,
+//       text,
+//       isPublished,
+//       created_on,
+//       created_by: {
+//         connect: {
+//           id: userId,
+//         },
+//       },
+//     },
+//   }, info)
+// }
 
 
 
@@ -237,7 +232,15 @@ async function createBeerProcessor(source, args, ctx, info) {
 const updateBeerProcessor = async function (parent, args, ctx, info) {
 
 
-  const userId = getUserId(ctx);
+  // const userId = getUserId(ctx);
+
+  const {
+    currentUser,
+  } = ctx;
+
+  if(!currentUser){
+    return this.addError("Необходимо авторизоваться");
+  }
 
   let {
     id,

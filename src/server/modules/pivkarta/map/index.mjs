@@ -28,6 +28,11 @@ const mapGeoObjectsConnection = async function (source, args, ctx, info) {
   // console.log("mapGeoObjectsConnection center", center);
   // console.log("where", where.beers_some.Beer);
 
+  where = {
+    ...where,
+    active: true,
+  }
+
   const {
     fieldNodes: {
       0: {

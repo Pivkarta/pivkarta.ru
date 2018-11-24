@@ -17,3 +17,27 @@ type Topic implements Node {
   # custom
   uri: String!
 }
+
+
+
+input TopicCreateInput {
+  name: String!
+  editor_content: Json
+  published: Boolean
+  description: String
+}
+
+input TopicUpdateInput { 
+  name: String
+  editor_content: Json
+  published: Boolean
+  description: String
+}
+
+
+type TopicResponse {
+  success: Boolean!
+  message: String
+  errors: [Error!]!
+  data: Topic
+}

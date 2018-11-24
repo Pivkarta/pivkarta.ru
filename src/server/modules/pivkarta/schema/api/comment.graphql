@@ -16,3 +16,28 @@ type Comment implements Node {
   #custom
   uri: String!
 }
+
+ 
+
+type CommentResponse {
+  success: Boolean!
+  message: String
+  errors: [Error!]!
+  data: Comment
+}
+
+
+input CommentCreateInput {
+  object_id: Int
+  type_id: Int
+  parent: ID
+  editor_content: Json
+}
+
+
+input CommentUpdateInput {
+  editor_content: Json
+}
+
+
+

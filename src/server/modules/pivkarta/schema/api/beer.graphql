@@ -41,3 +41,58 @@ type BeerPayload{
   errors: [Error!]!
   data: Beer
 }
+
+input BeerCreateOneWithoutPlacesInput {
+  connect: BeerWhereUniqueInput
+}
+
+
+input BeerCreateInput {
+  name: String
+  url_name: String
+  description: String
+  editor_content: Json
+  country: String
+  image: String
+  manufacturer: String
+  region: String
+  manufacture_years: String
+  container: Int
+  alcohol: String
+  wort_percent: String
+  components: String
+  bitter: Int
+  type_id: Int
+  color: String
+  is_request: Int
+  rating: Float
+  add_user_id: Int
+  created_at: Int
+  gallery: Json
+}
+
+
+input BeerUpdateInput {
+  name: String
+  description: String
+  editor_content: Json
+  country: String
+  image: String
+  manufacturer: String
+  region: String
+  manufacture_years: String
+  container: Int
+  alcohol: String
+  wort_percent: String
+  components: String
+  bitter: Int
+  type_id: Int
+  color: String
+  is_request: Int
+  rating: Float
+  gallery: Json
+}
+
+input BeerUpdateOneWithoutPlacesInput {
+  connect: BeerWhereUniqueInput
+}

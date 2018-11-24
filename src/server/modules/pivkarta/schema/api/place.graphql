@@ -43,6 +43,15 @@ type PlacePayload{
 }
 
 
+
+type PlaceResponse {
+  success: Boolean!
+  message: String
+  errors: [Error!]!
+  data: Place
+}
+
+
 type MapPlaceConnectionEdges{
   node: [Place!]!
 }
@@ -123,3 +132,17 @@ input PlaceBeerUpdateInput {
 input UserUpdateOneWithoutPlacesInput{
   connect: UserWhereUniqueInput
 }
+
+input PlaceCreateOneWithoutBeersInput {
+  connect: PlaceWhereUniqueInput
+}
+
+
+input PlaceCreateOneWithoutLettersInput {
+  id: ID!
+}
+
+input PlaceUpdateOneWithoutBeersInput {
+  connect: PlaceWhereUniqueInput
+}
+
