@@ -9,14 +9,6 @@ import chalk from "chalk";
 
 import moment from "moment";
 
-
-import Auth from '@prisma-cms/prisma-auth';
-
-const {
-  getUserId,
-} = Auth;
-
-
 import Translit from "translit";
 
 const translit = Translit({});
@@ -190,39 +182,39 @@ const beer = function (parent, args, ctx, info) {
 
 
 
-const createBeerData = async function (parent, args, ctx, info) {
+// const createBeerData = async function (parent, args, ctx, info) {
 
 
-  const userId = getUserId(ctx);
+//   const userId = getUserId(ctx);
 
-  const {
-    object_data,
-  } = args;
+//   const {
+//     object_data,
+//   } = args;
 
-  const {
-    name,
-    text,
-    isPublished,
-  } = object_data;
+//   const {
+//     name,
+//     text,
+//     isPublished,
+//   } = object_data;
 
-  const date = moment();
+//   const date = moment();
 
-  const created_on = `${date.format('YYYY-MM-DD')}T${date.format('HH:mm:ss')}`;
+//   const created_on = `${date.format('YYYY-MM-DD')}T${date.format('HH:mm:ss')}`;
 
-  return ctx.db.mutation.createBeer({
-    data: {
-      name,
-      text,
-      isPublished,
-      created_on,
-      created_by: {
-        connect: {
-          id: userId,
-        },
-      },
-    },
-  }, info)
-}
+//   return ctx.db.mutation.createBeer({
+//     data: {
+//       name,
+//       text,
+//       isPublished,
+//       created_on,
+//       created_by: {
+//         connect: {
+//           id: userId,
+//         },
+//       },
+//     },
+//   }, info)
+// }
 
 
 
@@ -237,7 +229,15 @@ async function createBeerProcessor(source, args, ctx, info) {
 const updateBeerProcessor = async function (parent, args, ctx, info) {
 
 
-  const userId = getUserId(ctx);
+  // const userId = getUserId(ctx);
+
+  const {
+    currentUser,
+  } = ctx;
+
+  if(!currentUser){
+    return this.addError("Необходимо авторизоваться");
+  }
 
   let {
     id,
