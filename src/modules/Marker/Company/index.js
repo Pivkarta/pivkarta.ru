@@ -80,8 +80,10 @@ export class CompanyMiniCart extends Component{
 		>
 			<div
 				style={{
-					paddingBottom: 5,
+					marginBottom: 5,
 					fontSize: "14px",
+					padding: "2px",
+					background: "#3caae8",
 				}}
 			>
 				
@@ -98,6 +100,9 @@ export class CompanyMiniCart extends Component{
 						<Link
 							to={link}
 							href={link}
+							style={{
+								color: "#ffffff",
+							}}
 						>
 							{name}
 						</Link>
