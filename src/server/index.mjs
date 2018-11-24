@@ -24,6 +24,7 @@ const knex = Knex({
   },
 });
 
+
 startServer({
   typeDefs: 'src/schema/generated/api.graphql',
   resolvers,
