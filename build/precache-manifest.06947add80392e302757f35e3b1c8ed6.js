@@ -40,12 +40,12 @@ self.__precacheManifest = [
     "url": "/static/media/fontawesome-webfont.dcb26c72.ttf"
   },
   {
-    "revision": "f4769f9bdb7466be65088239c12046d1",
-    "url": "/static/media/glyphicons-halflings-regular.f4769f9b.eot"
-  },
-  {
     "revision": "448c34a56d699c29117adc64c43affeb",
     "url": "/static/media/glyphicons-halflings-regular.448c34a5.woff2"
+  },
+  {
+    "revision": "f4769f9bdb7466be65088239c12046d1",
+    "url": "/static/media/glyphicons-halflings-regular.f4769f9b.eot"
   },
   {
     "revision": "fa2772327f55d8198301fdb8bcfc8158",
