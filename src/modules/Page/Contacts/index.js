@@ -62,6 +62,18 @@ export class ContactsPage extends Page {
           variant="title"
           className={classes.title}
         >
+          Контакты
+        </Typography>
+
+        <Typography>
+          По всем вопросам пишите на почту: {mail}
+          <hr/>
+        </Typography>
+
+        <Typography
+          variant="title"
+          className={classes.title}
+        >
           Сотрудничество
         </Typography>
 

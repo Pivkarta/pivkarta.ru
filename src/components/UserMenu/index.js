@@ -702,7 +702,7 @@ export default class MainMenu extends Component {
                   this.closeMenu();
                 }}
               >
-                Контакты
+                Контакты и сотрудничество
                 </Link>
             </li>
 

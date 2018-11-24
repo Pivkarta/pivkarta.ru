@@ -7,7 +7,6 @@ import {
 
 import chalk from "chalk";
 
-import moment from "moment";
 
 import Translit from "translit";
 import TranslitRussian from "translit-russian";
