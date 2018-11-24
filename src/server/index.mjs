@@ -12,6 +12,8 @@ const coreModule = new CoreModule({
 const resolvers = coreModule.getResolvers();
 
 
+// console.log("resolvers", resolvers);
+
 const knex = Knex({
   client: 'mysql',
   connection: {

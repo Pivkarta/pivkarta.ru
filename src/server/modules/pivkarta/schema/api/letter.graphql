@@ -1,0 +1,9 @@
+
+
+input LetterUpdateInput {
+  email: String
+  subject: String
+  message: String
+  status: LetterStatus
+  Place: PlaceUpdateOneWithoutLettersInput
+}

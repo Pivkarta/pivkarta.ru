@@ -95,6 +95,17 @@ class CoreModule extends CmsModule {
       "UserCreateOneWithoutTarifsInput",
       "TarifCreateOneWithoutUserTarifsInput",
       "UserCreateOneInput",
+      "UserCreateInput",
+      "UserSubscriptionPayload",
+      "TarifCreateOneInput",
+      "PlaceCreateOneWithoutBeersInput",
+      "BeerCreateOneWithoutPlacesInput",
+      "PlaceCreateInput",
+      "PlaceUpdateInput",
+      "PlaceBeerUpdateInput",
+      "PlaceUpdateOneWithoutBeersInput",
+      "BeerUpdateOneWithoutPlacesInput",
+      "UserUpdateOneWithoutPlacesInput",
     ]);
 
 
@@ -132,6 +143,10 @@ class CoreModule extends CmsModule {
 
     });
 
+    // console.log("operations", operations);
+
+    apiSchema = print(parsed);
+
     return apiSchema;
 
   }
@@ -159,14 +174,64 @@ class CoreModule extends CmsModule {
         logsConnection,
         ...Query
       },
-      Mutation,
+      Mutation: {
+        signin,
+        signup,
+        updateUserProcessor,
+        // createBlogProcessor,
+        // createTopicProcessor,
+        // updateTopicProcessor,
+        singleUpload,
+        multipleUpload,
+        // startImportProcessor,
+        resetPassword,
+        // createProjectProcessor,
+
+        createTopicProcessor,
+        updateTopicProcessor,
+        updatePlaceData,
+        updatePlaceProcessor,
+        updateBeerProcessor,
+        createBeerProcessor,
+        togglePlaceBeer,
+        updatePlaceBeerProcessor,
+        createPlaceProcessor,
+        createUserTarif,
+        createTarifRequest,
+        // createLetter,
+        // updateLetter,
+        createCommentProcessor,
+        updateCommentProcessor,
+
+      },
       ...other
     } = resolvers;
 
 
 
     let AllowedMutations = {
-      ...Mutation,
+      signin,
+      signup,
+      updateUserProcessor,
+      singleUpload,
+      multipleUpload,
+      resetPassword,
+
+      createTopicProcessor,
+      updateTopicProcessor,
+      updatePlaceData,
+      updatePlaceProcessor,
+      updateBeerProcessor,
+      createBeerProcessor,
+      togglePlaceBeer,
+      updatePlaceBeerProcessor,
+      createPlaceProcessor,
+      createUserTarif,
+      createTarifRequest,
+      // createLetter,
+      // updateLetter,
+      createCommentProcessor,
+      updateCommentProcessor,
     };
 
     // for(var i in AllowedMutations){
@@ -195,11 +260,11 @@ class CoreModule extends CmsModule {
     };
 
   }
- 
+
 
 
 }
 
- 
+
 
 export default CoreModule;
