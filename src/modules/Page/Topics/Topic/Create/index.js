@@ -93,6 +93,7 @@ export default class TopicCreatePage extends TopicPage {
       onSave={result => this.onSave(result)}
       _dirty={{
         published: true,
+        name: "",
       }}
       {...other}
     />
