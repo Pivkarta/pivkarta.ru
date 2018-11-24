@@ -905,6 +905,14 @@
     sharp "0.21.0"
     shortid "^2.2.13"
 
+"@prisma-cms/router-module@latest":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@prisma-cms/router-module/-/router-module-1.1.0.tgz#9197a63f898488bda1daa25619e9f1c93a9c29ac"
+  dependencies:
+    "@prisma-cms/prisma-module" latest
+    chalk "^2.4.1"
+    merge-graphql-schemas latest
+
 "@prisma-cms/server@^2.1.8-beta":
   version "2.1.8-beta"
   resolved "https://registry.yarnpkg.com/@prisma-cms/server/-/server-2.1.8-beta.tgz#e6d6cbc6a77b20c8c64e2c4f20b9c038a1f597e7"
