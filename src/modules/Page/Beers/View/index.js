@@ -100,7 +100,7 @@ export default class BeersPageView extends TableView {
               to="/beer/create/"
               className="mui-btn mui-btn--primary"             
             >
-               <i className="fas fa-plus-circle"></i> ДОБАВИТЬ ПИВО
+              <i className="fas fa-plus-circle"></i> ДОБАВИТЬ ПИВО
             </Link>
           </AuthorizedAction>
 
