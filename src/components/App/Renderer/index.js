@@ -26,9 +26,9 @@ import TopicPage from '../../../modules/Page/Topics/Topic';
 import TopicCreatePage from '../../../modules/Page/Topics/Topic/Create';
 import CommentsPage from '../../../modules/Page/Comments';
 import CommentPage from '../../../modules/Page/Comments/Comment';
-import WalletPage from '../../../modules/Page/Wallet';
-import TransactionsPage from '../../../modules/Page/Wallet/Transactions';
-import TransactionPage from '../../../modules/Page/Wallet/Transactions/Transaction';
+// import WalletPage from '../../../modules/Page/Wallet';
+// import TransactionsPage from '../../../modules/Page/Wallet/Transactions';
+// import TransactionPage from '../../../modules/Page/Wallet/Transactions/Transaction';
 
 import BeersPage from '../../../modules/Page/Beers';
 import BeerPage from '../../../modules/Page/Beers/Beer';
@@ -750,7 +750,7 @@ export class Renderer extends PrismaCmsRenderer {
                 // return null;
                 return <BeerPage
                   key={beerId}
-                  beer_id={beerId}
+                  beer_id={parseInt(beerId)}
                   {...props}
                 />
               }}
