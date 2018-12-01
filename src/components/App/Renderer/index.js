@@ -53,11 +53,19 @@ import Auth from '@prisma-cms/front/lib/modules/Auth';
 
 import PageNotFound from '@prisma-cms/front/lib/modules/pages/404/';
 
+
+import { Renderer as PrismaCmsRenderer } from "@prisma-cms/front";
+import { withStyles } from 'material-ui';
+
 // import ReactEncrypt from 'react-encrypt/src';
 
 // const Web3 = require('web3');
 
-export default class Renderer extends Component {
+export const styles = {
+
+}
+
+export class Renderer extends PrismaCmsRenderer {
 
   // static propTypes = {
   //   // prop: PropTypes
@@ -65,14 +73,17 @@ export default class Renderer extends Component {
 
   state = {
     // encryptKey: "asdasd",
+    ...super.state,
     authOpen: false,
   }
 
   static defaultProps = {
-    googleMapApiKey: "AIzaSyBdNZDE_QadLccHx5yDc96VL0M19-ZPUvU",
+    ...PrismaCmsRenderer.defaultProps,
+    googleMapApiKey: "AIzaSyDDC9hsFsRJxjsIWJpuuQrrQOt4QZ-xFKA",
   };
 
   static contextTypes = {
+    ...PrismaCmsRenderer.contextTypes,
     router: PropTypes.object.isRequired,
     onAuthSuccess: PropTypes.func.isRequired,
     uri: PropTypes.object.isRequired,
@@ -81,6 +92,7 @@ export default class Renderer extends Component {
 
 
   static childContextTypes = {
+    ...PrismaCmsRenderer.childContextTypes,
     location: PropTypes.object,
     web3: PropTypes.object,
     googleMapApiKey: PropTypes.string,
@@ -101,7 +113,10 @@ export default class Renderer extends Component {
       ymaps,
     } = this.state;
 
+    const context = super.getChildContext && super.getChildContext() || null;
+
     return {
+      ...context,
       web3,
       location,
       ymaps,
@@ -446,6 +461,21 @@ export default class Renderer extends Component {
   }
 
 
+  getRoutes() {
+
+    let routes = super.getRoutes().filter(n => [
+      "/",
+      "/users",
+      "/users/:userId",
+      "*",
+    ].indexOf(n.path) === -1);
+
+    console.log("routes", routes);
+
+    return routes;
+  }
+
+
   render() {
 
 
@@ -494,9 +524,6 @@ export default class Renderer extends Component {
 
     let mainSwitch = <Fragment
     >
-      {/* <ReactEncrypt
-        encryptKey={encryptKey}
-      > */}
 
 
       <div
@@ -524,17 +551,6 @@ export default class Renderer extends Component {
 
         </div>
 
-        {/* <div
-          // item
-          // xs={12}
-          style={{
-            // padding: "0 15px 30px",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        > */}
-
 
         <div
           id="content"
@@ -546,7 +562,6 @@ export default class Renderer extends Component {
         >
           <Switch>
 
-            {/* <Route exact path="/" component={TopicsPage} /> */}
 
             <Route
               exact
@@ -555,13 +570,18 @@ export default class Renderer extends Component {
             // render={this.renderMap}
             />
 
-            {/* <Route
-              exact
-              // path={"/:city/@:lat,:lng,:zoom"}
-              path={"/@:lat,:lng,:zoom"}
-              // render={this.renderMap}
-              component={MainPage}
-            /> */}
+
+            {this.getRoutes().map(n => {
+              const {
+                path,
+              } = n;
+
+              return <Route
+                key={path}
+                {...n}
+              />
+            })}
+
 
             <Route
               exact
@@ -598,19 +618,6 @@ export default class Renderer extends Component {
               // path={"/@:lat,:lng,:zoom"}
               render={this.renderMap}
             />
-
-            {/* <Route
-  exact
-  path="/"
-  render={props => {
-
-    return <MapPage
-      first={0}
-      {...props}
-    />
-
-  }}
-/> */}
 
 
             <Route
@@ -674,34 +681,7 @@ export default class Renderer extends Component {
                 />
               }}
             />
-
-            {/* <Route
-  path="/profile/:username"
-  render={(props) => {
-
-    const {
-      params,
-    } = props.match;
-
-    const {
-      username,
-    } = params || {};
-
-    return <UserPage
-      key={username}
-      username={username}
-      {...props}
-    />
-
-  }}
-/> */}
-
-            {/* <Route
-  path="/beer/:beerId/:beerAlias"
-  component={BeerPage}
-/> */}
-
-
+  
 
             <Route
               exact
@@ -1038,7 +1018,7 @@ export default class Renderer extends Component {
               path="/city"
               component={CitiesPage}
             />
-            
+
 
             <Route
               exact
@@ -1137,3 +1117,5 @@ export default class Renderer extends Component {
     )
   }
 }
+
+export default withStyles(styles)(Renderer);

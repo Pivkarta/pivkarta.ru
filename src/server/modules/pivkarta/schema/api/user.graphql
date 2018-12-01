@@ -1,0 +1,38 @@
+
+input UserCreateInput {
+  username: String
+  email: String
+  fullname: String
+  password: String
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+}
+
+
+
+input UserUpdateInput { 
+  password: String
+  fullname: String
+  image: String
+  gender: Int
+  birth_date: DateTime
+  icq: String
+  www: String
+  about: String
+  photo: String 
+}
+
+
+input UserCreateOneWithoutTarifsInput {
+  # create: UserCreateWithoutTarifsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneInput {
+  # create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+

@@ -117,7 +117,7 @@ export const updateTopicProcessor = gql`
 
 export const createTopicProcessor = gql`
   mutation createTopicProcessor(
-    $data: TopicUpdateInput!
+    $data: TopicCreateInput!
   ){
     response:createTopicProcessor(
       data: $data

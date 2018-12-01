@@ -1,5 +1,6 @@
 const proxy = require('http-proxy-middleware');
 
+const prismaProxy = require("@prisma-cms/front/lib/setupProxy");
 
 module.exports = function (app) {
 
@@ -17,5 +18,7 @@ module.exports = function (app) {
       "^/images/resized/([^/]+)/uploads/(.+)": "/images/$1/$2",
     }
   }));
+
+  prismaProxy(app);
 
 };

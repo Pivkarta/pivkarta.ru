@@ -7,15 +7,11 @@ import PrismaModule from "@prisma-cms/prisma-module";
 
 
 import Translit from "translit";
+import TranslitRussian from "translit-russian";
 
-const translit = Translit({});
+const translit = Translit(TranslitRussian);
 
-
-import Auth from '@prisma-cms/prisma-auth';
-
-const {
-  getUserId,
-} = Auth;
+ 
 
 class TopicPayload extends Payload {
 
@@ -91,7 +87,7 @@ class TopicPayload extends Payload {
       return;
     }
     else {
-      url_name = translit(name);
+      url_name = translit(name).replace(/[\/\? ]+/g, '-').replace(/\-+/g, '-');
 
       url_name = url_name && url_name.toLowerCase() || undefined;
 
@@ -402,71 +398,71 @@ const updateTopicProcessor = async function (parent, args, ctx, info) {
 }
 
 
-const updateTopicData__ = async function (parent, args, ctx, info) {
+// const updateTopicData__ = async function (parent, args, ctx, info) {
 
-  // console.log("updateTopicData", args);
+//   // console.log("updateTopicData", args);
 
-  const userId = await getUserId(ctx);
+//   const userId = await getUserId(ctx);
 
-  if (!userId) {
-    throw (new Error("Необходимо авторизоваться"));
-  }
+//   if (!userId) {
+//     throw (new Error("Необходимо авторизоваться"));
+//   }
 
-  const {
-    id,
-    object_data,
-  } = args;
+//   const {
+//     id,
+//     object_data,
+//   } = args;
 
-  const topicQuery = `
-    {
-      id
-      name
-    }
-  `;
+//   const topicQuery = `
+//     {
+//       id
+//       name
+//     }
+//   `;
 
-  // const topic = await ctx.db.query.topic({ where: { id } }, topicQuery)
+//   // const topic = await ctx.db.query.topic({ where: { id } }, topicQuery)
 
-  let condition = {
-    id,
-    created_by: {
-      id: userId
-    }
-  };
+//   let condition = {
+//     id,
+//     created_by: {
+//       id: userId
+//     }
+//   };
 
-  const exists = await ctx.db.exists.Topic(condition)
+//   const exists = await ctx.db.exists.Topic(condition)
 
-  // console.log('topic', topic);
-  // return ;
+//   // console.log('topic', topic);
+//   // return ;
 
-  if (!exists) {
-    throw new Error(`Не был получен топик`);
-  }
+//   if (!exists) {
+//     throw new Error(`Не был получен топик`);
+//   }
 
-  // return {
-  //   data: {
-  //     created_by: {}
-  //   },
-  // }
+//   // return {
+//   //   data: {
+//   //     created_by: {}
+//   //   },
+//   // }
 
-  const {
-    created_by,
-    created_at,
-    ...other
-  } = object_data;
+//   const {
+//     created_by,
+//     created_at,
+//     ...other
+//   } = object_data;
 
-  // const date = moment();
+//   // const date = moment();
 
-  // const created_at = `${date.format('YYYY-MM-DD')}T${date.format('HH:mm:ss')}`;
+//   // const created_at = `${date.format('YYYY-MM-DD')}T${date.format('HH:mm:ss')}`;
 
-  return ctx.db.mutation.updateTopic({
-    where: {
-      id,
-    },
-    data: {
-      ...other
-    },
-  }, info)
-}
+//   return ctx.db.mutation.updateTopic({
+//     where: {
+//       id,
+//     },
+//     data: {
+//       ...other
+//     },
+//   }, info)
+// }
 
 
 
