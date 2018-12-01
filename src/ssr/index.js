@@ -23,7 +23,7 @@ require('@babel/register')({
 
 require('@babel/polyfill');
 
-let SSRmiddlewareClass = require('./SSR');
+let SSRmiddlewareClass = require('./SSR/pivkarta');
 
 let SSRmiddleware = new SSRmiddlewareClass().middleware;
 
@@ -44,20 +44,20 @@ const cwd = process.cwd();
 // const setupProxy = require("@prisma-cms/front/lib/setupProxy");
 const proxy = require('http-proxy-middleware');
 
-app.use(proxy('/api/', {
-  target: 'http://localhost:4100/',
-  ws: true,
-  pathRewrite: {
-    "^/api/": "/"
-  }
-}));
+// app.use(proxy('/api/', {
+//   target: 'http://localhost:4100/',
+//   ws: true,
+//   pathRewrite: {
+//     "^/api/": "/"
+//   }
+// }));
 
-app.use(proxy('/images/', {
-  target: 'http://localhost:4100/',
-  pathRewrite: {
-    "^/images/resized/([^/]+)/uploads/(.+)": "/images/$1/$2",
-  }
-}));
+// app.use(proxy('/images/', {
+//   target: 'http://localhost:4100/',
+//   pathRewrite: {
+//     "^/images/resized/([^/]+)/uploads/(.+)": "/images/$1/$2",
+//   }
+// }));
 
 
 app.use('/static', express.static(cwd + '/build/static')); //Serves resources from build folder
