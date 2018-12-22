@@ -53,6 +53,9 @@ export class ItemsItem extends Component {
     const {
       primaryText,
       secondaryText,
+      region,
+      container,
+      container_str,
       image,
       distance,
       address,
@@ -173,12 +176,15 @@ export class ItemsItem extends Component {
               xs
               className={classes.primaryTextContainer}
             >
-              {primaryText}
+              {primaryText}              
 
               <div
                 className={classes.secondaryText}
               >
                 {address ? address : ""}
+                {region ? region : ""}
+                {region ? " / " : ""}
+                {container_str ? container_str : ""}
               </div>
 
             </Grid>
