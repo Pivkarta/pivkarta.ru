@@ -12,7 +12,7 @@ import View from './View';
 
 import PlacesPage from '../';
 
-let {...defaultProps} = PlacesPage.defaultProps;
+let { ...defaultProps } = PlacesPage.defaultProps;
 
 Object.assign(defaultProps, {
   View,
@@ -25,7 +25,7 @@ export default class PlacePage extends PlacesPage {
 
 
 
-  componentWillMount(){
+  componentWillMount() {
 
     const {
       View,
@@ -37,7 +37,7 @@ export default class PlacePage extends PlacesPage {
       }),
       graphql(updatePlaceData, {
       }),
-    
+
     )(View);
 
     Object.assign(this.state, {
@@ -48,11 +48,19 @@ export default class PlacePage extends PlacesPage {
 
   }
 
-  
-  // setPageMeta(meta){
 
-  //   return super.setPageMeta(meta);
-  // }
+  setPageMeta(meta) {
+
+    // const {
+    //   setPageMeta,
+    // } = this.context;
+
+    // console.log("PlacePage setPageMeta", meta, setPageMeta);
+
+    // return setPageMeta && setPageMeta(meta);
+
+    return super.setPageMeta(meta || {});
+  }
 
 
   // render(content){

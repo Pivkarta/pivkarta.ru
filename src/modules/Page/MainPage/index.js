@@ -42,6 +42,24 @@ export default class MainPage extends PageLayout {
   // }
 
 
+  setPageMeta(meta) {
+    // ToDo: добавить город
+
+    // console.log("setPageMeta BeerPage", meta);
+
+    if(meta === undefined){
+
+      let title = "Пивная карта: все бары, пабы, пивные рестораны на карте. Магазины разливного пива и все сорта пива";
+  
+      meta = {
+        title,
+      }
+      
+    }
+
+    return super.setPageMeta(meta);
+  }
+
 
   render() {
 

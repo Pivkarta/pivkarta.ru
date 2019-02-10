@@ -251,7 +251,7 @@ export default class PivkartaPageLayout extends PageLayout {
                 <span className="bottomline__18plus">
                   18+
                 </span>
-               Чрезмерное употребление алкоголя вредит вашему здоровью
+                Чрезмерное употребление алкоголя вредит вашему здоровью
           </span>
             </div>
           </div>
@@ -262,7 +262,7 @@ export default class PivkartaPageLayout extends PageLayout {
     </footer>
 
 
-    return content ? <div
+    return content ? super.render(<div
       style={{
         height: "100%",
         width: "100%",
@@ -286,7 +286,7 @@ export default class PivkartaPageLayout extends PageLayout {
 
       {footer}
 
-    </div> : null;
+    </div>) : null;
 
   }
 
