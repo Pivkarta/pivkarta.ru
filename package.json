@@ -1,6 +1,6 @@
 {
   "name": "pivkarta.ru",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Opensource framework CMS powered by GraphQL, Prisma, MySQL, React & Apollo GraphQL",
   "private": false,
   "scripts": {
@@ -105,14 +105,12 @@
     "mocha": "^5.2.0",
     "nodemon": "latest",
     "react-scripts": "^2.1.2",
-    "terser": "3.14.1",
-    "ajv": "6.8.1"
+    "terser": "3.14.1"
   },
   "resolutions": {
     "@prisma-cms/component": "latest",
     "graphql": "14.0.2",
-    "terser": "3.14.1",
-    "ajv": "6.8.1"
+    "terser": "3.14.1"
   },
   "browserslist": [
     ">0.2%",
