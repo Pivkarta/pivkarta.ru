@@ -171,7 +171,14 @@ export class PlaceBeerRow extends EditableView {
 
 
       <TableCell>
-        {container_str && setFilter ?
+
+        {container_str ?
+          <div>
+            {container_str}
+          </div>
+          : ""}
+
+        {/* {container_str && setFilter ?
           <a
             href="javascript:;"
             onClick={event => {
@@ -185,7 +192,8 @@ export class PlaceBeerRow extends EditableView {
           >
             {container_str}
           </a>
-          : ""}
+          : ""} */}
+
       </TableCell>
 
 

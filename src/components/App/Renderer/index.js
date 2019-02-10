@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import {
-  NavLink,
-  Link,
+  // NavLink,
+  // Link,
   // BrowserRouter as Router,
   Route,
   Switch,
@@ -26,9 +26,9 @@ import TopicPage from '../../../modules/Page/Topics/Topic';
 import TopicCreatePage from '../../../modules/Page/Topics/Topic/Create';
 import CommentsPage from '../../../modules/Page/Comments';
 import CommentPage from '../../../modules/Page/Comments/Comment';
-import WalletPage from '../../../modules/Page/Wallet';
-import TransactionsPage from '../../../modules/Page/Wallet/Transactions';
-import TransactionPage from '../../../modules/Page/Wallet/Transactions/Transaction';
+// import WalletPage from '../../../modules/Page/Wallet';
+// import TransactionsPage from '../../../modules/Page/Wallet/Transactions';
+// import TransactionPage from '../../../modules/Page/Wallet/Transactions/Transaction';
 
 import BeersPage from '../../../modules/Page/Beers';
 import BeerPage from '../../../modules/Page/Beers/Beer';
@@ -49,7 +49,7 @@ import CityPage from '../../../modules/Page/Cities/City';
 // import PageNotFound from '../../../modules/Page/404';
 
 // import Auth from 'Auth';
-import Auth from '@prisma-cms/front/lib/modules/Auth';
+// import Auth from '@prisma-cms/front/lib/modules/Auth';
 
 import PageNotFound from '@prisma-cms/front/lib/modules/pages/404/';
 
@@ -61,9 +61,7 @@ import { withStyles } from 'material-ui';
 
 // const Web3 = require('web3');
 
-export const styles = {
-
-}
+import Context from "@prisma-cms/context";
 
 export class Renderer extends PrismaCmsRenderer {
 
@@ -476,82 +474,14 @@ export class Renderer extends PrismaCmsRenderer {
   }
 
 
-  render() {
+  renderWrapper() {
 
+    // return "renderWrapper2";
 
-    const {
-      errors,
-    } = this.context;
-
-    const {
-      // encryptKey,
-      authOpen,
-    } = this.state;
-
-
-    let errorsRender;
-
-
-
-    if (errors && errors.length) {
-
-      errorsRender = (<div
-        key="errors"
+    const wrapper = <Context.Consumer>
+      {context => <Context.Provider
+        value={Object.assign(context, this.getChildContext())}
       >
-
-        {errors.map((error, index) => {
-
-          const {
-            message,
-          } = error;
-
-          return <div
-            key={index}
-          >
-            {message}
-          </div>
-
-        })}
-
-      </div>);
-
-    }
-
-    const menu = <UserMenu
-      key="menu"
-    />
-
-
-    let mainSwitch = <Fragment
-    >
-
-
-      <div
-        // container
-        // spacing={0}
-        style={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-
-        <div
-          // item
-          // xs={12}
-          style={{
-            position: "sticky",
-            top: 0,
-            // marginBottom: 20,
-            zIndex: 2,
-          }}
-        >
-
-          {menu}
-
-        </div>
-
-
         <div
           id="content"
           style={{
@@ -681,7 +611,7 @@ export class Renderer extends PrismaCmsRenderer {
                 />
               }}
             />
-  
+
 
             <Route
               exact
@@ -750,7 +680,7 @@ export class Renderer extends PrismaCmsRenderer {
                 // return null;
                 return <BeerPage
                   key={beerId}
-                  beer_id={beerId}
+                  beer_id={parseInt(beerId)}
                   {...props}
                 />
               }}
@@ -803,8 +733,8 @@ export class Renderer extends PrismaCmsRenderer {
 
 
             {/* 
-              Пока для заведений оставлю более жадные УРЛы, чтобы 404-ых меньше было
-             */}
+        Пока для заведений оставлю более жадные УРЛы, чтобы 404-ых меньше было
+       */}
             <Route
               // exact
               path={[
@@ -989,27 +919,27 @@ export class Renderer extends PrismaCmsRenderer {
 
 
             {/* <Route
-              path="/wallet/tx/:transactionHash"
-              render={(props) => {
+        path="/wallet/tx/:transactionHash"
+        render={(props) => {
 
-                const {
-                  params,
-                } = props.match;
+          const {
+            params,
+          } = props.match;
 
-                const {
-                  transactionHash,
-                } = params || {};
+          const {
+            transactionHash,
+          } = params || {};
 
-                return <TransactionPage
-                  key={transactionHash}
-                  transactionHash={transactionHash}
-                  {...props}
-                />
+          return <TransactionPage
+            key={transactionHash}
+            transactionHash={transactionHash}
+            {...props}
+          />
 
-              }}
-            />
-            <Route path="/wallet/tx" component={TransactionsPage} />
-            <Route path="/wallet" component={WalletPage} /> */}
+        }}
+      />
+      <Route path="/wallet/tx" component={TransactionsPage} />
+      <Route path="/wallet" component={WalletPage} /> */}
 
 
 
@@ -1048,6 +978,46 @@ export class Renderer extends PrismaCmsRenderer {
 
           </Switch>
         </div>
+      </Context.Provider>}
+    </Context.Consumer>
+
+
+    const menu = <UserMenu
+      key="menu"
+    />
+
+
+    let mainSwitch = <Fragment
+    >
+
+
+      <div
+        // container
+        // spacing={0}
+        style={{
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+
+        <div
+          // item
+          // xs={12}
+          style={{
+            position: "sticky",
+            top: 0,
+            // marginBottom: 20,
+            zIndex: 2,
+          }}
+        >
+
+          {menu}
+
+        </div>
+
+
+        {wrapper}
 
 
 
@@ -1055,7 +1025,7 @@ export class Renderer extends PrismaCmsRenderer {
 
       </div>
 
-      {errorsRender}
+      {/* {errorsRender} */}
 
 
       <YMaps
@@ -1073,7 +1043,7 @@ export class Renderer extends PrismaCmsRenderer {
 
       {/* </ReactEncrypt> */}
 
-      <Auth
+      {/* <Auth
         open={authOpen}
         loginComplete={data => {
           this.setState({
@@ -1086,36 +1056,176 @@ export class Renderer extends PrismaCmsRenderer {
             authOpen: false,
           });
         }}
-      />
+      /> */}
 
     </Fragment>;
 
 
+    return <Switch>
 
+      <Route
+        exact
+        path="/landing"
+        component={LandingPage}
+      />
 
+      <Route
+        path="*"
+        render={() => {
+          return mainSwitch;
+        }}
+      />
 
+    </Switch>
 
-    return (
-
-      <Switch>
-
-        <Route
-          exact
-          path="/landing"
-          component={LandingPage}
-        />
-
-        <Route
-          path="*"
-          render={() => {
-            return mainSwitch;
-          }}
-        />
-
-      </Switch>
-
-    )
   }
+
+
+  // render() {
+
+
+  //   const {
+  //     errors,
+  //   } = this.context;
+
+  //   const {
+  //     // encryptKey,
+  //     authOpen,
+  //   } = this.state;
+
+
+  //   let errorsRender;
+
+
+
+  //   if (errors && errors.length) {
+
+  //     errorsRender = (<div
+  //       key="errors"
+  //     >
+
+  //       {errors.map((error, index) => {
+
+  //         const {
+  //           message,
+  //         } = error;
+
+  //         return <div
+  //           key={index}
+  //         >
+  //           {message}
+  //         </div>
+
+  //       })}
+
+  //     </div>);
+
+  //   }
+
+  //   const menu = <UserMenu
+  //     key="menu"
+  //   />
+
+
+  //   let mainSwitch = <Fragment
+  //   >
+
+
+  //     <div
+  //       // container
+  //       // spacing={0}
+  //       style={{
+  //         height: "100%",
+  //         display: "flex",
+  //         flexDirection: "column",
+  //       }}
+  //     >
+
+  //       <div
+  //         // item
+  //         // xs={12}
+  //         style={{
+  //           position: "sticky",
+  //           top: 0,
+  //           // marginBottom: 20,
+  //           zIndex: 2,
+  //         }}
+  //       >
+
+  //         {menu}
+
+  //       </div>
+
+
+  //       {this.renderWrapper()}
+
+
+
+  //       {/* </div> */}
+
+  //     </div>
+
+  //     {errorsRender}
+
+
+  //     <YMaps
+  //       key="yaMap"
+  //       children={(ymaps) => {
+  //         if (ymaps && !this.state.ymaps) {
+  //           this.state.ymaps = ymaps;
+  //           this.setState({
+  //             ymaps,
+  //           });
+  //         }
+  //         return null;
+  //       }}
+  //     />
+
+  //     {/* </ReactEncrypt> */}
+
+  //     <Auth
+  //       open={authOpen}
+  //       loginComplete={data => {
+  //         this.setState({
+  //           authOpen: false,
+  //         });
+  //         this.onAuthSuccess(data);
+  //       }}
+  //       loginCanceled={data => {
+  //         this.setState({
+  //           authOpen: false,
+  //         });
+  //       }}
+  //     />
+
+  //   </Fragment>;
+
+
+
+
+
+
+  //   return (
+
+  //     <Switch>
+
+  //       <Route
+  //         exact
+  //         path="/landing"
+  //         component={LandingPage}
+  //       />
+
+  //       <Route
+  //         path="*"
+  //         render={() => {
+  //           return mainSwitch;
+  //         }}
+  //       />
+
+  //     </Switch>
+
+  //   )
+  // }
 }
 
-export default withStyles(styles)(Renderer);
+export default Renderer;

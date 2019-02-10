@@ -10,10 +10,10 @@ import Typography from 'material-ui/Typography';
 export default class AppEditableView extends EditableView{
 
 
-  static contextTypes = {
-    ...EditableView.contextTypes,
-    setPageMeta: PropTypes.func.isRequired,
-  };
+  // static contextTypes = {
+  //   ...EditableView.contextTypes,
+  //   setPageMeta: PropTypes.func.isRequired,
+  // };
 
 
   // setPageMeta() {

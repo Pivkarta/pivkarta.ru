@@ -145,7 +145,7 @@ export class CompanyMiniCart extends Component{
 				>
 					<Image 
 						src={image}
-						type="slider_thumb"
+						//type="slider_thumb"
 						style={{
 							width: "100%",
 						}}

@@ -3,13 +3,16 @@ import PropTypes from 'prop-types'
 
 import chalk from "chalk";
 
+import Context from "@prisma-cms/context";
 
 export default class GeoProvider extends Component {
 
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-    uri: PropTypes.object.isRequired,
-  }
+  // static contextTypes = {
+  //   router: PropTypes.object.isRequired,
+  //   uri: PropTypes.object.isRequired,
+  // }
+
+  static contextType = Context;
 
 
   static childContextTypes = {
@@ -95,16 +98,16 @@ export default class GeoProvider extends Component {
 
 
     // }
-      
-      
-    
+
+
+
     /**
      * Если не определены координаты, получаем их по geoip
      */
     if (!currentCoords) {
-      
+
       currentCoords = global.coords || currentCoords;
-      
+
       // let geo = global.geo;
 
       // let {
@@ -276,7 +279,7 @@ export default class GeoProvider extends Component {
 
 
       if (typeof window === "undefined") {
-        
+
         Object.assign(global, {
           coords: currentCoords,
         })
@@ -316,15 +319,24 @@ export default class GeoProvider extends Component {
 
 
     const {
-      children: {
-        type: Type,
-        props,
-      },
+      children,
+      // children: {
+      //   type: Type,
+      //   props,
+      // },
     } = this.props;
 
-    return <Type
-      {...props}
-    />
+    // return <Type
+    //   {...props}
+    // />
+
+    return <Context.Consumer>
+      {context => <Context.Provider
+        value={Object.assign(context, this.getChildContext())}
+      >
+        {children}
+      </Context.Provider>}
+    </Context.Consumer>
 
   }
 }

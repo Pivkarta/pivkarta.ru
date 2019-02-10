@@ -39,6 +39,7 @@ class BeerView extends Component {
       color,
       is_request,
       rating,
+      container_str,
     } = item;
 
 
@@ -96,6 +97,15 @@ class BeerView extends Component {
                 <i className="fab fa-hotjar"></i> <Bitter
                   bitter={bitter}
                 />
+              </div>
+              :
+              null
+            }
+
+            {container_str
+              ?
+              <div>
+                <i className="fas fa-beer"></i> {container_str}
               </div>
               :
               null

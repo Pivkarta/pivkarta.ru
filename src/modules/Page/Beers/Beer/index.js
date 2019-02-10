@@ -28,17 +28,19 @@ export default class BeerPage extends BeersPage {
   setPageMeta(meta) {
     // ToDo: добавить город
 
-    if(meta === undefined){
+    // console.log("setPageMeta BeerPage", meta);
 
-      let title = "Все сорта пива";
+    // if(meta === undefined){
+
+    //   let title = "Все сорта пива";
   
-      meta = {
-        title,
-      }
+    //   meta = {
+    //     title,
+    //   }
       
-    }
+    // }
 
-    return super.setPageMeta(meta);
+    return super.setPageMeta(meta || {});
   }
 
 

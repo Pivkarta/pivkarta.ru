@@ -28,26 +28,26 @@ export default class PivkartaPageLayout extends PageLayout {
     renderWithPagination: false,
   }
 
-  static contextTypes = {
-    // ...CustomComponent.contextTypes,
-    ...PageLayout.contextTypes,
-    errors: PropTypes.array,
-    // encrypt: PropTypes.func.isRequired,
-    // decrypt: PropTypes.func.isRequired,
-    user: PropTypes.object,
-    // web3: PropTypes.object.isRequired,
-    router: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    client: PropTypes.object.isRequired,
-    // userAction: PropTypes.object.isRequired,
-    getGeoCoords: PropTypes.func.isRequired,
-  }
+  // static contextTypes = {
+  //   // ...CustomComponent.contextTypes,
+  //   ...PageLayout.contextTypes,
+  //   errors: PropTypes.array,
+  //   // encrypt: PropTypes.func.isRequired,
+  //   // decrypt: PropTypes.func.isRequired,
+  //   user: PropTypes.object,
+  //   // web3: PropTypes.object.isRequired,
+  //   router: PropTypes.object.isRequired,
+  //   location: PropTypes.object.isRequired,
+  //   client: PropTypes.object.isRequired,
+  //   // userAction: PropTypes.object.isRequired,
+  //   getGeoCoords: PropTypes.func.isRequired,
+  // }
 
-  static childContextTypes = {
-    // ...CustomComponent.childContextTypes,
-    ...PageLayout.childContextTypes,
-    setPageMeta: PropTypes.func,
-  }
+  // static childContextTypes = {
+  //   // ...CustomComponent.childContextTypes,
+  //   ...PageLayout.childContextTypes,
+  //   setPageMeta: PropTypes.func,
+  // }
 
 
   // state = {}
@@ -251,7 +251,7 @@ export default class PivkartaPageLayout extends PageLayout {
                 <span className="bottomline__18plus">
                   18+
                 </span>
-               Чрезмерное употребление алкоголя вредит вашему здоровью
+                Чрезмерное употребление алкоголя вредит вашему здоровью
           </span>
             </div>
           </div>
@@ -262,7 +262,7 @@ export default class PivkartaPageLayout extends PageLayout {
     </footer>
 
 
-    return content ? <div
+    return content ? super.render(<div
       style={{
         height: "100%",
         width: "100%",
@@ -286,7 +286,7 @@ export default class PivkartaPageLayout extends PageLayout {
 
       {footer}
 
-    </div> : null;
+    </div>) : null;
 
   }
 

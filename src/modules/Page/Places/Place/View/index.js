@@ -59,18 +59,18 @@ export default class PlacePageView extends PlaceView {
   }
 
 
-  render() {
+  // render() {
 
 
-    // this.setCoords();
+  //   // this.setCoords();
 
-    // const {
-    //   data,
-    // } = this.props
+  //   // const {
+  //   //   data,
+  //   // } = this.props
 
 
 
-    return super.render();
-  }
+  //   return super.render();
+  // }
 
 }
