@@ -28,26 +28,26 @@ export default class PivkartaPageLayout extends PageLayout {
     renderWithPagination: false,
   }
 
-  static contextTypes = {
-    // ...CustomComponent.contextTypes,
-    ...PageLayout.contextTypes,
-    errors: PropTypes.array,
-    // encrypt: PropTypes.func.isRequired,
-    // decrypt: PropTypes.func.isRequired,
-    user: PropTypes.object,
-    // web3: PropTypes.object.isRequired,
-    router: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    client: PropTypes.object.isRequired,
-    // userAction: PropTypes.object.isRequired,
-    getGeoCoords: PropTypes.func.isRequired,
-  }
+  // static contextTypes = {
+  //   // ...CustomComponent.contextTypes,
+  //   ...PageLayout.contextTypes,
+  //   errors: PropTypes.array,
+  //   // encrypt: PropTypes.func.isRequired,
+  //   // decrypt: PropTypes.func.isRequired,
+  //   user: PropTypes.object,
+  //   // web3: PropTypes.object.isRequired,
+  //   router: PropTypes.object.isRequired,
+  //   location: PropTypes.object.isRequired,
+  //   client: PropTypes.object.isRequired,
+  //   // userAction: PropTypes.object.isRequired,
+  //   getGeoCoords: PropTypes.func.isRequired,
+  // }
 
-  static childContextTypes = {
-    // ...CustomComponent.childContextTypes,
-    ...PageLayout.childContextTypes,
-    setPageMeta: PropTypes.func,
-  }
+  // static childContextTypes = {
+  //   // ...CustomComponent.childContextTypes,
+  //   ...PageLayout.childContextTypes,
+  //   setPageMeta: PropTypes.func,
+  // }
 
 
   // state = {}

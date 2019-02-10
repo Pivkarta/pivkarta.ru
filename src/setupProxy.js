@@ -1,24 +1,26 @@
-const proxy = require('http-proxy-middleware');
+const PrismaProxy = require("@prisma-cms/front/lib/setupProxy");
 
-const prismaProxy = require("@prisma-cms/front/lib/setupProxy");
+var proxy = require('http-proxy-middleware');
+
+const cwd = process.cwd();
 
 module.exports = function (app) {
 
-  // app.use(proxy('/api/', {
-  //   target: 'http://localhost:4100/',
-  //   ws: true,
-  //   pathRewrite: {
-  //     "^/api/": "/"
-  //   }
-  // }));
+  app.get("/voyager.worker.js", (req, res, next) => {
+    res.sendFile(`${cwd}/node_modules/@prisma-cms/graphql-voyager/dist/voyager.worker.js`);
+  });
 
-  // app.use(proxy('/images/', {
-  //   target: 'http://localhost:4100/',
-  //   pathRewrite: {
-  //     "^/images/resized/([^/]+)/uploads/(.+)": "/images/$1/$2",
-  //   }
-  // }));
+  app.use(proxy('/socket.io/', {
+    target: 'http://localhost:9001',
+    ws: true,
+  }));
 
-  prismaProxy(app);
+  app.get("/media/call.mp3", (req, res, next) => {
+    res.sendFile(`${cwd}/node_modules/@prisma-cms/webrtc/public/media/call.mp3`);
+  });
+
+  PrismaProxy(app);
 
 };
+
+// module.exports = PrismaProxy;

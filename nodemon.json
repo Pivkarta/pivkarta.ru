@@ -3,6 +3,7 @@
     "uploads",
     "*/generated/*",
     "*/coverage/*",
-    "*/uploads/*"
+    "*/uploads/*",
+    "*/src/components/*"
   ] 
 }

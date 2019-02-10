@@ -36,10 +36,10 @@ export default class MainPage extends PageLayout {
 
   // state = {}
 
-  static contextTypes = {
-    ...PageLayout.contextTypes,
-    getGeoCoords: PropTypes.func.isRequired,
-  }
+  // static contextTypes = {
+  //   ...PageLayout.contextTypes,
+  //   getGeoCoords: PropTypes.func.isRequired,
+  // }
 
 
 
@@ -50,7 +50,10 @@ export default class MainPage extends PageLayout {
       user: currentUser,
       getGeoCoords,
     } = this.context;
+    
+    console.log("getGeoCoords", getGeoCoords);
 
+    // return "MainPage";
 
     const {
       lat,

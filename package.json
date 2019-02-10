@@ -22,15 +22,21 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "@prisma-cms/component": "latest",
+    "@prisma-cms/context": "latest",
+    "@prisma-cms/ethereum": "latest",
+    "@prisma-cms/ethereum-module": "latest",
     "@prisma-cms/front": "latest",
     "@prisma-cms/log-module": "latest",
     "@prisma-cms/mail-module": "latest",
     "@prisma-cms/prisma-module": "latest",
     "@prisma-cms/router-module": "latest",
     "@prisma-cms/server": "latest",
-    "@prisma-cms/ui": "latest",
+    "@prisma-cms/society": "latest",
+    "@prisma-cms/society-module": "latest",
     "@prisma-cms/upload-module": "latest",
     "@prisma-cms/user-module": "latest",
+    "@prisma-cms/webrtc": "latest",
+    "@prisma-cms/webrtc-module": "latest",
     "@types/react": "^16.1.0",
     "apollo-cache-inmemory": "^1.3.7",
     "apollo-client": "^2.4.4",
@@ -46,7 +52,7 @@
     "geolib": "^2.0.24",
     "google-map-react": "^1.0.9",
     "google-map-react-control": "^1.0.2",
-    "graphql": "^14.0.2",
+    "graphql": "14.0.2",
     "graphql-tag": "2.10.0",
     "html-to-draftjs": "^1.4.0",
     "html-to-json": "^0.6.0",
@@ -63,7 +69,6 @@
     "node-sass-chokidar": "^1.1.0",
     "phone": "^2.2.0",
     "prisma-binding": "^2.1.6",
-    "react": "^16.6.0",
     "react-apollo": "^2.2.3",
     "react-big-calendar": "^0.18.0",
     "react-cms-graphql-utils": "^1.1.0",
@@ -74,6 +79,7 @@
     "react-images": "^0.5.19",
     "react-masonry-component": "^6.2.1",
     "react-motion": "^0.5.2",
+    "react-number-format": "^4.0.6",
     "react-player": "^1.6.4",
     "react-router-dom": "4.3.1",
     "react-schedule": "^1.3.2",
@@ -88,6 +94,7 @@
     "translit-russian": "^0.0.2",
     "urijs": "^1.19.1",
     "url-parse": "^1.2.0",
+    "web3": "1.0.0-beta.37",
     "xml-writer": "^1.7.0"
   },
   "devDependencies": {
@@ -95,11 +102,17 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/register": "^7.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "nodemon": "latest",
+    "react-scripts": "^2.1.2",
+    "terser": "3.14.1",
+    "ajv": "6.8.1"
   },
   "resolutions": {
     "@prisma-cms/component": "latest",
-    "graphql": "14.0.2"
+    "graphql": "14.0.2",
+    "terser": "3.14.1",
+    "ajv": "6.8.1"
   },
   "browserslist": [
     ">0.2%",
