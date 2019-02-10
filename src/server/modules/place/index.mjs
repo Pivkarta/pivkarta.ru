@@ -4,11 +4,11 @@ import PrismaModule from "@prisma-cms/prisma-module";
 
 import {
   getUserId,
-  Payload, 
+  Payload,
 } from "../utilites";
 
 import chalk from 'chalk';
- 
+
 
 import Translit from "translit";
 import TranslitRussian from "translit-russian";
@@ -19,13 +19,13 @@ const translit = Translit(TranslitRussian);
 class PlacePayload extends Payload {
 
 
-  
-  constructor(props){
-    
+
+  constructor(props) {
+
     super(props);
-    
+
     this.objectType = "Place";
-    
+
   }
 
   async mutate(method, args, info) {
@@ -188,7 +188,7 @@ class PlacePayload extends Payload {
     }
     else {
       url_name = translit(name).replace(/[\/\? ]+/g, '-').replace(/\-+/g, '-');
-      
+
       url_name = url_name && url_name.toLowerCase() || undefined;
 
       data.url_name = url_name;
@@ -791,37 +791,47 @@ const togglePlaceBeer = async (parent, args, ctx, info) => {
 
   const {
     db,
+    currentUser,
   } = ctx;
 
   let placeBeer;
 
 
-  const userId = await getUserId(ctx);
+  // const userId = await getUserId(ctx);
+
+  if (!currentUser) {
+    throw new Error("Необходимо авторизоваться");
+  }
+
+  const {
+    id: currentUserId,
+    sudo,
+  } = currentUser;
 
 
-  const userQuery = `
-    query (
-      $userId:ID!
-    ){
-      user(
-        where:{
-          id:$userId
-        }
-      ){
-        id
-        user_id
-        sudo
-        Tarifs{
-          id
-          Tarif{
-            id
-            name
-            maxPriceItems
-          }
-        }
-      }
-    }
-  `;
+  // const userQuery = `
+  //   query (
+  //     $userId:ID!
+  //   ){
+  //     user(
+  //       where:{
+  //         id:$userId
+  //       }
+  //     ){
+  //       id
+  //       user_id
+  //       sudo
+  //       Tarifs{
+  //         id
+  //         Tarif{
+  //           id
+  //           name
+  //           maxPriceItems
+  //         }
+  //       }
+  //     }
+  //   }
+  // `;
 
   // const User = await db.query.user({
   //   where: {
@@ -829,26 +839,26 @@ const togglePlaceBeer = async (parent, args, ctx, info) => {
   //   },
   // });
 
-  console.log("Update place userId", userId);
+  // console.log("Update place userId", userId);
 
-  const User = await db.request(userQuery, {
-    userId,
-  }).then(r => {
+  // const User = await db.request(userQuery, {
+  //   userId,
+  // }).then(r => {
 
-    return r && r.data && r.data.user || null;
-  });
-
-
-  console.log(chalk.green("Update place User"), userId);
-
-  if (!User) {
-    throw ("Необходимо авторизоваться");
-  }
+  //   return r && r.data && r.data.user || null;
+  // });
 
 
-  const {
-    sudo,
-  } = User;
+  // console.log(chalk.green("Update place User"), userId);
+
+  // if (!User) {
+  //   throw ("Необходимо авторизоваться");
+  // }
+
+
+  // const {
+  //   sudo,
+  // } = User;
 
 
   const placeQuery = `
@@ -876,12 +886,12 @@ const togglePlaceBeer = async (parent, args, ctx, info) => {
     return r && r.data && r.data.place || null;
   });;
 
-  console.log("Place", Place);
-  console.log("User", User);
+  // console.log("Place", Place);
+  // console.log("User", User);
 
   // Проверяем права на заведение
   if (!sudo) {
-    if (!Place.Owner || Place.Owner.id !== User.id) {
+    if (!Place.Owner || Place.Owner.id !== currentUserId) {
       throw (new Error("Нельзя редактировать чужое заведение"));
     }
   }
@@ -922,43 +932,43 @@ const togglePlaceBeer = async (parent, args, ctx, info) => {
        * и посмотреть сколько уже создано
        */
 
-        const countQuery = `
-          query (
-            $userId:ID!
-          ){
-            placeBeersConnection(
-              first:1
-              where:{
-                Place:{
-                  Owner:{
-                    id: $userId
-                  }
-                }
-              }
-            ){
-              aggregate{
-                count
-              }
-            }
-          }
-        `;
+        // const countQuery = `
+        //   query (
+        //     $userId:ID!
+        //   ){
+        //     placeBeersConnection(
+        //       first:1
+        //       where:{
+        //         Place:{
+        //           Owner:{
+        //             id: $userId
+        //           }
+        //         }
+        //       }
+        //     ){
+        //       aggregate{
+        //         count
+        //       }
+        //     }
+        //   }
+        // `;
 
-        const countResult = await db.request(countQuery, {
-          userId,
-        }).then(r => {
+        // const countResult = await db.request(countQuery, {
+        //   userId,
+        // }).then(r => {
 
-          return r && r.data && r.data.placeBeersConnection || null;
-        });
+        //   return r && r.data && r.data.placeBeersConnection || null;
+        // });
 
-        const Tarif = User.Tarifs && User.Tarifs[0] ? User.Tarifs[0].Tarif : null;
+        // const Tarif = User.Tarifs && User.Tarifs[0] ? User.Tarifs[0].Tarif : null;
 
-        if (!Tarif) {
-          throw (new Error("Необходимо подключить тарифный план. Подключается в личном кабинете."));
-        }
+        // if (!Tarif) {
+        //   throw (new Error("Необходимо подключить тарифный план. Подключается в личном кабинете."));
+        // }
 
-        if (countResult.aggregate.count >= Tarif.maxPriceItems) {
-          throw (new Error("Достигнут лимит ценовых позиций на вашем тарифном плане."));
-        }
+        // if (countResult.aggregate.count >= Tarif.maxPriceItems) {
+        //   throw (new Error("Достигнут лимит ценовых позиций на вашем тарифном плане."));
+        // }
       }
 
 
@@ -1000,9 +1010,9 @@ const togglePlaceBeer = async (parent, args, ctx, info) => {
 
   }
 
-  console.log("placeBeer", placeBeer);
+  // console.log("placeBeer", placeBeer);
 
-  let result;
+  // let result;
 
   return await db.query.place({
     where: {

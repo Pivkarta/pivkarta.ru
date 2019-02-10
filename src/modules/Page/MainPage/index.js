@@ -36,11 +36,29 @@ export default class MainPage extends PageLayout {
 
   // state = {}
 
-  static contextTypes = {
-    ...PageLayout.contextTypes,
-    getGeoCoords: PropTypes.func.isRequired,
-  }
+  // static contextTypes = {
+  //   ...PageLayout.contextTypes,
+  //   getGeoCoords: PropTypes.func.isRequired,
+  // }
 
+
+  setPageMeta(meta) {
+    // ToDo: добавить город
+
+    // console.log("setPageMeta BeerPage", meta);
+
+    if(meta === undefined){
+
+      let title = "Пивная карта: все бары, пабы, пивные рестораны на карте. Магазины разливного пива и все сорта пива";
+  
+      meta = {
+        title,
+      }
+      
+    }
+
+    return super.setPageMeta(meta);
+  }
 
 
   render() {
@@ -50,7 +68,10 @@ export default class MainPage extends PageLayout {
       user: currentUser,
       getGeoCoords,
     } = this.context;
+    
+    console.log("getGeoCoords", getGeoCoords);
 
+    // return "MainPage";
 
     const {
       lat,

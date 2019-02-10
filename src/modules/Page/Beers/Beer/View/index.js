@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 
-import EditableView from 'Editable';
+// import EditableView from 'Editable';
+import EditableView from 'src/modules/GridView/Editable';
 
 import Grid from 'material-ui/Grid';
 

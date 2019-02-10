@@ -43,11 +43,16 @@ export default class ItemsPanelBeers extends Component {
             name,
             image,
             uri,
+            region,
+            container,
+            container_str,
           } = n;
 
           return <Item
             key={id}
             primaryText={name}
+            region={region}
+            container_str={container_str}
             href={uri}
             image={image ? <Image
               src={image}

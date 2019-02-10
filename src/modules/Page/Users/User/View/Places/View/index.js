@@ -7,7 +7,7 @@ import { Typography } from 'material-ui';
 
 import Grid from "material-ui/Grid";
 
-import Tarifs from '../../Tarifs';
+// import Tarifs from '../../Tarifs';
 
 export default class UserPlacesView extends Component {
 
@@ -23,35 +23,35 @@ export default class UserPlacesView extends Component {
   }
 
 
-  renderTarifs() {
+  // renderTarifs() {
 
-    // if(!this.canEdit()){
-    //   return null;
-    // }
+  //   // if(!this.canEdit()){
+  //   //   return null;
+  //   // }
 
-    const {
-      user,
-    } = this.props;
+  //   const {
+  //     user,
+  //   } = this.props;
 
-    const {
-      user: currentUser,
-    } = this.context;
+  //   const {
+  //     user: currentUser,
+  //   } = this.context;
 
-    if (!user || !currentUser || user.id !== currentUser.id) {
-      return null;
-    }
+  //   if (!user || !currentUser || user.id !== currentUser.id) {
+  //     return null;
+  //   }
 
-    return <Grid
-      item
-      xs={12}
-    >
-      <Tarifs
-        user={user}
-      />
+  //   return <Grid
+  //     item
+  //     xs={12}
+  //   >
+  //     <Tarifs
+  //       user={user}
+  //     />
 
-    </Grid>
+  //   </Grid>
 
-  }
+  // }
 
 
 
@@ -94,7 +94,7 @@ export default class UserPlacesView extends Component {
     else {
       output = <Fragment>
 
-        {this.renderTarifs()}
+        {/* {this.renderTarifs()} */}
 
         <Typography
           variant="title"

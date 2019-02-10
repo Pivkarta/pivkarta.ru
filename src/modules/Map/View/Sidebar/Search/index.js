@@ -255,8 +255,6 @@ export class SidebarSearchBlock extends Component {
 
 
 
-
-
     let mapBeerSearchQueryAND = this.stringToArrayCondition(mapBeerSearchQuery);
 
 
@@ -492,6 +490,9 @@ export class SidebarSearchBlock extends Component {
                 image
                 url_name
                 uri
+                region
+                container
+                container_str
               }
             }
           }

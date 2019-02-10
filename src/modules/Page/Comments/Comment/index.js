@@ -19,6 +19,66 @@ export class CommentPage extends Page {
     View,
   }
 
+
+
+  setPageMeta(meta) {
+
+    const {
+      data: {
+        object: comment,
+      },
+    } = this.props;
+
+
+    if (!comment) {
+      return;
+    }
+
+    const {
+      // CommentTarget: Topic,
+      name,
+      uri,
+      editor_content,
+    } = comment;
+
+    // const {
+    //   name: topicName,
+    //   longtitle,
+    // } = Topic || {};
+
+    let title = "";
+
+
+    let texts = [];
+
+    const {
+      blocks,
+    } = editor_content || {};
+
+    blocks && blocks.map(n => {
+
+      const {
+        text,
+      } = n;
+
+      if (text) {
+        texts.push(text);
+      }
+
+    });
+
+    title = texts.join(" ").substr(0, 100);
+
+    return super.setPageMeta({
+      // title: `${name ? `${name} | ` : ''}Комментарий к топику ${longtitle || topicName}`,
+      title,
+      canonical: uri,
+      ...meta,
+    });
+
+  }
+
+
   render(content) {
 
     const {
@@ -68,8 +128,8 @@ export default compose(graphql(
       }
     },
   }
-), 
-// graphql(
-//   updateCommentProcessor,
-//   )
+),
+  // graphql(
+  //   updateCommentProcessor,
+  //   )
 )(CommentPage);

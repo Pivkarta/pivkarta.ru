@@ -40,10 +40,10 @@ export default class PlacesPage extends Page {
   static defaultProps = defaultProps
 
 
-  static contextTypes = {
-    ...Page.contextTypes,
-    getGeoCoords: PropTypes.func.isRequired,
-  }
+  // static contextTypes = {
+  //   ...Page.contextTypes,
+  //   getGeoCoords: PropTypes.func.isRequired,
+  // }
 
   constructor(props) {
 
