@@ -1,4 +1,4 @@
-
+2.1.0
 ============================================
 - Upgrade boilerplate
 - Fix setPageTitle

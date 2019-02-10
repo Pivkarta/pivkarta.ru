@@ -1,6 +1,6 @@
 {
   "name": "pivkarta.ru",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "Opensource framework CMS powered by GraphQL, Prisma, MySQL, React & Apollo GraphQL",
   "private": false,
   "scripts": {
