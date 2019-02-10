@@ -41,28 +41,9 @@ var bodyParser = require('body-parser');
 const cwd = process.cwd();
  
 
-<<<<<<< HEAD
-// const setupProxy = require("@prisma-cms/front/lib/setupProxy");
-const proxy = require('http-proxy-middleware');
-
-// app.use(proxy('/api/', {
-//   target: 'http://localhost:4100/',
-//   ws: true,
-//   pathRewrite: {
-//     "^/api/": "/"
-//   }
-// }));
-
-// app.use(proxy('/images/', {
-//   target: 'http://localhost:4100/',
-//   pathRewrite: {
-//     "^/images/resized/([^/]+)/uploads/(.+)": "/images/$1/$2",
-//   }
-// }));
-=======
 const setupProxy = require("../setupProxy");
->>>>>>> 727d0d4cebbc99fa08801520050bda80996efed9
 
+setupProxy(app);
 
 app.use('/static', express.static(cwd + '/build/static')); //Serves resources from build folder
 app.use('/build', express.static(cwd + '/build')); //Serves resources from build folder
