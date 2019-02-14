@@ -13,6 +13,8 @@ import {
   UserNoNestingFragment,
 } from "./schema/generated/api.fragments";
 
+import * as queryFragments from "./schema/generated/api.fragments";
+
 ReactDOM.render(<PrismaCms
   // lang="en"
   App={App}
@@ -30,6 +32,7 @@ ReactDOM.render(<PrismaCms
     ${UserNoNestingFragment}
     `,
   }}
+  queryFragments={queryFragments}
 />, document.getElementById('root'));
 registerServiceWorker();
 
