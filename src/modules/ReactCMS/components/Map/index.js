@@ -59,7 +59,7 @@ export default class MapMainView2 extends Component {
 	static propTypes = {
 		mapData: PropTypes.array.isRequired,
 		params: PropTypes.object.isRequired,
-		Marker: PropTypes.func.isRequred,
+		Marker: PropTypes.func.isRequired,
 	};
 
 
