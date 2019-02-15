@@ -49,6 +49,7 @@ export default class Marker extends Component {
 			clusters,
 			expandAllCompanies,
 			expanded: _expandedOnMap,
+			onClick,
 			...other
 		} = this.props;
 
@@ -144,7 +145,7 @@ export default class Marker extends Component {
 					fontSize: "0.9rem",
 					fontFamily: 'Arial, "Sans serif"',
 				}}
-				>
+			>
 				₽ <span
 					style={{
 						fontWeight: "bold",
@@ -476,8 +477,14 @@ export default class Marker extends Component {
 						to={link}
 						// href={link}
 						onClick={event => {
+
 							event.preventDefault();
 							event.stopPropagation();
+
+							// console.log("Marker link onClick", event, onClick);
+
+							onClick && onClick(event);
+
 						}}
 					>
 						{icon}

@@ -170,7 +170,7 @@ export default class MapMainView2 extends Component {
 
 	// componentWillUnmount() {
 
-	 
+
 
 	// 	return super.componentWillUnmount && super.componentWillUnmount();
 	// }
@@ -193,16 +193,16 @@ export default class MapMainView2 extends Component {
 		} = prevProps;
 
 
-		if(prevLoading && prevLoading !== loading){
+		if (prevLoading && prevLoading !== loading) {
 		}
 
 
 
-		if((mapData || prevMapData) && mapData !== prevMapData){
+		if ((mapData || prevMapData) && mapData !== prevMapData) {
 			this.createClusters();
 		}
 
- 
+
 	}
 
 
@@ -424,12 +424,12 @@ export default class MapMainView2 extends Component {
 			}
 
 		}
- 
+
 
 		return;
 
 	}
- 
+
 
 	onGoogleApiLoaded = (options) => {
 
@@ -557,11 +557,11 @@ export default class MapMainView2 extends Component {
 				id,
 				_type: typename,
 			} = item || {}
- 
+
 
 			mapItems.push(cluster);
- 
- 
+
+
 
 			return;
 		});
@@ -606,11 +606,11 @@ export default class MapMainView2 extends Component {
 			const index = pathname.indexOf("@");
 
 			if (index !== -1) {
-				newLocationPath = pathname.replace(/\@[0-9,\.]+/, newGeoPath); 
+				newLocationPath = pathname.replace(/\@[0-9,\.]+/, newGeoPath);
 			}
 			else {
 				newLocationPath = pathname.replace(/\/?$/, `/${newGeoPath}/`);
- 
+
 			}
 
 			if (newLocationPath) {
@@ -1354,10 +1354,10 @@ export default class MapMainView2 extends Component {
 		} = this.context;
 
 		let items = [];
- 
+
 
 		const sizes = [200, 100, 50, 20, 10];
- 
+
 
 
 
@@ -1379,7 +1379,7 @@ export default class MapMainView2 extends Component {
 					},
 				}
 			} = cluster;
- 
+
 
 			if (item) {
 
@@ -1413,8 +1413,29 @@ export default class MapMainView2 extends Component {
 						// key={index}
 						item={item}
 						cluster={cluster}
-						expanded={expanded.indexOf(id) !== -1} 
+						expanded={expanded.indexOf(id) !== -1}
 						icon={icon}
+						onClick={event => {
+
+							// console.log("Marker item on click", event);
+
+							let newExpanded = [...expanded];
+
+							const index = newExpanded.indexOf(id);
+
+							if (index === -1) {
+								newExpanded.push(id);
+							}
+							else {
+								newExpanded.splice(index, 1);
+							}
+
+
+							this.setState({
+								expanded: newExpanded,
+							});
+
+						}}
 					></Marker>
 				);
 
@@ -1499,7 +1520,7 @@ export default class MapMainView2 extends Component {
 			}}
 			spacing={0}
 		>
- 
+
 			<NewMap
 				mapKey={key}
 				defaultCenter={mapOptions.center}
