@@ -2,3 +2,4 @@ Host: https://pivkarta.ru
 
 User-agent: *
 Disallow:
+Sitemap: https://pivkarta.ru/sitemap.xml
