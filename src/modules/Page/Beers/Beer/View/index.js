@@ -54,10 +54,10 @@ export default class BeerView extends EditableView {
 		let metad;
 
 		const {
-			url_name,			
-			beer_id,	
+			url_name,
+			beer_id,
 			description,
-			name,		
+			name,
 		} = this.getObjectWithMutations() || {};
 
 		if (url_name && beer_id) {
@@ -76,7 +76,7 @@ export default class BeerView extends EditableView {
 			metad = `Пиво ${name}`;
 
 		}
-		
+
 		return super.setPageMeta({
 			canonical,
 			// description: metad,
@@ -138,6 +138,11 @@ export default class BeerView extends EditableView {
 
 	renderEditableView() {
 
+
+		const {
+			BeerFilteredField,
+		} = this.context;
+
 		const object = this.getObjectWithMutations();
 
 		const inEditMode = this.isInEditMode();
@@ -160,8 +165,9 @@ export default class BeerView extends EditableView {
 			color,
 			components,
 			image,
-			editor_content,			
+			editor_content,
 			description,
+			filtered,
 		} = object;
 
 
@@ -175,7 +181,7 @@ export default class BeerView extends EditableView {
 				spacing={8}
 			>
 
-			
+
 				<Grid
 					item
 					xs={12}
@@ -416,7 +422,7 @@ export default class BeerView extends EditableView {
 											</td>
 										</tr> || null}
 
-										{<tr>
+										<tr>
 											<td
 												style={{
 													paddingRight: 5,
@@ -431,7 +437,32 @@ export default class BeerView extends EditableView {
 													value={color || ""}
 												/>
 											</td>
-										</tr> || null}
+										</tr>
+
+										<tr>
+											<td
+												style={{
+													paddingRight: 5,
+													verticalAlign: "top",
+												}}
+											>
+												Фильтрованное:
+										</td>
+											<td>
+												<BeerFilteredField
+													value={filtered === true ? "Фильтрованное" : filtered === false ? "Нефильтрованное" : "Не указано"}
+													onSelect={(value, item) => {
+														console.log("onSelect", value, item);
+
+
+														this.updateObject({
+															filtered: value === "Фильтрованное" ? true : value === "Нефильтрованное" ? false : null,
+														});
+
+													}}
+												/>
+											</td>
+										</tr>
 
 
 									</tbody>

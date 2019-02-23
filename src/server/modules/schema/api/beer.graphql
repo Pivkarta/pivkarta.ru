@@ -69,6 +69,7 @@ input BeerCreateInput {
   add_user_id: Int
   created_at: Int
   gallery: Json
+  filtered: Boolean
 }
 
 
@@ -91,6 +92,7 @@ input BeerUpdateInput {
   is_request: Int
   rating: Float
   gallery: Json
+  filtered: Boolean
 }
 
 input BeerUpdateOneWithoutPlacesInput {

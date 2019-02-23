@@ -18,7 +18,11 @@ import { Link } from "react-router-dom";
 
 import PlacesBlock from "./Blocks/Places";
 
+import Context from "@prisma-cms/context";
+
 export default class BeerDefaultView extends Component {
+
+	static contextType = Context;
 
 	static propTypes = {
 		object: PropTypes.object.isRequired,
@@ -26,6 +30,10 @@ export default class BeerDefaultView extends Component {
 	}
 
 	render() {
+
+		const {
+			BeerFilteredField,
+		} = this.context;
 
 		const {
 			object,
@@ -50,11 +58,12 @@ export default class BeerDefaultView extends Component {
 			color,
 			components,
 			image,
-			editor_content,						
+			editor_content,
+			filtered,
 		} = object;
 
-        
-	
+
+
 		let container_type;
 
 		switch (container) {
@@ -89,7 +98,7 @@ export default class BeerDefaultView extends Component {
 
 		return (
 
-			
+
 
 			<Fragment>
 
@@ -297,6 +306,22 @@ export default class BeerDefaultView extends Component {
 													}
 												</td>
 											</tr> || null}
+
+											{filtered !== null ?
+												<tr>
+													<td
+														style={{
+															paddingRight: 5,
+															verticalAlign: "top",
+														}}
+													>
+														Фильтрованное:
+												</td>
+													<td>
+														{filtered === true ? "Да" : filtered === false ? "Нет" : "Не указано"}
+													</td>
+												</tr>
+												: null}
 
 
 										</tbody>
