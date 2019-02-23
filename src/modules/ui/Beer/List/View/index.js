@@ -6,7 +6,12 @@ import Bitter from "src/modules/ui/Bitter";
 
 import { Link } from 'react-router-dom';
 
+import Context from "@prisma-cms/context";
+
 class BeerView extends Component {
+
+
+  static contextType = Context;
 
   static propTypes = {
     beer: PropTypes.object.isRequired,

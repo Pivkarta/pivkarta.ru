@@ -30,4 +30,7 @@ type Beer {
   # places: [Place!]!
   # place: [Place!]! @relation(name: "PlaceBeer")
   places: [PlaceBeer!]! @relation(name: "PlaceBeerBeer")
+
+  """Фильтрованное"""
+  filtered: Boolean
 }

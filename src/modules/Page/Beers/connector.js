@@ -30,7 +30,7 @@ export default class BeersPageConnector extends Component {
     location: PropTypes.object.isRequired,
   }
 
-  
+
   state = {}
 
 
@@ -158,6 +158,7 @@ export default class BeersPageConnector extends Component {
       container,
       color,
       name,
+      filtered,
     } = uri.query(true);
 
     page = parseInt(page) || 0;
@@ -180,6 +181,10 @@ export default class BeersPageConnector extends Component {
       where.name_contains = name;
     }
 
+    if (filtered) {
+      where.filtered = filtered === "true" ? true : filtered === "false" ? false : undefined;
+    }
+
     return (<Grid
       container
       spacing={0}
@@ -192,6 +197,7 @@ export default class BeersPageConnector extends Component {
           container={container ? parseInt(container) : undefined}
           color={color}
           name={name}
+          filtered={filtered}
           filters={filters}
         />
       </Grid>

@@ -5,35 +5,17 @@ import gql from 'graphql-tag';
 //   userFieldsFragment,
 // } from './user';
 
+import {
+  BeerNoNestingFragment,
+} from "../../schema/generated/api.fragments";
+
 
 export const beerFieldsFragment = gql`
   fragment beerFields on Beer{
-    id
-    beer_id
-    name
-    url_name
-    description
-    editor_content
-    country
-    image
-    num_comments
-    num_photos
-    manufacturer
-    manufacture_years
-    alcohol
-    container
-    wort_percent
-    components
-    bitter
-    type_id
-    color
-    is_request
-    rating
-    region
-    gallery    
-
-    container_str
+    ...BeerNoNesting
   }
+
+  ${BeerNoNestingFragment}
 `;
 
 
