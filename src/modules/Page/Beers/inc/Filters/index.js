@@ -11,6 +11,8 @@ import BeerColor from 'src/modules/ui/Select/Beer/Color';
 
 import URI from 'urijs';
 
+import Context from "@prisma-cms/context";
+
 export default class BeersFilter extends Component {
 
   static propTypes = {
@@ -21,9 +23,7 @@ export default class BeersFilter extends Component {
     onSubmit: PropTypes.func.isRequired,
   }
 
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  }
+  static contextType = Context;
 
   static defaultProps = {
     onChange: function (event) {
@@ -81,12 +81,17 @@ export default class BeersFilter extends Component {
   render() {
 
     const {
+      BeerFilteredField,
+    } = this.context;
+
+    const {
       container,
       color,
       name,
       onChange,
       onSubmit,
       filters,
+      filtered,
       ...other
     } = this.props;
 
@@ -135,6 +140,36 @@ export default class BeersFilter extends Component {
             <BeerColor
               value={color || ""}
               onChange={event => onChange.call(this, event)}
+            />
+          </Grid>
+
+          <Grid
+            item
+          >
+
+            <BeerFilteredField
+              // value={filtered === true ? "true" : filtered === false ? "false" : ""}
+              value={filtered === "true" ? "Фильтрованное" : filtered === "false" ? "Нефильтрованное" : undefined}
+              onSelect={(value, item) => {
+                console.log("onSelect", value, item);
+
+
+                // this.updateObject({
+                //   filtered: value === "filtered" ? true : value === "nonfiltered" ? false : null,
+                // });
+
+                onChange.call(this, {
+                  target: {
+                    name: "filtered",
+                    value: value === "Фильтрованное" ? "true" : value === "Нефильтрованное" ? "false" : undefined,
+                  },
+                });
+
+              }}
+              inputProps={{
+                helperText: "Выберите из списка",
+                label: "Фильтрованность",
+              }}
             />
           </Grid>
 

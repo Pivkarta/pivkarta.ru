@@ -43,7 +43,7 @@ class BeerFiletered extends Component {
 
 
     return <Autocomplete
-      value={value || "Не указано"}
+      value={value || ""}
       inputProps={{
         fullWidth,
         ...inputProps,
