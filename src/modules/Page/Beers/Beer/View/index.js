@@ -141,6 +141,7 @@ export default class BeerView extends EditableView {
 
 		const {
 			BeerFilteredField,
+			BeerPasterField,
 		} = this.context;
 
 		const object = this.getObjectWithMutations();
@@ -168,6 +169,7 @@ export default class BeerView extends EditableView {
 			editor_content,
 			description,
 			filtered,
+			pasteurized
 		} = object;
 
 
@@ -457,6 +459,31 @@ export default class BeerView extends EditableView {
 
 														this.updateObject({
 															filtered: value === "Фильтрованное" ? true : value === "Нефильтрованное" ? false : null,
+														});
+
+													}}
+												/>
+											</td>
+										</tr>
+
+										<tr>
+											<td
+												style={{
+													paddingRight: 5,
+													verticalAlign: "top",
+												}}
+											>
+												Пастеризованное:
+										</td>
+											<td>
+												<BeerPasterField
+													value={pasteurized === true ? "Пастеризованное" : pasteurized === false ? "Непастеризованное" : "Не указано"}
+													onSelect={(value, item) => {
+														console.log("onSelect", value, item);
+
+
+														this.updateObject({
+															pasteurized: value === "Пастеризованное" ? true : value === "Непастеризованное" ? false : null,
 														});
 
 													}}

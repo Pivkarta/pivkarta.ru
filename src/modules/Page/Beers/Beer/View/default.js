@@ -33,6 +33,7 @@ export default class BeerDefaultView extends Component {
 
 		const {
 			BeerFilteredField,
+			BeerPasterField,
 		} = this.context;
 
 		const {
@@ -60,6 +61,7 @@ export default class BeerDefaultView extends Component {
 			image,
 			editor_content,
 			filtered,
+			pasteurized
 		} = object;
 
 
@@ -322,6 +324,22 @@ export default class BeerDefaultView extends Component {
 													</td>
 												</tr>
 												: null}
+
+											{pasteurized !== null ?
+												<tr>
+													<td
+														style={{
+															paddingRight: 5,
+															verticalAlign: "top",
+														}}
+													>
+														Пастеризованное:
+												</td>
+													<td>
+														{pasteurized === true ? "Да" : filtered === false ? "Нет" : "Не указано"}
+													</td>
+												</tr>
+												: null}	
 
 
 										</tbody>

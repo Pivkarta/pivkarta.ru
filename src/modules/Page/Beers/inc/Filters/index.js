@@ -82,6 +82,7 @@ export default class BeersFilter extends Component {
 
     const {
       BeerFilteredField,
+      BeerPasterField,
     } = this.context;
 
     const {
@@ -92,6 +93,7 @@ export default class BeersFilter extends Component {
       onSubmit,
       filters,
       filtered,
+      pasteurized,
       ...other
     } = this.props;
 
@@ -169,6 +171,36 @@ export default class BeersFilter extends Component {
               inputProps={{
                 helperText: "Выберите из списка",
                 label: "Фильтрованность",
+              }}
+            />
+          </Grid>
+
+          <Grid
+            item
+          >
+
+            <BeerPasterField
+              // value={filtered === true ? "true" : filtered === false ? "false" : ""}
+              value={pasteurized === "true" ? "Пастеризованное" : pasteurized === "false" ? "Непастеризованное" : undefined}
+              onSelect={(value, item) => {
+                console.log("onSelect", value, item);
+
+
+                // this.updateObject({
+                //   filtered: value === "filtered" ? true : value === "nonfiltered" ? false : null,
+                // });
+
+                onChange.call(this, {
+                  target: {
+                    name: "pasteurized",
+                    value: value === "Пастеризованное" ? "true" : value === "Непастеризованное" ? "false" : undefined,
+                  },
+                });
+
+              }}
+              inputProps={{
+                helperText: "Выберите из списка",
+                label: "Пастеризация",
               }}
             />
           </Grid>
