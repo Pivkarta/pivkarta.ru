@@ -33,4 +33,6 @@ type Beer {
 
   """Фильтрованное"""
   filtered: Boolean
+
+  pasteurized: Boolean
 }

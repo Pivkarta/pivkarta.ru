@@ -70,6 +70,7 @@ input BeerCreateInput {
   created_at: Int
   gallery: Json
   filtered: Boolean
+  pasteurized: Boolean
 }
 
 
@@ -93,6 +94,7 @@ input BeerUpdateInput {
   rating: Float
   gallery: Json
   filtered: Boolean
+  pasteurized: Boolean
 }
 
 input BeerUpdateOneWithoutPlacesInput {

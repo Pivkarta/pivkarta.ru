@@ -115,7 +115,7 @@ export default class AppEditableView extends EditableView{
 
     return <Field
       key={key}
-      {...props}
+      name={name}
       error={error ? true : false}
       helperText={error ? error.message : helperText}
       onFocus={event => {
@@ -138,6 +138,7 @@ export default class AppEditableView extends EditableView{
 
       }}
       onChange={event => this.onChange(event)}
+      {...other}
     />;
   }
 

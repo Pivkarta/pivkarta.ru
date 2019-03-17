@@ -159,6 +159,7 @@ export default class BeersPageConnector extends Component {
       color,
       name,
       filtered,
+      pasteurized
     } = uri.query(true);
 
     page = parseInt(page) || 0;
@@ -185,6 +186,10 @@ export default class BeersPageConnector extends Component {
       where.filtered = filtered === "true" ? true : filtered === "false" ? false : undefined;
     }
 
+    if (pasteurized) {
+      where.pasteurized = pasteurized === "true" ? true : pasteurized === "false" ? false : undefined;
+    }
+
     return (<Grid
       container
       spacing={0}
@@ -198,6 +203,7 @@ export default class BeersPageConnector extends Component {
           color={color}
           name={name}
           filtered={filtered}
+          pasteurized={pasteurized}
           filters={filters}
         />
       </Grid>
