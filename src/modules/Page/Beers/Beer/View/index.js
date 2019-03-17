@@ -412,7 +412,7 @@ export default class BeerView extends EditableView {
 															value,
 														} = event.target;
 
-														console.log("onChange", name, value, event.target);
+														// console.log("onChange", name, value, event.target);
 
 														this.updateObject({
 															[name]: value ? parseInt(value) : null,
