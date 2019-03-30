@@ -1,3 +1,9 @@
+2.1.5
+============================================
+- Added createCity
+- Added updateCity
+- Fix citiesquery
+
 2.1.4
 ============================================
 - Fix EditableObject::onChange()

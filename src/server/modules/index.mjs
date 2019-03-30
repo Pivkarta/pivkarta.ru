@@ -352,7 +352,8 @@ class CoreModule extends CmsModule {
         // updateLetter,
         createCommentProcessor,
         updateCommentProcessor,
-
+        createCity,
+        updateCity,
       },
       ...other
     } = resolvers;
@@ -382,6 +383,8 @@ class CoreModule extends CmsModule {
       // updateLetter,
       createCommentProcessor,
       updateCommentProcessor,
+      createCity,
+      updateCity,
     };
 
     // for(var i in AllowedMutations){

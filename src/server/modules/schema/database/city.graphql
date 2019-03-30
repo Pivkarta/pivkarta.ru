@@ -1,8 +1,8 @@
 
 type City{
   id: ID! @unique
-  city_id: Int! @unique
-  name: String!
+  city_id: Int @unique
+  name: String! @unique
   alias: String! @unique
   lat: Float!
   lng: Float!
