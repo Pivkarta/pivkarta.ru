@@ -5,25 +5,27 @@ let citiesCache;
 
 const cities = async (source, args, ctx, info) => {
 
-  console.log(chalk.green("cities args"), args);
+  // console.log(chalk.green("cities args"), args);
 
 
-  let {
-    orderBy,
-    where,
-  } = args;
+  // let {
+  //   orderBy,
+  //   where,
+  // } = args;
 
-  if(orderBy || where){
-    return await ctx.db.query.cities(args, info);
-  }
+  // if(orderBy || where){
+  //   return await ctx.db.query.cities(args, info);
+  // }
 
 
-  if (!citiesCache) {
+  // if (!citiesCache) {
 
-    citiesCache = await ctx.db.query.cities({}, info);
-  }
+  //   citiesCache = await ctx.db.query.cities({}, info);
+  // }
 
-  return citiesCache;
+  // return citiesCache;
+
+  return await ctx.db.query.cities(args, info);
 
 }
 
