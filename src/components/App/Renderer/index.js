@@ -218,7 +218,7 @@ export class Renderer extends PrismaCmsRenderer {
     // Поисковая строка для карты
     const mapSearchQuery = this.getSearchQuery("src/modules/query");
     const mapBeerSearchQuery = this.getSearchQuery("beer");
-    const mapBeerIdSearchQuery = this.getSearchQuery("beer_id");
+    const mapBeerIdSearchQuery = parseInt(this.getSearchQuery("beer_id"));
 
 
     // Поиск по названию
