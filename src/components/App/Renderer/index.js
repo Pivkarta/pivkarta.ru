@@ -77,7 +77,8 @@ export class Renderer extends PrismaCmsRenderer {
 
   static defaultProps = {
     ...PrismaCmsRenderer.defaultProps,
-    googleMapApiKey: "AIzaSyDDC9hsFsRJxjsIWJpuuQrrQOt4QZ-xFKA",
+    // googleMapApiKey: "AIzaSyDDC9hsFsRJxjsIWJpuuQrrQOt4QZ-xFKA",
+    googleMapApiKey: "AIzaSyCLG6Pe_kuYiu7jquuCHBxO1fPo4-1dQfc",
   };
 
   static contextTypes = {
@@ -218,7 +219,7 @@ export class Renderer extends PrismaCmsRenderer {
     // Поисковая строка для карты
     const mapSearchQuery = this.getSearchQuery("src/modules/query");
     const mapBeerSearchQuery = this.getSearchQuery("beer");
-    const mapBeerIdSearchQuery = this.getSearchQuery("beer_id");
+    const mapBeerIdSearchQuery = parseInt(this.getSearchQuery("beer_id"));
 
 
     // Поиск по названию
