@@ -77,7 +77,8 @@ export class Renderer extends PrismaCmsRenderer {
 
   static defaultProps = {
     ...PrismaCmsRenderer.defaultProps,
-    googleMapApiKey: "AIzaSyDDC9hsFsRJxjsIWJpuuQrrQOt4QZ-xFKA",
+    // googleMapApiKey: "AIzaSyDDC9hsFsRJxjsIWJpuuQrrQOt4QZ-xFKA",
+    googleMapApiKey: "AIzaSyCLG6Pe_kuYiu7jquuCHBxO1fPo4-1dQfc",
   };
 
   static contextTypes = {
