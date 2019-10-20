@@ -8,7 +8,7 @@ import Grid from 'material-ui/Grid';
 
 import LocationIcon from 'material-ui-icons/LocationOn';
 
-import { withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
 
 import { Link } from 'react-router-dom';
 

@@ -12,8 +12,12 @@ import LogModule from "@prisma-cms/log-module";
 import MailModule from "@prisma-cms/mail-module";
 import UploadModule from "@prisma-cms/upload-module";
 import RouterModule from "@prisma-cms/router-module";
-import EthereumModule from "@prisma-cms/ethereum-module";
-import SocietyModule from "@prisma-cms/society-module";
+import EthereumModule, {
+  Modules as EthereumModules,
+} from "@prisma-cms/ethereum-module";
+import SocietyModule, {
+  Modules as SocietyModules,
+} from "@prisma-cms/society-module";
 import WebrtcModule from "@prisma-cms/webrtc-module";
 
 import UserModule from "./user";
@@ -70,7 +74,11 @@ class CoreModule extends CmsModule {
       TarifModule,
       TopicModule,
       LetterModule,
-    ];
+    ]
+      .concat(
+        EthereumModules,
+        SocietyModules,
+      )
 
     this.mergeModules(modules);
 
@@ -334,7 +342,7 @@ class CoreModule extends CmsModule {
         singleUpload,
         multipleUpload,
         // startImportProcessor,
-        resetPassword,
+        resetPasswordProcessor,
         // createProjectProcessor,
 
         createTopicProcessor,
@@ -354,6 +362,8 @@ class CoreModule extends CmsModule {
         updateCommentProcessor,
         createCity,
         updateCity,
+        createResetPasswordProcessor,
+        // ethSigninOrSignup,
       },
       ...other
     } = resolvers;
@@ -366,7 +376,7 @@ class CoreModule extends CmsModule {
       updateUserProcessor,
       singleUpload,
       multipleUpload,
-      resetPassword,
+      resetPasswordProcessor,
 
       createTopicProcessor,
       updateTopicProcessor,
@@ -385,6 +395,8 @@ class CoreModule extends CmsModule {
       updateCommentProcessor,
       createCity,
       updateCity,
+      createResetPasswordProcessor,
+      // ethSigninOrSignup,
     };
 
     // for(var i in AllowedMutations){

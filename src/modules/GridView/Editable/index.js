@@ -7,7 +7,24 @@ import EditableView from 'apollo-cms/lib/DataView/Object/Editable';
 // import EditableView from 'apollo-cms/lib/DataView/Object/Editable';
 import Typography from 'material-ui/Typography';
 
-export default class AppEditableView extends EditableView{
+export default class AppEditableView extends EditableView {
+
+
+  static propTypes = {
+    ...EditableView.propTypes,
+
+		/**
+		 * Устанавливать ли мета-данные страницы.
+		 * Надо устнанавливать только на конечной странице карточки
+		 */
+    set_page_metas: PropTypes.bool.isRequired,
+  }
+
+  static defaultProps = {
+    ...EditableView.defaultProps,
+
+    set_page_metas: false,
+  };
 
 
   // static contextTypes = {
@@ -37,16 +54,20 @@ export default class AppEditableView extends EditableView{
   setPageMeta(meta) {
 
 
-    
-    if(!meta){
+    const {
+      set_page_metas,
+    } = this.props;
+
+
+    if (!meta || !set_page_metas) {
       return;
     }
-
 
 
     const {
       setPageMeta,
     } = this.context;
+
 
     return setPageMeta({
       title: this.getTitle(),
@@ -71,8 +92,8 @@ export default class AppEditableView extends EditableView{
   }
 
 
-  renderHeader(){
-    
+  renderHeader() {
+
 
     return <Typography
       variant="title"
@@ -88,7 +109,7 @@ export default class AppEditableView extends EditableView{
   }
 
 
-  renderField(field){
+  renderField(field) {
 
     const {
       errors,
@@ -123,10 +144,10 @@ export default class AppEditableView extends EditableView{
           errors,
         } = this.state;
 
-        if(errors){
-          const index = errors.findIndex(({key}) => key === name);
+        if (errors) {
+          const index = errors.findIndex(({ key }) => key === name);
 
-          if(index !== -1){
+          if (index !== -1) {
             errors.splice(index, 1);
             this.setState({
               errors,

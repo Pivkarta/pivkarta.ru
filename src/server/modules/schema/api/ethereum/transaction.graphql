@@ -1,0 +1,14 @@
+
+input EthTransactionCreateInput {
+  privateKey: String!
+  type: EthTransactionType
+  to: String
+  amount: Float
+  gasPrice: Int
+  contractSourceId: ID
+}
+
+type EthTransactionSubscriptionPayload {
+  mutation: MutationType!
+  node: EthTransaction
+}

@@ -42,7 +42,7 @@ export class PivkartaUserProcessor extends UserPayload{
     }
 
 
-    return super.signup(null, source, args, ctx, info);
+    return super.signup(args, info);
   }
 
 }

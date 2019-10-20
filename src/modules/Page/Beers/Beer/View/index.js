@@ -1,20 +1,22 @@
 import React, { Fragment } from 'react'
 
+import PropTypes from "prop-types";
+
 // import EditableView from 'Editable';
 import EditableView from 'src/modules/GridView/Editable';
 
 import Grid from 'material-ui/Grid';
 
 
-import Typography from 'material-ui/Typography';
+// import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
-import Button from 'material-ui/Button/Button';
-import { FormControlLabel } from 'material-ui/Form';
-import Switch from 'material-ui/Switch';
+// import Button from 'material-ui/Button/Button';
+// import { FormControlLabel } from 'material-ui/Form';
+// import Switch from 'material-ui/Switch';
 
 import DefaultView from './default';
 
@@ -34,12 +36,24 @@ import SingleUploader from 'src/modules/ui/FileUploader/SingleUploader';
 
 import BeerMapLink from 'src/modules/ui/Link/Beer/Map';
 
-let { ...defaultProps } = EditableView.defaultProps;
-
 
 export default class BeerView extends EditableView {
 
-	static defaultProps = defaultProps;
+	// static propTypes = {
+	// 	...EditableView.propTypes,
+
+	// 	/**
+	// 	 * Устанавливать ли мета-данные страницы.
+	// 	 * Надо устнанавливать только на конечной странице карточки
+	// 	 */
+	// 	set_page_metas: PropTypes.bool.isRequired,
+	// }
+
+	// static defaultProps = {
+	// 	...EditableView.defaultProps,
+
+	// 	set_page_metas: false,
+	// };
 
 
 	canEdit() {
@@ -48,6 +62,14 @@ export default class BeerView extends EditableView {
 
 
 	setPageMeta(meta) {
+
+		const {
+			set_page_metas,
+		} = this.props;
+
+		if (!set_page_metas) {
+			return;
+		}
 
 		let canonical;
 
@@ -60,6 +82,9 @@ export default class BeerView extends EditableView {
 			name,
 		} = this.getObjectWithMutations() || {};
 
+
+		console.log("this.getObjectWithMutations()", this.getObjectWithMutations());
+
 		if (url_name && beer_id) {
 
 			canonical = `/beer/${beer_id}/${url_name}`;
@@ -71,7 +96,7 @@ export default class BeerView extends EditableView {
 			metad = description;
 
 		}
-		else {
+		else if (name) {
 
 			metad = `Пиво ${name}`;
 
@@ -79,7 +104,7 @@ export default class BeerView extends EditableView {
 
 		return super.setPageMeta({
 			canonical,
-			// description: metad,
+			description: metad,
 		});
 
 	}

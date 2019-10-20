@@ -15,16 +15,16 @@ import Comments from "./Comments";
 
 
 
-import Typography from "material-ui/Typography";
+// import Typography from "material-ui/Typography";
 import AuthorizedAction from 'src/modules/authorized-action';
-import AddLink from 'src/modules/ui/AddLink';
+// import AddLink from 'src/modules/ui/AddLink';
 
 import { Link } from "react-router-dom";
 
-import PlaceIcon from "material-ui-icons/Place";
-import ListIcon from "material-ui-icons/List";
+// import PlaceIcon from "material-ui-icons/Place";
+// import ListIcon from "material-ui-icons/List";
 
-import { Grid } from 'material-ui';
+import Grid from 'material-ui/Grid';
 
 
 
@@ -69,7 +69,7 @@ export default class MainPage extends PageLayout {
       getGeoCoords,
     } = this.context;
     
-    console.log("getGeoCoords", getGeoCoords);
+    // console.log("getGeoCoords", getGeoCoords);
 
     // return "MainPage";
 

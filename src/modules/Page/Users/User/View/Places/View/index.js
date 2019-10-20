@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 
 import PlacesView from "../../../../../../Page/Places/View";
-import { Typography } from 'material-ui';
+import Typography from 'material-ui/Typography';
 
 import Grid from "material-ui/Grid";
 

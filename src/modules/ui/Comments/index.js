@@ -14,7 +14,7 @@ import AuthorizedAction from "src/modules/authorized-action";
 import CommentIcon from 'material-ui-icons/Comment';
 
 import CommentViewComponent from "src/modules/ui/Comment/View";
-import { Button } from 'material-ui';
+import Button from 'material-ui/Button';
 
 
 class Comments extends Component {

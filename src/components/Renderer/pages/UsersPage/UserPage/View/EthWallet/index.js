@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Typography } from 'material-ui';
+import Typography from 'material-ui/Typography';
 
 import Balances from "./Balances";
 

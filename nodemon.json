@@ -4,6 +4,7 @@
     "*/generated/*",
     "*/coverage/*",
     "*/uploads/*",
+    "*/src/modules/*",
     "*/src/components/*"
   ] 
 }

@@ -51,11 +51,10 @@ import CityPage from '../../../modules/Page/Cities/City';
 // import Auth from 'Auth';
 // import Auth from '@prisma-cms/front/lib/modules/Auth';
 
-import PageNotFound from '@prisma-cms/front/lib/modules/pages/404/';
+import PageNotFound from '@prisma-cms/front/lib/components/pages/404/';
 
 
 import { Renderer as PrismaCmsRenderer } from "@prisma-cms/front";
-import { withStyles } from 'material-ui';
 
 // import ReactEncrypt from 'react-encrypt/src';
 
@@ -469,7 +468,7 @@ export class Renderer extends PrismaCmsRenderer {
       "*",
     ].indexOf(n.path) === -1);
 
-    console.log("routes", routes);
+    // console.log("routes", routes);
 
     return routes;
   }

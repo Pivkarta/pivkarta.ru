@@ -13,13 +13,14 @@ import Button from 'material-ui/Button';
 
 import UserItem from "@prisma-cms/front/lib/components/App/Renderer/MainMenu/User";
 import { styles as defaultStyles } from "@prisma-cms/front/lib/components/App/Renderer/MainMenu";
+import Language from "@prisma-cms/front/lib/components/Language";
 // import UserItem from "./User";
 
 import { Link } from "react-router-dom";
 import { Notices } from '@prisma-cms/society';
-// import { IconButton } from 'material-ui';
 
-import Context from "@prisma-cms/context";
+// import Context from "@prisma-cms/context";
+import PrismaCmsComponent from "@prisma-cms/component";
 
 import {
   CallRequestButtons,
@@ -55,13 +56,35 @@ export const styles = theme => {
   }
 };
 
-export class MainMenu extends Component {
 
-  static contextType = Context;
+export const locales = {
+  ru: {
+    values: {
+      "Signin": "Войти",
+      "Signout": "Выход",
+      "Chats": "Чаты",
+      "Users": "Участники",
+      "Ethereum": "Ethereum",
+      "API Schema": "API схема",
+    }
+  },
+};
+
+
+export class MainMenu extends PrismaCmsComponent {
+
+  // static contextType = Context;
 
   static propTypes = {
+    ...PrismaCmsComponent.propTypes,
     classes: PropTypes.object.isRequired,
   };
+
+
+  static defaultProps = {
+    ...PrismaCmsComponent.defaultProps,
+    locales,
+  }
 
   render() {
 
@@ -94,7 +117,7 @@ export class MainMenu extends Component {
         <Grid
           container
           alignItems="center"
-          spacing={8}
+          spacing={16}
         >
           <Grid
             item
@@ -109,7 +132,7 @@ export class MainMenu extends Component {
                 // color="inherit"
                 className={classes.link}
               >
-                Crypto Trader
+                Prisma-CMS
               </Typography>
             </Link>
 
@@ -125,8 +148,8 @@ export class MainMenu extends Component {
                 component="span"
                 className={classes.link}
               >
-                Чаты
-                </Typography>
+                {this.lexicon("Chats")}
+              </Typography>
             </Link>
           </Grid>
 
@@ -137,8 +160,8 @@ export class MainMenu extends Component {
               to="/users"
             >
               <Typography>
-                Участники
-                </Typography>
+                {this.lexicon("Users")}
+              </Typography>
             </Link>
 
           </Grid>
@@ -150,8 +173,8 @@ export class MainMenu extends Component {
               to="/eth-transactions"
             >
               <Typography>
-                Ethereum
-                </Typography>
+                {this.lexicon("Ethereum")}
+              </Typography>
             </Link>
 
           </Grid>
@@ -164,8 +187,8 @@ export class MainMenu extends Component {
               rel="noindex,nofollow"
             >
               <Typography>
-                Схема
-                </Typography>
+                {this.lexicon("API Schema")}
+              </Typography>
             </a>
 
           </Grid>
@@ -174,13 +197,13 @@ export class MainMenu extends Component {
             item
           >
             <a
-              href="/api"
+              href="/api/"
               rel="noindex,nofollow"
               target="_blank"
             >
               <Typography>
-                API
-                </Typography>
+                {this.lexicon("Query Builder")}
+              </Typography>
             </a>
 
           </Grid>
@@ -191,6 +214,10 @@ export class MainMenu extends Component {
             xs
           >
           </Grid>
+
+
+          <Language
+          />
 
           {currentUser ?
             <Grid
@@ -246,7 +273,7 @@ export class MainMenu extends Component {
                   className={classes.link}
                   size="small"
                 >
-                  Выход
+                  {this.lexicon("Signout")}
                 </Button>
 
               </Grid>
@@ -269,7 +296,7 @@ export class MainMenu extends Component {
                 className={classes.link}
                 size="small"
               >
-                Войти
+                {this.lexicon("Signin")}
               </Button>
 
             </Grid>

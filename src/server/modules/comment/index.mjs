@@ -26,7 +26,7 @@ class CommentsPayload extends Payload {
   async create(objectType, args, info) {
 
 
-    console.log(chalk.green("CreateComment args"), args);
+    // console.log(chalk.green("CreateComment args"), args);
 
     let {
       data: {
