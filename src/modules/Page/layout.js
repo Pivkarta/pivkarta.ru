@@ -1,5 +1,5 @@
 
-import PageLayout from "@prisma-cms/front/lib/modules/pages/layout";
+import PageLayout from "@prisma-cms/front/lib/components/pages/layout";
 
 // export default PageLayout;
 

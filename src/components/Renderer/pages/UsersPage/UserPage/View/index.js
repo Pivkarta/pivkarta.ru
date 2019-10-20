@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import UserPageViewProto from "@prisma-cms/front/lib/modules/pages/UsersPage/UserPage/View";
-import UsersGroupsBlock from "@prisma-cms/front/lib/modules/pages/UsersPage/UserPage/View/Groups";
+import UserPageViewProto from "@prisma-cms/front/lib/components/pages/UsersPage/UserPage/View";
+import UsersGroupsBlock from "@prisma-cms/front/lib/components/pages/UsersPage/UserPage/View/Groups";
+import MetamaskAccount from "@prisma-cms/front/lib/components/pages/UsersPage/UserPage/View/MetamaskAccount";
 
 import NotificationTypes from "./NotificationTypes";
 import ChatRooms from "./ChatRooms";
@@ -76,7 +77,7 @@ class UserPageView extends UserPageViewProto {
 
     if (currentUserId && currentUserId === userId) {
 
-      console.log("EthAccounts", EthAccounts, object);
+      // console.log("EthAccounts", EthAccounts, object);
 
       if (EthAccounts && EthAccounts.length) {
 
@@ -162,6 +163,19 @@ class UserPageView extends UserPageViewProto {
           spacing={16}
         >
 
+
+
+          {currentUserId && currentUserId === userId ?
+            <MetamaskAccount
+              where={{
+                UserAuthed: {
+                  id: currentUserId,
+                },
+              }}
+            />
+            : null
+          }
+
           <Grid
             item
             xs={12}
@@ -232,7 +246,7 @@ class UserPageView extends UserPageViewProto {
     const inEditMode = this.isInEditMode();
 
     const {
-      id,
+      id: userId,
       username,
       fullname,
     } = object;
@@ -301,6 +315,29 @@ class UserPageView extends UserPageViewProto {
 
             </Grid> */}
 
+            <input type="text" name="username"
+              style={{
+                border: "none",
+                height: 0,
+                width: 0,
+                opacity: 0,
+                cursor: "default",
+                padding: 0,
+                margin: 0,
+              }}
+            />
+            <input type="password" name="password"
+              style={{
+                border: "none",
+                height: 0,
+                width: 0,
+                opacity: 0,
+                cursor: "default",
+                padding: 0,
+                margin: 0,
+              }}
+            />
+
 
             <Grid
               item
@@ -309,36 +346,9 @@ class UserPageView extends UserPageViewProto {
 
               {this.getTextField({
                 name: "fullname",
-                helperText: "Отображаемое на сайте имя",
-                label: "Имя",
+                helperText: "Фамилия и имя",
+                label: "ФИО",
               })}
-
-            </Grid>
-
-
-            <Grid
-              item
-              xs={12}
-            >
-
-              <input
-                style={{
-                  height: 1,
-                  opacity: 1,
-                  padding: 0,
-                  margin: 0,
-                  border: 0,
-                }}
-              />
-
-              <div>
-                {this.getTextField({
-                  name: "password",
-                  type: "password",
-                  label: "Пароль",
-                  helperText: "Новый пароль",
-                })}
-              </div>
 
             </Grid>
 
@@ -352,6 +362,34 @@ class UserPageView extends UserPageViewProto {
                 name: "email",
                 helperText: "Сменить емейл",
                 label: "Емейл",
+              })}
+
+            </Grid>
+
+
+            <Grid
+              item
+              xs={12}
+            >
+
+              {this.getTextField({
+                name: "username",
+                helperText: "Логин пользователя",
+                label: "Логин",
+              })}
+
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+            >
+
+              {this.getTextField({
+                name: "password",
+                type: "password",
+                label: "Пароль",
+                helperText: "Новый пароль",
               })}
 
             </Grid>
@@ -370,13 +408,20 @@ class UserPageView extends UserPageViewProto {
               mutate={mutate}
             />
 
+
+            {userId ?
+              <UsersGroupsBlock
+                user={object}
+                inEditMode={inEditMode}
+              />
+              : null
+            }
+
           </Grid>
 
         </Grid>
 
       </Grid>
-
-
 
     </Grid>;
 
