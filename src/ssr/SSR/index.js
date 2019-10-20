@@ -42,6 +42,8 @@ const PWD = process.env.PWD;
 const HTML = fs.readFileSync(`${PWD}/build/index.html`, "utf8");
 
 
+let apiSchema;
+
 class Server {
 
 
@@ -67,7 +69,7 @@ class Server {
   }
 
 
-  getApi(){
+  getApi() {
 
     return api;
   }
@@ -81,7 +83,7 @@ class Server {
     global.document = undefined;
 
 
-    const protocol = req.headers["server-protocol"] || req.protocol || "http"; 
+    const protocol = req.headers["server-protocol"] || req.protocol || "http";
 
     const host = req.get('host');
 
@@ -134,22 +136,25 @@ class Server {
 
 
     const {
-      host: hostname,
+      // host: hostname,
       protocol = "http:",
       // referer,
     } = req.headers;
 
+    const host = req.get('host');
 
-    let assetsUrl;
+    const uri = new URI(`${protocol}//${host}${req.url}`);
+
+    // let assetsUrl;
 
     let js_src;
     let css_src;
 
-    let inline_styles;
+    // let inline_styles;
 
     let basePath = process.cwd() + "/";
 
-    let buildPath = basePath + "build/";
+    // let buildPath = basePath + "build/";
 
 
 
@@ -166,7 +171,7 @@ class Server {
       // Remember that this is the interface the SSR server will use to connect to the
       // API server, so we need to ensure it isn't firewalled, etc
       link: createHttpLink({
-        uri: `${protocol}//${hostname}/api/`,
+        uri: `${protocol}//${host}/api/`,
         credentials: 'same-origin',
         headers: {
           cookie: req.header('Cookie'),
@@ -178,6 +183,8 @@ class Server {
 
     const sheets = new SheetsRegistry();
 
+    // console.log("req.url", req.url);
+
     const App = (
       <JssProvider
         registry={sheets}
@@ -188,6 +195,17 @@ class Server {
             <MainApp
               sheetsManager={new Map()}
               queryFragments={queryFragments}
+              uri={uri}
+              onSchemaLoad={clientSchema => {
+
+                // console.log("onSchemaLoad", schema);
+                // console.log(chalk.green("onSchemaLoad"));
+
+                if (!apiSchema && clientSchema) {
+                  apiSchema = `window.__PRISMA_CMS_API_SCHEMA_DSL__=${JSON.stringify(clientSchema).replace(/</g, '\\u003c')};`;
+                }
+
+              }}
             />
           </StaticRouter>
         </ApolloProvider>
@@ -226,7 +244,7 @@ class Server {
             decodeEntities: false,
           })
 
-          // console.log(chalk.green("$"), $);
+          // console.log(chalk.green("description"), description);
 
           /**
            * Remove noscript notifi
