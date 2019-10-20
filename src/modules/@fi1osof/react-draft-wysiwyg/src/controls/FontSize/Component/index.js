@@ -54,7 +54,7 @@ export default class LayoutComponent extends Component {
     currentFontSize = currentFontSize ||
       (options && options.indexOf(defaultFontSize) >= 0 && defaultFontSize);
 
-    console.log("currentFontSize", currentFontSize);
+    // console.log("currentFontSize", currentFontSize);
 
     // currentFontSize = currentFontSize && typeof currentFontSize === "object" ? currentFontSize.title : currentFontSize;
 
@@ -64,7 +64,7 @@ export default class LayoutComponent extends Component {
       if (option) {
         currentFontSize = option.title;
       }
-      console.log("currentFontSize2", currentFontSize, option);
+      // console.log("currentFontSize2", currentFontSize, option);
     }
 
 

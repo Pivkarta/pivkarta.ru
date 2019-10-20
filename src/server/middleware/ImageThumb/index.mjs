@@ -34,7 +34,7 @@ const resizeMax = async function (img, width, height) {
 
 const ImageThumbMiddleware = async (req, res, next) => {
 
-  console.log('req.params', req.params);
+  // console.log('req.params', req.params);
 
 
   let {
@@ -42,24 +42,24 @@ const ImageThumbMiddleware = async (req, res, next) => {
     type,
   } = req.params;
 
-  console.log("type", type);
-  console.log("src", src);
+  // console.log("type", type);
+  // console.log("src", src);
 
   src = src && src.replace(/^uploads/, '') || "";
 
-  console.log("src", src);
+  // console.log("src", src);
 
   let path = `/uploads/${src}`;
 
   // const abthPath = __dirname + path;
   const abthPath = process.cwd() + path;
 
-  console.log('path', path);
-  console.log('abthPath', abthPath);
+  // console.log('path', path);
+  // console.log('abthPath', abthPath);
 
   if (fs.existsSync(abthPath)) {
     // Do something
-    console.log('exists');
+    // console.log('exists');
 
 
     let img = await sharp(abthPath)

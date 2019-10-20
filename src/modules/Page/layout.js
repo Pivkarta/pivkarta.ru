@@ -1,5 +1,5 @@
 
-import PageLayout from "@prisma-cms/front/lib/modules/pages/layout";
+import PageLayout from "@prisma-cms/front/lib/components/pages/layout";
 
 // export default PageLayout;
 
@@ -63,13 +63,17 @@ export default class PivkartaPageLayout extends PageLayout {
   // }
 
   // setPageMeta = (meta) => {
-  setPageMeta(meta = {}) {
+  setPageMeta(meta) {
 
+    if(!meta) {
+      return;
+    }
 
+    // console.log("setPageMeta meta", meta);
 
     let {
       title,
-      description = "",
+      description,
       // canonical,
       status = 200,
       ...other
@@ -104,6 +108,8 @@ export default class PivkartaPageLayout extends PageLayout {
 
     if (description !== undefined) {
 
+      document.description = description;
+
       if (typeof window !== "undefined") {
 
         let head = document.querySelector("head");
@@ -116,14 +122,13 @@ export default class PivkartaPageLayout extends PageLayout {
         }
 
       }
-      else {
-        document.description = description;
-      }
+      // else {
+      // }
 
     }
 
     Object.assign(document, {
-      ...other,
+      // ...other,
       status,
     });
 

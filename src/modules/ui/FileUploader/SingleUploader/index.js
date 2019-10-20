@@ -9,7 +9,7 @@ import UploadIcon from 'material-ui-icons/CloudUpload';
 import DeleteIcon from 'material-ui-icons/Clear';
 
 import Image from '../../Image';
-import { Grid } from 'material-ui';
+import Grid from 'material-ui/Grid';
 
 class FileInput extends Component {
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PropTypes from "prop-types";
-import { Grid } from 'material-ui';
+import Grid from 'material-ui/Grid';
 
 // import Gallery from 'react-photo-gallery';
 

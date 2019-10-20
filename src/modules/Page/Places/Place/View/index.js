@@ -15,6 +15,12 @@ export default class PlacePageView extends PlaceView {
   }
 
 
+  static defaultProps = {
+    ...PlaceView.defaultProps,
+    set_page_metas: true,
+  }
+
+
   componentWillMount() {
 
     this.setCoords();

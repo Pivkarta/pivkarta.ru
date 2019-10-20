@@ -1,20 +1,22 @@
 import React, { Fragment } from 'react'
 
+import PropTypes from "prop-types";
+
 // import EditableView from 'Editable';
 import EditableView from 'src/modules/GridView/Editable';
 
 import Grid from 'material-ui/Grid';
 
 
-import Typography from 'material-ui/Typography';
+// import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
-import Button from 'material-ui/Button/Button';
-import { FormControlLabel } from 'material-ui/Form';
-import Switch from 'material-ui/Switch';
+// import Button from 'material-ui/Button/Button';
+// import { FormControlLabel } from 'material-ui/Form';
+// import Switch from 'material-ui/Switch';
 
 import DefaultView from './default';
 
@@ -34,534 +36,557 @@ import SingleUploader from 'src/modules/ui/FileUploader/SingleUploader';
 
 import BeerMapLink from 'src/modules/ui/Link/Beer/Map';
 
-let { ...defaultProps } = EditableView.defaultProps;
-
 
 export default class BeerView extends EditableView {
 
-	static defaultProps = defaultProps;
+  // static propTypes = {
+  //   ...EditableView.propTypes,
 
+  //   /**
+  //    * Устанавливать ли мета-данные страницы.
+  //    * Надо устнанавливать только на конечной странице карточки
+  //    */
+  //   set_page_metas: PropTypes.bool.isRequired,
+  // }
 
-	canEdit() {
-		return true;
-	}
+  // static defaultProps = {
+  //   ...EditableView.defaultProps,
 
+  //   set_page_metas: false,
+  // };
 
-	setPageMeta(meta) {
 
-		let canonical;
+  canEdit() {
+    return true;
+  }
 
-		let metad;
 
-		const {
-			url_name,
-			beer_id,
-			description,
-			name,
-		} = this.getObjectWithMutations() || {};
+  setPageMeta(meta) {
 
-		if (url_name && beer_id) {
+    const {
+      set_page_metas,
+    } = this.props;
 
-			canonical = `/beer/${beer_id}/${url_name}`;
+    if (!set_page_metas) {
+      return;
+    }
 
-		}
+    let canonical;
 
-		if (description) {
+    let metad;
 
-			metad = description;
+    const {
+      url_name,
+      beer_id,
+      description,
+      name,
+    } = this.getObjectWithMutations() || {};
 
-		}
-		else {
 
-			metad = `Пиво ${name}`;
+    // console.log("this.getObjectWithMutations()", this.getObjectWithMutations());
 
-		}
+    if (url_name && beer_id) {
 
-		return super.setPageMeta({
-			canonical,
-			// description: metad,
-		});
+      canonical = `/beer/${beer_id}/${url_name}`;
 
-	}
+    }
 
+    if (description) {
 
-	renderHeader() {
+      metad = description;
 
-		return <div
-			style={{
-				marginBottom: 20,
-			}}
-		>
+    }
+    else if (name) {
 
-			<h1 className="h1main">
-				{this.getTitle()}
-			</h1>
+      metad = `Пиво ${name}`;
 
-			{this.getButtons()}
+    }
 
-		</div>
-	}
+    return super.setPageMeta({
+      canonical,
+      description: metad,
+    });
 
+  }
 
-	getButtons() {
 
-		const object = this.getObjectWithMutations();
+  renderHeader() {
 
-		let buttons = super.getButtons() || [];
+    return <div
+      style={{
+        marginBottom: 20,
+      }}
+    >
 
-		const inEditMode = this.isInEditMode();
+      <h1 className="h1main">
+        {this.getTitle()}
+      </h1>
 
-		if (!inEditMode) {
-			buttons.unshift(<BeerMapLink
-				item={object}
-			>
-				НАЙТИ ПИВО НА КАРТЕ ГОРОДА
-			</BeerMapLink>);
-		}
+      {this.getButtons()}
 
-		return buttons;
-	}
+    </div>
+  }
 
 
-	renderDefaultView() {
+  getButtons() {
 
-		const object = this.getObjectWithMutations();
+    const object = this.getObjectWithMutations();
 
-		return <DefaultView
-			object={object}
-			updateObject={data => this.updateObject(data)}
-			inEditMode={this.isInEditMode()}
-		/>
+    let buttons = super.getButtons() || [];
 
-	}
+    const inEditMode = this.isInEditMode();
 
+    if (!inEditMode) {
+      buttons.unshift(<BeerMapLink
+        item={object}
+      >
+        НАЙТИ ПИВО НА КАРТЕ ГОРОДА
+      </BeerMapLink>);
+    }
 
-	renderEditableView() {
+    return buttons;
+  }
 
 
-		const {
-			BeerFilteredField,
-			BeerPasterField,
-		} = this.context;
+  renderDefaultView() {
 
-		const object = this.getObjectWithMutations();
+    const object = this.getObjectWithMutations();
 
-		const inEditMode = this.isInEditMode();
+    return <DefaultView
+      object={object}
+      updateObject={data => this.updateObject(data)}
+      inEditMode={this.isInEditMode()}
+    />
 
+  }
 
 
-		if (!object) {
-			return null;
-		}
+  renderEditableView() {
 
-		const {
-			id,
-			name,
-			region,
-			manufacturer,
-			manufacture_years,
-			container,
-			alcohol,
-			bitter,
-			color,
-			components,
-			image,
-			editor_content,
-			description,
-			filtered,
-			pasteurized
-		} = object;
 
+    const {
+      BeerFilteredField,
+      BeerPasterField,
+    } = this.context;
 
+    const object = this.getObjectWithMutations();
 
+    const inEditMode = this.isInEditMode();
 
 
 
-		return (
-			<Grid
-				container
-				spacing={8}
-			>
-
-
-				<Grid
-					item
-					xs={12}
-				>
-
-					{this.renderField(<TextField
-						label="Наименование"
-						name="name"
-						value={name || ""}
-						fullWidth
-					/>)}
-
-				</Grid>
-
-				<Grid
-					item
-					xs={12}
-				>
-					{this.renderField(<TextField
-						label="meta-description"
-						name="description"
-						value={description || ""}
-						fullWidth
-					/>)}
-				</Grid>
-
-				<Grid
-					item
-					xs={12}
-				// style={{
-				// 	flexGrow: 0,
-				// }}
-				>
-
-
-					<Paper
-						style={{
-							padding: 15,
-						}}
-					>
-
-						<Grid
-							container
-							spacing={8}
-						>
-
-							<Grid
-								item
-							>
-								<SingleUploader
-									value={image}
-									onUpload={({ data }, b, c) => {
-
-
-
-										const {
-											singleUpload,
-										} = data || {}
-
-
-
-										if (singleUpload) {
-
-											const {
-												path,
-											} = singleUpload;
-
-											this.updateObject({
-												image: path,
-											});
-
-										}
-
-									}}
-								/>
-							</Grid>
-
-							<Grid
-								item
-								xs
-							>
-
-								<table
-									style={{
-										width: "100%",
-									}}
-								>
-									<tbody>
-
-										{<tr>
-											<td
-												style={{
-													paddingRight: 5,
-													verticalAlign: "top",
-													width: "100px",
-												}}
-											>
-												Регион:
-										</td>
-											<td>
-												{this.renderField(<TextField
-													name="region"
-													value={region || ""}
-												/>)}
-											</td>
-										</tr> || null}
-
-										{<tr>
-											<td
-												style={{
-													paddingRight: 5,
-													verticalAlign: "top",
-												}}
-											>
-												Производитель:
-										</td>
-											<td>
-												{this.renderField(<TextField
-													name="manufacturer"
-													value={manufacturer || ""}
-												/>)}
-											</td>
-										</tr> || null}
-
-										{<tr>
-											<td
-												style={{
-													paddingRight: 5,
-													verticalAlign: "top",
-												}}
-											>
-												Годы выпуска:
-										</td>
-											<td>
-												{this.renderField(<TextField
-													name="manufacture_years"
-													value={manufacture_years || ""}
-												/>)}
-											</td>
-										</tr> || null}
-
-										{<tr>
-											<td
-												style={{
-													paddingRight: 5,
-													verticalAlign: "top",
-												}}
-											>
-												Тара:
-										</td>
-											<td>
-												<BeerContainer
-													onChange={event => {
-
-														const {
-															value,
-														} = event.target;
-
-														this.updateObject({
-															container: value && parseInt(value) || null,
-														});
-
-													}}
-													value={container || ""}
-												/>
-											</td>
-										</tr> || null}
-
-										{<tr>
-											<td
-												style={{
-													paddingRight: 5,
-													verticalAlign: "top",
-												}}
-											>
-												Алкоголь:
-										</td>
-											<td>
-												{this.renderField(<TextField
-													name="alcohol"
-													value={alcohol || ""}
-												/>)}
-											</td>
-										</tr> || null}
-
-										{<tr>
-											<td
-												style={{
-													paddingRight: 5,
-													verticalAlign: "top",
-												}}
-											>
-												Состав:
-										</td>
-											<td>
-												{this.renderField(<TextField
-													name="components"
-													value={components || ""}
-													fullWidth
-												/>)}
-											</td>
-										</tr> || null}
-
-										{<tr>
-											<td
-												style={{
-													paddingRight: 5,
-													verticalAlign: "top",
-												}}
-											>
-												Горечь:
-											</td>
-											<td>
-
-												{this.renderField(<TextField
-													name="bitter"
-													value={bitter || ""}
-													type="number"
-													helperText={bitter ? <Bitter
-														bitter={bitter}
-													/> : "10, 20, 40 и более до 100"}
-													onChange={event => {
-
-														const {
-															name,
-															value,
-														} = event.target;
-
-														// console.log("onChange", name, value, event.target);
-
-														this.updateObject({
-															[name]: value ? parseInt(value) : null,
-														});
-
-													}}
-												/>)}
-
-											</td>
-										</tr> || null}
-
-										<tr>
-											<td
-												style={{
-													paddingRight: 5,
-													verticalAlign: "top",
-												}}
-											>
-												Цвет:
-										</td>
-											<td>
-												<BeerColor
-													onChange={event => this.onChange(event)}
-													value={color || ""}
-												/>
-											</td>
-										</tr>
-
-										<tr>
-											<td
-												style={{
-													paddingRight: 5,
-													verticalAlign: "top",
-												}}
-											>
-												Фильтрованное:
-										</td>
-											<td>
-												<BeerFilteredField
-													value={filtered === true ? "Фильтрованное" : filtered === false ? "Нефильтрованное" : "Не указано"}
-													onSelect={(value, item) => {
-														console.log("onSelect", value, item);
-
-
-														this.updateObject({
-															filtered: value === "Фильтрованное" ? true : value === "Нефильтрованное" ? false : null,
-														});
-
-													}}
-												/>
-											</td>
-										</tr>
-
-										<tr>
-											<td
-												style={{
-													paddingRight: 5,
-													verticalAlign: "top",
-												}}
-											>
-												Пастеризованное:
-										</td>
-											<td>
-												<BeerPasterField
-													value={pasteurized === true ? "Пастеризованное" : pasteurized === false ? "Непастеризованное" : "Не указано"}
-													onSelect={(value, item) => {
-														console.log("onSelect", value, item);
-
-
-														this.updateObject({
-															pasteurized: value === "Пастеризованное" ? true : value === "Непастеризованное" ? false : null,
-														});
-
-													}}
-												/>
-											</td>
-										</tr>
-
-
-									</tbody>
-								</table>
-
-							</Grid>
-
-						</Grid>
-
-					</Paper>
-
-				</Grid>
-
-				<Grid
-					item
-					xs={12}
-					style={{
-						marginTop: 30,
-					}}
-				>
-
-
-					<Paper
-						style={{
-							padding: 15,
-						}}
-					>
-
-						<Editor
-							value={editor_content}
-							readOnly={!inEditMode}
-							onChange={(data, rawContent) => {
-
-
-								this.updateObject({
-									editor_content: rawContent,
-								});
-							}}
-						/>
-
-					</Paper>
-
-				</Grid>
-
-				<Grid
-					item
-					xs={12}
-					style={{
-						marginTop: 30,
-					}}
-				>
-
-					<GalleryBlock
-						item={object}
-						inEditMode={inEditMode}
-						updateObject={data => this.updateObject(data)}
-					/>
-
-				</Grid>
-
-			</Grid>
-		)
-
-	}
-
-	// render(){
-
-	//   const content = super.render();
-
-
-	//   return "Beer";
-
-	// }
+    if (!object) {
+      return null;
+    }
+
+    const {
+      id,
+      name,
+      region,
+      manufacturer,
+      manufacture_years,
+      container,
+      alcohol,
+      bitter,
+      color,
+      components,
+      image,
+      editor_content,
+      description,
+      filtered,
+      pasteurized
+    } = object;
+
+
+
+
+
+
+    return (
+      <Grid
+        container
+        spacing={8}
+      >
+
+
+        <Grid
+          item
+          xs={12}
+        >
+
+          {this.renderField(<TextField
+            label="Наименование"
+            name="name"
+            value={name || ""}
+            fullWidth
+          />)}
+
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+        >
+          {this.renderField(<TextField
+            label="meta-description"
+            name="description"
+            value={description || ""}
+            fullWidth
+          />)}
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+        // style={{
+        //   flexGrow: 0,
+        // }}
+        >
+
+
+          <Paper
+            style={{
+              padding: 15,
+            }}
+          >
+
+            <Grid
+              container
+              spacing={8}
+            >
+
+              <Grid
+                item
+              >
+                <SingleUploader
+                  value={image}
+                  onUpload={({ data }, b, c) => {
+
+
+
+                    const {
+                      singleUpload,
+                    } = data || {}
+
+
+
+                    if (singleUpload) {
+
+                      const {
+                        path,
+                      } = singleUpload;
+
+                      this.updateObject({
+                        image: path,
+                      });
+
+                    }
+
+                  }}
+                />
+              </Grid>
+
+              <Grid
+                item
+                xs
+              >
+
+                <table
+                  style={{
+                    width: "100%",
+                  }}
+                >
+                  <tbody>
+
+                    {<tr>
+                      <td
+                        style={{
+                          paddingRight: 5,
+                          verticalAlign: "top",
+                          width: "100px",
+                        }}
+                      >
+                        Регион:
+                    </td>
+                      <td>
+                        {this.renderField(<TextField
+                          name="region"
+                          value={region || ""}
+                        />)}
+                      </td>
+                    </tr> || null}
+
+                    {<tr>
+                      <td
+                        style={{
+                          paddingRight: 5,
+                          verticalAlign: "top",
+                        }}
+                      >
+                        Производитель:
+                    </td>
+                      <td>
+                        {this.renderField(<TextField
+                          name="manufacturer"
+                          value={manufacturer || ""}
+                        />)}
+                      </td>
+                    </tr> || null}
+
+                    {<tr>
+                      <td
+                        style={{
+                          paddingRight: 5,
+                          verticalAlign: "top",
+                        }}
+                      >
+                        Годы выпуска:
+                    </td>
+                      <td>
+                        {this.renderField(<TextField
+                          name="manufacture_years"
+                          value={manufacture_years || ""}
+                        />)}
+                      </td>
+                    </tr> || null}
+
+                    {<tr>
+                      <td
+                        style={{
+                          paddingRight: 5,
+                          verticalAlign: "top",
+                        }}
+                      >
+                        Тара:
+                    </td>
+                      <td>
+                        <BeerContainer
+                          onChange={event => {
+
+                            const {
+                              value,
+                            } = event.target;
+
+                            this.updateObject({
+                              container: value && parseInt(value) || null,
+                            });
+
+                          }}
+                          value={container || ""}
+                        />
+                      </td>
+                    </tr> || null}
+
+                    {<tr>
+                      <td
+                        style={{
+                          paddingRight: 5,
+                          verticalAlign: "top",
+                        }}
+                      >
+                        Алкоголь:
+                    </td>
+                      <td>
+                        {this.renderField(<TextField
+                          name="alcohol"
+                          value={alcohol || ""}
+                        />)}
+                      </td>
+                    </tr> || null}
+
+                    {<tr>
+                      <td
+                        style={{
+                          paddingRight: 5,
+                          verticalAlign: "top",
+                        }}
+                      >
+                        Состав:
+                    </td>
+                      <td>
+                        {this.renderField(<TextField
+                          name="components"
+                          value={components || ""}
+                          fullWidth
+                        />)}
+                      </td>
+                    </tr> || null}
+
+                    {<tr>
+                      <td
+                        style={{
+                          paddingRight: 5,
+                          verticalAlign: "top",
+                        }}
+                      >
+                        Горечь:
+                      </td>
+                      <td>
+
+                        {this.renderField(<TextField
+                          name="bitter"
+                          value={bitter || ""}
+                          type="number"
+                          helperText={bitter ? <Bitter
+                            bitter={bitter}
+                          /> : "10, 20, 40 и более до 100"}
+                          onChange={event => {
+
+                            const {
+                              name,
+                              value,
+                            } = event.target;
+
+                            // console.log("onChange", name, value, event.target);
+
+                            this.updateObject({
+                              [name]: value ? parseInt(value) : null,
+                            });
+
+                          }}
+                        />)}
+
+                      </td>
+                    </tr> || null}
+
+                    <tr>
+                      <td
+                        style={{
+                          paddingRight: 5,
+                          verticalAlign: "top",
+                        }}
+                      >
+                        Цвет:
+                    </td>
+                      <td>
+                        <BeerColor
+                          onChange={event => this.onChange(event)}
+                          value={color || ""}
+                        />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td
+                        style={{
+                          paddingRight: 5,
+                          verticalAlign: "top",
+                        }}
+                      >
+                        Фильтрованное:
+                    </td>
+                      <td>
+                        <BeerFilteredField
+                          value={filtered === true ? "Фильтрованное" : filtered === false ? "Нефильтрованное" : "Не указано"}
+                          onSelect={(value, item) => {
+                            // console.log("onSelect", value, item);
+
+
+                            this.updateObject({
+                              filtered: value === "Фильтрованное" ? true : value === "Нефильтрованное" ? false : null,
+                            });
+
+                          }}
+                        />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td
+                        style={{
+                          paddingRight: 5,
+                          verticalAlign: "top",
+                        }}
+                      >
+                        Пастеризованное:
+                    </td>
+                      <td>
+                        <BeerPasterField
+                          value={pasteurized === true ? "Пастеризованное" : pasteurized === false ? "Непастеризованное" : "Не указано"}
+                          onSelect={(value, item) => {
+                            // console.log("onSelect", value, item);
+
+
+                            this.updateObject({
+                              pasteurized: value === "Пастеризованное" ? true : value === "Непастеризованное" ? false : null,
+                            });
+
+                          }}
+                        />
+                      </td>
+                    </tr>
+
+
+                  </tbody>
+                </table>
+
+              </Grid>
+
+            </Grid>
+
+          </Paper>
+
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          style={{
+            marginTop: 30,
+          }}
+        >
+
+
+          <Paper
+            style={{
+              padding: 15,
+            }}
+          >
+
+            <Editor
+              value={editor_content}
+              readOnly={!inEditMode}
+              onChange={(data, rawContent) => {
+
+
+                this.updateObject({
+                  editor_content: rawContent,
+                });
+              }}
+            />
+
+          </Paper>
+
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          style={{
+            marginTop: 30,
+          }}
+        >
+
+          <GalleryBlock
+            item={object}
+            inEditMode={inEditMode}
+            updateObject={data => this.updateObject(data)}
+          />
+
+        </Grid>
+
+      </Grid>
+    )
+
+  }
+
+  // render(){
+
+  //   const content = super.render();
+
+
+  //   return "Beer";
+
+  // }
 
 }

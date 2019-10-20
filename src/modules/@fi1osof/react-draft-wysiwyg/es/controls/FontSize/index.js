@@ -75,7 +75,7 @@ var FontSize = function (_Component) {
       });
     }, _this.toggleFontSize = function (fontSize) {
 
-      console.log("toggleFontSize", fontSize);
+      // console.log("toggleFontSize", fontSize);
 
       var _this$props = _this.props,
           editorState = _this$props.editorState,

@@ -57,6 +57,11 @@ import {
 export class Renderer extends PivkartaRenderer {
 
 
+  static defaultProps = {
+    ...PivkartaRenderer.defaultProps,
+    useMetamask: false,
+  }
+
   // renderMenu() {
 
   //   return <MainMenu />;
@@ -247,7 +252,7 @@ export class Renderer extends PivkartaRenderer {
 
 
 
- 
+
   }
 
 }

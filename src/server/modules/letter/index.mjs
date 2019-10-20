@@ -67,7 +67,7 @@ class LetterPayload extends Payload {
       }
     }
 
-    console.log("Create lette new args", args);
+    // console.log("Create lette new args", args);
 
     return super.mutate(objectType, args);
   }

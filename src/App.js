@@ -7,7 +7,7 @@ import React, { Component } from "react";
 
 import PropTypes from "prop-types";
 
-import {App as PrismaApp} from "@prisma-cms/front";
+import { App as PrismaApp } from "@prisma-cms/front";
 
 import Renderer from "./components/Renderer";
 
@@ -95,6 +95,27 @@ export default class App extends PrismaApp {
       direction: 'ltr',
       paletteType: 'light',
     },
+  }
+
+
+  static childContextTypes = {
+    ...PrismaApp.childContextTypes,
+    queryFragments: PropTypes.object,
+  }
+
+
+  getChildContext() {
+
+    const {
+      queryFragments,
+    } = this.props;
+
+    // console.log("queryFragments", queryFragments);
+
+    return {
+      ...super.getChildContext(),
+      queryFragments,
+    }
   }
 
 }

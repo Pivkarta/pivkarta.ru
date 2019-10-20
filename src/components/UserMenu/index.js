@@ -121,6 +121,10 @@ export default class MainMenu extends Component {
 
     // $('#navbar-main').removeClass("in");
 
+    this.setState({
+      citiesOpened: false,
+    });
+
   }
 
 
@@ -329,14 +333,19 @@ export default class MainMenu extends Component {
                 maps,
               } = global;
 
-              const LatLng = new maps.LatLng({
-                lat,
-                lng,
-              })
+              if (maps) {
 
-              map.setZoom(12);
+                const LatLng = new maps.LatLng({
+                  lat,
+                  lng,
+                })
 
-              map.panTo(LatLng);
+                map.setZoom(12);
+
+                map.panTo(LatLng);
+
+              }
+
               this.closeMenu();
             }}
           >
@@ -428,8 +437,8 @@ export default class MainMenu extends Component {
           <button
             className="navbar-toggle"
             type="button"
-          //  data-toggle="collapse" 
-          //  data-target="#navbar-main"
+            //  data-toggle="collapse" 
+            //  data-target="#navbar-main"
             onClick={event => {
               event.preventDefault();
               event.stopPropagation();

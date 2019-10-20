@@ -74,7 +74,7 @@ export default class FontSize extends Component {
 
   toggleFontSize = (fontSize) => {
 
-    console.log("toggleFontSize", fontSize);
+    // console.log("toggleFontSize", fontSize);
 
     const { editorState, onChange } = this.props;
     const newState = toggleCustomInlineStyle(
