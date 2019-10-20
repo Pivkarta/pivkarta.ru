@@ -13,7 +13,7 @@ import View from './View';
 // import BeersPage from '../';
 import BeersPage from '../../layout';
 
-let {...defaultProps} = BeersPage.defaultProps;
+let { ...defaultProps } = BeersPage.defaultProps;
 
 Object.assign(defaultProps, {
   View,
@@ -33,18 +33,18 @@ export default class BeerPage extends BeersPage {
     // if(meta === undefined){
 
     //   let title = "Все сорта пива";
-  
+
     //   meta = {
     //     title,
     //   }
-      
+
     // }
 
     return super.setPageMeta(meta || {});
   }
 
 
-  componentWillMount(){
+  componentWillMount() {
 
     const {
       View,
@@ -64,7 +64,7 @@ export default class BeerPage extends BeersPage {
           },
         },
       }),
-    
+
     )(View);
 
     Object.assign(this.state, {
@@ -79,7 +79,7 @@ export default class BeerPage extends BeersPage {
 
   render(content) {
 
-    if(content !== undefined){
+    if (content !== undefined) {
       return super.render(content);
     }
 
@@ -93,6 +93,7 @@ export default class BeerPage extends BeersPage {
 
     return super.render(<Renderer
       {...other}
+      set_page_metas={true}
     />)
 
   }
