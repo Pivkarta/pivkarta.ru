@@ -6,18 +6,18 @@ import PropTypes from 'prop-types'
 import EditableView from 'apollo-cms/lib/DataView/Object/Editable';
 
 
-import Table, {
-  TableBody,
-  TableHead,
+import {
+  // TableBody,
+  // TableHead,
   TableRow,
   TableCell,
 } from 'material-ui/Table';
 
-import TextField from 'material-ui/TextField';
-import IconButton from 'material-ui/IconButton';
+// import TextField from 'material-ui/TextField';
+// import IconButton from 'material-ui/IconButton';
 
 import Switch from 'material-ui/Switch';
-import SaveIcon from 'material-ui-icons/Save';
+// import SaveIcon from 'material-ui-icons/Save';
 
 import BeerLink from 'src/modules/ui/Link/Beer';
 import Image from 'src/modules/ui/Image';
@@ -28,7 +28,7 @@ import {
   updatePlaceBeer,
 } from 'src/modules/query';
 
-import { withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
 
 
 const styles = {

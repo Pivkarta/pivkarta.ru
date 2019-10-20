@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import View from "src/modules/Page/MainPage/Places/View";
 
 import { Link } from "react-router-dom";
-import { Grid } from 'material-ui';
+import Grid from 'material-ui/Grid';
 import BeerMapLink from 'src/modules/ui/Link/Beer/Map';
 
 class PlacesView extends View {

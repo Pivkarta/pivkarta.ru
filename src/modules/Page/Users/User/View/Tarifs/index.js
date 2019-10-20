@@ -8,7 +8,12 @@ import { compose, graphql } from 'react-apollo';
 
 import DoneIcon from 'material-ui-icons/Done';
 
-import { withStyles, Typography, TextField, Button, Grid } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
+import Typography from 'material-ui/Typography';
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
+
 import gql from 'graphql-tag';
 
 

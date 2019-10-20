@@ -14,7 +14,7 @@ import PlaceImage from "src/modules/ui/Image/Place";
 import Beers from './Beers';
 import Item from './Item';
 
-import { withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
 
 // import ArrowDown from 'material-ui-icons/ArrowDropDownCircle';
 // import ArrowUp from 'material-ui-icons/ArrowDropUp';

@@ -18,7 +18,6 @@ import Language from "@prisma-cms/front/lib/components/Language";
 
 import { Link } from "react-router-dom";
 import { Notices } from '@prisma-cms/society';
-// import { IconButton } from 'material-ui';
 
 // import Context from "@prisma-cms/context";
 import PrismaCmsComponent from "@prisma-cms/component";

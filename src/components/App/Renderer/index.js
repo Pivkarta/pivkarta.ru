@@ -55,7 +55,6 @@ import PageNotFound from '@prisma-cms/front/lib/components/pages/404/';
 
 
 import { Renderer as PrismaCmsRenderer } from "@prisma-cms/front";
-import { withStyles } from 'material-ui';
 
 // import ReactEncrypt from 'react-encrypt/src';
 

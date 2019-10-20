@@ -20,9 +20,9 @@ import Schedules from './Blocks/Schedules';
 
 import CustomComponent from 'Component';
 
-import {
-	updatePlaceProcessor,
-} from "src/modules/query";
+// import {
+// 	updatePlaceProcessor,
+// } from "src/modules/query";
 
 import { Link } from "react-router-dom";
 
@@ -30,7 +30,7 @@ import Comments from "src/modules/ui/Comments";
 
 import WebSite from "src/modules/ui/fields/WebSite";
 import Phone from "src/modules/ui/fields/Phone";
-import { withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
 
 
 const styles = {

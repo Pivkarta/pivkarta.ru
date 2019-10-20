@@ -5,8 +5,8 @@ import Page from "../layout";
 
 import Paper from 'material-ui/Paper';
 
-import { withStyles } from 'material-ui';
-import { Typography } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
+import Typography from 'material-ui/Typography';
 
 import Grid from 'material-ui/Grid';
 
