@@ -51,7 +51,7 @@ class PlacePayload extends Payload {
 
     const user = await this.getUser(true);
 
-    console.log(chalk.green("PlacePayload user"), user);
+    // console.log(chalk.green("PlacePayload user"), user);
 
     if (!user) {
       throw (new Error("Необходимо авторизоваться"));
@@ -110,7 +110,7 @@ class PlacePayload extends Payload {
         })
           .then(r => {
 
-            console.log("placesConnection result", r);
+            // console.log("placesConnection result", r);
 
             const {
               aggregate: {
@@ -324,7 +324,7 @@ const placesConnection = async function (parent, args, ctx, info) {
 
   const result = await ctx.db.query.placesConnection({}, info)
 
-  console.log("placesConnection", result);
+  // console.log("placesConnection", result);
 
   return result;
 }
@@ -489,7 +489,7 @@ const mapPlacesConnection = async function (parent, args, ctx, info) {
 
 
 
-  console.log(chalk.green("q toSQL"), q.toString());
+  // console.log(chalk.green("q toSQL"), q.toString());
 
   // ids = await q
   //   .then(r => {
@@ -744,7 +744,7 @@ const mapPlacesConnection = async function (parent, args, ctx, info) {
 const updatePlaceData = async function (parent, args, ctx, info) {
 
 
-  console.log("updatePlaceData args", args);
+  // console.log("updatePlaceData args", args);
 
   const {
     where,
@@ -1064,7 +1064,7 @@ const createPlaceProcessor = async (source, args, ctx, info) => {
   });
 
 
-  console.log("createPlace user", user);
+  // console.log("createPlace user", user);
 
 
   /**

@@ -47,7 +47,7 @@ class BeerPayload extends Payload {
     //   throw(error);
     // });
 
-    console.log(chalk.green("BeerPayload create"), args);
+    // console.log(chalk.green("BeerPayload create"), args);
 
 
     let {
@@ -84,7 +84,7 @@ class BeerPayload extends Payload {
         url_name,
       };
 
-      console.log(chalk.green("createBeer url_name"), url_name);
+      // console.log(chalk.green("createBeer url_name"), url_name);
 
       /**
        * Получаем пиво с таким же алиасом
@@ -101,7 +101,7 @@ class BeerPayload extends Payload {
         //   console.error("Create beer db.query.beers error", error);
         // });
 
-        console.log(chalk.green("beers"), beers);
+        // console.log(chalk.green("beers"), beers);
 
         // Если пиво найдено, делаем перебор айдишника
         if (beers && beers.length) {

@@ -100,7 +100,7 @@ var LayoutComponent = function (_Component) {
 
       currentFontSize = currentFontSize || options && options.indexOf(defaultFontSize) >= 0 && defaultFontSize;
 
-      console.log("currentFontSize", currentFontSize);
+      // console.log("currentFontSize", currentFontSize);
 
       // currentFontSize = currentFontSize && typeof currentFontSize === "object" ? currentFontSize.title : currentFontSize;
 
@@ -112,7 +112,7 @@ var LayoutComponent = function (_Component) {
         if (option) {
           currentFontSize = option.title;
         }
-        console.log("currentFontSize2", currentFontSize, option);
+        // console.log("currentFontSize2", currentFontSize, option);
       }
 
       return _react2.default.createElement(

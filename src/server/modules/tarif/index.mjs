@@ -36,7 +36,7 @@ const createUserTarif = async (source, args, ctx, info) => {
 
   const userId = await getUserId(ctx);
 
-  console.log("createUserTarif tarifData", tarifData);
+  // console.log("createUserTarif tarifData", tarifData);
 
   // Получаем запрошенный тариф
   const {
@@ -54,7 +54,7 @@ const createUserTarif = async (source, args, ctx, info) => {
     },
   });
 
-  console.log("Tarif", Tarif);
+  // console.log("Tarif", Tarif);
 
   if (!Tarif) {
     throw (new Error("Не был получен тариф"));

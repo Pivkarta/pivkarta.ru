@@ -469,7 +469,7 @@ export class Renderer extends PrismaCmsRenderer {
       "*",
     ].indexOf(n.path) === -1);
 
-    console.log("routes", routes);
+    // console.log("routes", routes);
 
     return routes;
   }

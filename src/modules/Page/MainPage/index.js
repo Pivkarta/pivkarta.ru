@@ -69,7 +69,7 @@ export default class MainPage extends PageLayout {
       getGeoCoords,
     } = this.context;
     
-    console.log("getGeoCoords", getGeoCoords);
+    // console.log("getGeoCoords", getGeoCoords);
 
     // return "MainPage";
 

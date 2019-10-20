@@ -362,6 +362,8 @@ class CoreModule extends CmsModule {
         updateCommentProcessor,
         createCity,
         updateCity,
+        createResetPasswordProcessor,
+        // ethSigninOrSignup,
       },
       ...other
     } = resolvers;
@@ -393,6 +395,8 @@ class CoreModule extends CmsModule {
       updateCommentProcessor,
       createCity,
       updateCity,
+      createResetPasswordProcessor,
+      // ethSigninOrSignup,
     };
 
     // for(var i in AllowedMutations){

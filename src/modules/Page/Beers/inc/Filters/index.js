@@ -153,7 +153,7 @@ export default class BeersFilter extends Component {
               // value={filtered === true ? "true" : filtered === false ? "false" : ""}
               value={filtered === "true" ? "Фильтрованное" : filtered === "false" ? "Нефильтрованное" : undefined}
               onSelect={(value, item) => {
-                console.log("onSelect", value, item);
+                // console.log("onSelect", value, item);
 
 
                 // this.updateObject({
@@ -183,7 +183,7 @@ export default class BeersFilter extends Component {
               // value={filtered === true ? "true" : filtered === false ? "false" : ""}
               value={pasteurized === "true" ? "Пастеризованное" : pasteurized === "false" ? "Непастеризованное" : undefined}
               onSelect={(value, item) => {
-                console.log("onSelect", value, item);
+                // console.log("onSelect", value, item);
 
 
                 // this.updateObject({
