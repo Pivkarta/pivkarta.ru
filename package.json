@@ -58,7 +58,7 @@
     "html-to-draftjs": "^1.4.0",
     "html-to-json": "^0.6.0",
     "js-video-url-parser": "^0.2.7",
-    "knex": "^0.15.2",
+    "knex": "^0.19.5",
     "linkify-it": "^2.0.3",
     "material-ui": "1.0.0-beta.43",
     "material-ui-icons": "^1.0.0-beta.17",
