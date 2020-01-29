@@ -42,6 +42,7 @@ export default class MapField extends Component {
 		onChildMouseMove: PropTypes.func,
 		defaultCenter: PropTypes.object.isRequired,
 		defaultZoom: PropTypes.number.isRequired,
+		inEditMode: PropTypes.bool,
 	};
 
 
@@ -185,7 +186,7 @@ export default class MapField extends Component {
 		} = this.state;
 
 
-		if(typeof window !== "undefined"){
+		if (typeof window !== "undefined") {
 			window.maps = maps;
 			window.map = map;
 		}
@@ -197,7 +198,7 @@ export default class MapField extends Component {
 		let marker;
 		let markers = [];
 
-		var {
+		let {
 			// lat,
 			// lng,
 			name,
@@ -211,6 +212,14 @@ export default class MapField extends Component {
 		// 	lat: lat,
 		// 	lng: lng,
 		// } = coords || {};
+
+
+		if (!lat && !lng && defaultCenter && inEditMode) {
+			lat = defaultCenter.lat;
+			lng = defaultCenter.lng;
+		}
+
+		// console.log('inEditMode', inEditMode, lat, lng, defaultCenter);
 
 
 		lat = lat ? parseFloat(lat) : undefined;
@@ -367,48 +376,48 @@ export default class MapField extends Component {
 
 						}}
 
-						// onChange={(event, item, a,b) => {
+					// onChange={(event, item, a,b) => {
 
 
 
-						// 	// let {
-						// 	// 	coordinates: {
-						// 	// 		0: lat,
-						// 	// 		1: lng,
-						// 	// 	},
-						// 	// } = item;
+					// 	// let {
+					// 	// 	coordinates: {
+					// 	// 		0: lat,
+					// 	// 		1: lng,
+					// 	// 	},
+					// 	// } = item;
 
-						// 	// const center = {
-						// 	// 	lat,
-						// 	// 	lng,
-						// 	// };
+					// 	// const center = {
+					// 	// 	lat,
+					// 	// 	lng,
+					// 	// };
 
-						// 	// return onSearchSelect(event, item, center, maps, map);
+					// 	// return onSearchSelect(event, item, center, maps, map);
 
-						// }}
+					// }}
 
-						// onSelect={(event, item, maps, map) => {
+					// onSelect={(event, item, maps, map) => {
 
-						// 	let {
-						// 		coordinates: {
-						// 			0: lat,
-						// 			1: lng,
-						// 		},
-						// 	} = item;
+					// 	let {
+					// 		coordinates: {
+					// 			0: lat,
+					// 			1: lng,
+					// 		},
+					// 	} = item;
 
-						// 	const center = {
-						// 		lat,
-						// 		lng,
-						// 	};
+					// 	const center = {
+					// 		lat,
+					// 		lng,
+					// 	};
 
-						// 	return onSearchSelect(event, item, center, maps, map);
+					// 	return onSearchSelect(event, item, center, maps, map);
 
-						// }}
-						// style={{
-						// 	// minWidth: 300,
-						// 	width: 400,
-						// 	// left: "-50%",
-						// }}
+					// }}
+					// style={{
+					// 	// minWidth: 300,
+					// 	width: 400,
+					// 	// left: "-50%",
+					// }}
 					/>
 				</Control>
 
