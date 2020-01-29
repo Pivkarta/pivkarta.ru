@@ -5,13 +5,13 @@ import EditableView from 'src/modules/GridView/Editable';
 import Grid from 'material-ui/Grid';
 
 
-import Typography from 'material-ui/Typography';
+// import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
-import Button from 'material-ui/Button/Button';
+// import Button from 'material-ui/Button/Button';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
 
@@ -561,6 +561,25 @@ export default class PlaceView extends EditableView {
 												</td>
 											</tr> || null}
 
+											<tr>
+												<td>
+													Координаты
+												</td>
+												<td>
+													{this.getTextField({
+														name: "lat",
+														label: "Широта (lat)",
+														type: 'number'
+													})}
+												</td>
+												<td>
+													{this.getTextField({
+														name: "lng",
+														label: "Долгота (lng)",
+														type: 'number'
+													})}
+												</td>
+											</tr>
 
 										</tbody>
 									</table>

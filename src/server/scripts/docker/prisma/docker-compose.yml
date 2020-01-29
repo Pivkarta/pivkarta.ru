@@ -35,6 +35,14 @@ services:
     networks:
       default:
         ipv4_address: 172.24.0.20
+  pma:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: ${MYSQL_HOST:-mysql}
+      PMA_PORT: ${MYSQL_PORT:-3306}
+      UPLOAD_LIMIT: ${PMA_UPLOAD_LIMIT:-100M}
+    ports:
+      - 8091:80
 volumes:
   mysql:
 

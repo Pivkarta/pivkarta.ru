@@ -26,9 +26,9 @@ export default class PlaceMap extends Component {
       lat,
       lng,
     } = item || {};
-    
 
-    if(!lat || !lng){
+
+    if (!lat || !lng) {
       lat = 55.75;
       lng = 37.61;
     }
@@ -61,6 +61,7 @@ export default class PlaceMap extends Component {
     const {
       item,
       updateObject,
+      inEditMode,
       ...other
     } = this.props;
 
@@ -75,17 +76,23 @@ export default class PlaceMap extends Component {
     } = this.state;
 
 
-    const {
-      // coords,
-      lat,
-      lng,
-    } = item || {};
+    // let {
+    //   // coords,
+    //   lat,
+    //   lng,
+    // } = item || {};
 
     // const {
     //   lat,
     //   lng,
     // } = coords || {};
 
+    // if (!lat && !lng && defaultCenter && inEditMode) {
+    //   lat = defaultCenter.lat;
+    //   lng = defaultCenter.lng;
+    // }
+
+    // console.log('inEditMode', inEditMode, lat, lng, defaultCenter);
 
 
     // let marker;
@@ -107,6 +114,7 @@ export default class PlaceMap extends Component {
         }}
       >
         <Map
+          inEditMode={inEditMode}
           defaultCenter={defaultCenter}
           // center={defaultCenter}
           // center={{
