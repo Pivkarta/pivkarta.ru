@@ -9,14 +9,14 @@ import PrismaModule from "@prisma-cms/prisma-module";
 
 const tarifs = async (source, args, ctx, info) => {
 
-  return ctx.db.query.tarifs({}, info);
+  return ctx.db.query.tarifs(args, info);
 }
 
 const userTarifs = async (source, args, ctx, info) => {
 
   // console.log("userTarifs", args);
 
-  return ctx.db.query.userTarifs({}, info);
+  return ctx.db.query.userTarifs(args, info);
 }
 
 

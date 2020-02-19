@@ -88,7 +88,7 @@ class LetterPayload extends Payload {
       throw (new Error("Access denied"));
     }
 
-    return db.query.letter({}, info);
+    return db.query.letter(args, info);
   }
 
 
@@ -109,7 +109,7 @@ class LetterPayload extends Payload {
     }
 
 
-    return db.query.letters({}, info);
+    return db.query.letters(args, info);
   }
 
 
@@ -130,7 +130,7 @@ class LetterPayload extends Payload {
     }
 
 
-    return db.query.lettersConnection({}, info);
+    return db.query.lettersConnection(args, info);
   }
 
 }
@@ -138,17 +138,17 @@ class LetterPayload extends Payload {
 
 const letter = (source, args, ctx, info) => {
 
-  return new LetterPayload(ctx).letter({}, info);
+  return new LetterPayload(ctx).letter(args, info);
 }
 
 const letters = (source, args, ctx, info) => {
 
-  return new LetterPayload(ctx).letters({}, info);
+  return new LetterPayload(ctx).letters(args, info);
 }
 
 const lettersConnection = (source, args, ctx, info) => {
 
-  return new LetterPayload(ctx).lettersConnection({}, info);
+  return new LetterPayload(ctx).lettersConnection(args, info);
 }
 
 

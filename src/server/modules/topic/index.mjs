@@ -372,12 +372,12 @@ class TopicPayload extends Payload {
 
 const topicsConnection = function (parent, args, ctx, info) {
 
-  return ctx.db.query.topicsConnection({}, info)
+  return ctx.db.query.topicsConnection(args, info)
 }
 
 const topic = function (parent, args, ctx, info) {
 
-  return ctx.db.query.topic({}, info)
+  return ctx.db.query.topic(args, info)
 }
 
 

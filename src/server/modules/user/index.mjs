@@ -79,7 +79,7 @@ class PivkartaUserModule extends UserModule {
         user: {
           subscribe: async (parent, args, ctx, info) => {
   
-            return ctx.db.subscription.user({}, info);
+            return ctx.db.subscription.user(args, info);
           },
         },
       },
