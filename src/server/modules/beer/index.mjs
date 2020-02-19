@@ -165,20 +165,18 @@ class BeerPayload extends Payload {
 
 const beersConnection = function (parent, args, ctx, info) {
 
-  return ctx.db.query.beersConnection({}, info)
+  return ctx.db.query.beersConnection(args, info)
 }
 
 
 const beers = function (parent, args, ctx, info) {
 
-  return ctx.db.query.beers({
-    first: 10,
-  }, info)
+  return ctx.db.query.beers(args, info)
 }
 
 const beer = function (parent, args, ctx, info) {
 
-  return ctx.db.query.beer({}, info)
+  return ctx.db.query.beer(args, info)
 }
 
 
@@ -237,7 +235,7 @@ const updateBeerProcessor = async function (parent, args, ctx, info) {
     currentUser,
   } = ctx;
 
-  if(!currentUser){
+  if (!currentUser) {
     return this.addError("Необходимо авторизоваться");
   }
 

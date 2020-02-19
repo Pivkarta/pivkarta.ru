@@ -219,13 +219,13 @@ class CommentsPayload extends Payload {
 
 const comment = function (parent, args, ctx, info) {
 
-  return ctx.db.query.comment({}, info)
+  return ctx.db.query.comment(args, info)
 }
 
 
 const comments = function (parent, args, ctx, info) {
 
-  return ctx.db.query.comments({}, info)
+  return ctx.db.query.comments(args, info)
 }
 
 const commentsConnection = function (parent, args, ctx, info) {
@@ -238,7 +238,7 @@ const commentsConnection = function (parent, args, ctx, info) {
 
   // });
 
-  return ctx.db.query.commentsConnection({}, info);
+  return ctx.db.query.commentsConnection(args, info);
 }
 
 

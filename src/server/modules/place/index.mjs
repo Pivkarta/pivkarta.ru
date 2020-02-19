@@ -322,7 +322,7 @@ class PlaceBeerPayload extends Payload {
 
 const placesConnection = async function (parent, args, ctx, info) {
 
-  const result = await ctx.db.query.placesConnection({}, info)
+  const result = await ctx.db.query.placesConnection(args, info)
 
   // console.log("placesConnection", result);
 
@@ -333,13 +333,13 @@ const placesConnection = async function (parent, args, ctx, info) {
 
 const place = function (parent, args, ctx, info) {
 
-  return ctx.db.query.place({}, info)
+  return ctx.db.query.place(args, info)
 }
 
 
 const places = function (parent, args, ctx, info) {
 
-  return ctx.db.query.places({}, info)
+  return ctx.db.query.places(args, info)
 }
 
 
