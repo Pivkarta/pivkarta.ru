@@ -23,7 +23,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "@prisma-cms/component": "1.4.1",
-    "@prisma-cms/context": "1.2.0",
+    "@prisma-cms/context": "1.4.4",
     "@prisma-cms/ethereum": "1.3.5",
     "@prisma-cms/ethereum-module": "1.7.1",
     "@prisma-cms/front": "2.6.7",
