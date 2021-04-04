@@ -1,0 +1,797 @@
+enum LetterStatus {
+  Created
+  Processing
+  Sended
+  Error
+}
+
+type Letter {
+  id: ID! @unique
+  email: String!
+  subject: String!
+  message: String!
+  status: LetterStatus! @default(value: Created)
+  rank: Int @default(value: 0)
+  deleteOnSend: Boolean @default(value: true)
+  replyTo: String
+  returnTo: String
+  Place: Place @relation(name: "PlaceLetters", onDelete: SET_NULL)
+}
+
+enum LogLevel {
+  Info
+  Notice
+  Warning
+  Error
+  Fatal
+}
+
+type Log {
+  id: ID! @unique
+  level: LogLevel! @default(value: Info)
+  objectType: ID
+  message: String!
+  stack: String
+}
+
+type File {
+  id: ID! @unique
+  path: String!
+  name: String
+  filename: String @deprecated(reason: "Will be removed soon")
+  mimetype: String!
+  encoding: String!
+  hash: String
+  size: Float @default(value: 0)
+  CreatedBy: User! @relation(name: "UserFiles")
+  ImageResource: Resource @relation(name: "ResourceImage")
+}
+
+type Route {
+  id: ID! @unique
+  name: String
+  path: String! @unique
+  exact: Boolean! @default(value: true)
+  component: String!
+  Parent: Route @relation(name: "Routes")
+  Childs: [Route!]! @relation(name: "Routes")
+  CreatedBy: User
+}
+
+type SmsMessage {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  from: String!
+  text: String!
+  recipients: [String!]!
+  Provider: SmsProvider!
+  deletOnSend: Boolean @default(value: true)
+  CreatedBy: User @relation(name: "LetsadsSmsMessageCreatedBy")
+  Status: LetsadsSmsMessageStatus @relation(name: "LetsadsSmsMessageStatusSmsMessage", onDelete: CASCADE)
+}
+
+enum LetsadsSmsMessageStatusEnum {
+  Complete
+  Error
+}
+
+enum LetsadsSmsMessageStatusErrorCodeEnum {
+  NO_DATA
+  WRONG_DATA_FORMAT
+  REQUEST_FORMAT
+  AUTH_DATA
+  API_DISABLED
+  USER_NOT_MODERATED
+  INCORRECT_FROM
+  INVALID_FROM
+  MESSAGE_TOO_LONG
+  NO_MESSAGE
+  MAX_MESSAGES_COUNT
+  NOT_ENOUGH_MONEY
+  UNKNOWN_ERROR
+}
+
+type LetsadsSmsMessageStatus {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: LetsadsSmsMessageStatusEnum
+  description: String
+  errorCode: LetsadsSmsMessageStatusErrorCodeEnum
+  SmsMessage: SmsMessage! @relation(name: "LetsadsSmsMessageStatusSmsMessage")
+  Items: [LetsadsSmsMessageStatusItem!]! @relation(name: "LetsadsSmsMessageStatusSmsItems", onDelete: CASCADE)
+}
+
+type LetsadsSmsMessageStatusItem {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  sms_id: Int! @unique
+}
+
+type SmsProvider {
+  id: ID! @unique
+  name: String! @unique
+  credentials: Json
+  CreatedBy: User
+}
+
+type User {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  username: String @unique
+  email: String
+  phone: String
+  showEmail: Boolean @default(value: false)
+  showPhone: Boolean @default(value: false)
+  password: String
+  fullname: String
+  image: String
+  address: String
+  active: Boolean @default(value: true)
+  """
+  Признак того, что пришел пользователь и активировал свою анкету
+  """
+  activated: Boolean @default(value: false)
+  deleted: Boolean @default(value: false)
+  Groups: [UserGroup!]! @relation(name: "UserGroups")
+  CreatedUsers: [User!]! @relation(name: "UserCreatedBy", onDelete: SET_NULL)
+  CreatedBy: User @relation(name: "UserCreatedBy", onDelete: SET_NULL)
+  LogedIns: [LogedIn!]! @relation(name: "UserLogedIn")
+  Files: [File!]! @relation(name: "UserFiles")
+  """
+  Hide profile
+  """
+  hidden: Boolean @default(value: false)
+  EthContractSourcesCreated: [EthContractSource!]! @relation(name: "EthContractSourceCreatedBy")
+  EthAccounts: [EthAccount!]! @relation(name: "EthAccountCreatedBy")
+  Resources: [Resource!]! @relation(name: "ResourceCreatedBy")
+  Rooms: [ChatRoom!]! @relation(name: "ChatRoomsMembers")
+  CreatedRooms: [ChatRoom!]! @relation(name: "ChatRoomCreatedBy", onDelete: CASCADE)
+  Messages: [ChatMessage!]! @relation(name: "ChatMessageCreatedBy")
+  ReadedMessages: [ChatMessageReaded!]! @relation(name: "ChatMessageReadedByUser")
+  Notices: [Notice!]! @relation(name: "NoticeUser")
+  Votes: [Vote!]! @relation(name: "UserVotes")
+  NotificationTypes: [NotificationType!]! @relation(name: "UserNotificationTypes")
+  NotificationTypesCreated: [NotificationType!]! @relation(name: "UserNotificationTypesCreated")
+  Tags: [Tag!]! @relation(name: "UserTags")
+  ResourceTags: [ResourceTag!]! @relation(name: "UserResourceTag")
+  PrismaProjects: [Project!]! @relation(name: "PrismaProjectUsers")
+  user_id: Int @unique
+  first_name: String
+  middle_name: String
+  last_name: String
+  gender: Int
+  birth_date: DateTime
+  country_id: Int
+  region_id: Int
+  city_id: Int
+  status: String
+  timezone: String
+  language_id: Int
+  num_blog_posts: Int
+  last: Int
+  created_at: DateTime
+  notification: Int
+  icq: String
+  www: String
+  contact_email: String
+  mobile_phone: String
+  home_phone: String
+  about: String
+  experience: String
+  job_title: String
+  work_place: String
+  ip: String
+  confirmation_code: String
+  rating: Float
+  etherwallet: String
+  photo: String
+  topics: [Topic!]! @relation(name: "UserTopics")
+  comments: [Comment!]! @relation(name: "UserComments")
+  Tarifs: [UserTarif!]! @relation(name: "UserTarifs")
+  Account: Account @relation(name: "UserAccount")
+  Places: [Place!]! @relation(name: "UserOwnedPlaces")
+  sudo: Boolean
+}
+
+type ResetPassword {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  code: ID @unique
+  password: String
+  validTill: DateTime
+  User: User
+}
+
+type UserGroup {
+  id: ID! @unique
+  name: String! @unique
+  Users: [User!]! @relation(name: "UserGroups")
+}
+
+type LogedIn {
+  id: ID! @unique
+  createdAt: DateTime!
+  fake: Boolean @default(value: true)
+  User: User! @relation(name: "UserLogedIn")
+}
+
+enum EthAccountType {
+  Account
+  Contract
+}
+
+type EthAccount {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  description: Json
+  address: String! @unique
+  """
+  Account or Contract
+  """
+  type: EthAccountType @default(value: Account)
+  CreatedBy: User @relation(name: "EthAccountCreatedBy")
+  """
+  Transaction that was created
+  """
+  Transaction: EthTransaction @relation(name: "EthAccountCreatedTransaction")
+  IncomeTransactions: [EthTransaction!]! @relation(name: "EthTransactionReceiver")
+  OutcomeTransactions: [EthTransaction!]! @relation(name: "EthTransactionSender")
+  """
+  For contracts only
+  """
+  source: String
+  """
+  For contracts only
+  """
+  bytecode: String
+  """
+  For contracts only
+  """
+  abi: Json
+  """
+  For contracts only
+  """
+  ContractSource: EthContractSource @relation(name: "EthContractSourceAccounts")
+  """
+  Mined blocks by this account
+  """
+  BlocksMined: [EthBlock!]! @relation(name: "EthAccountMinedBlocks")
+  """
+  Used for authorization
+  """
+  UserAuthed: User @relation(name: "UserEthAccountAuthed")
+}
+
+type EthBlock {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  hash: String! @unique
+  number: Int! @unique
+  difficulty: Float
+  totalDifficulty: Float
+  extraData: String
+  gasLimit: Float
+  gasUsed: Float
+  mixHash: String
+  nonce: String
+  parentHash: String
+  receiptsRoot: String
+  sha3Uncles: String
+  size: Int
+  stateRoot: String
+  date: DateTime
+  Miner: EthAccount @relation(name: "EthAccountMinedBlocks")
+  Transactions: [EthTransaction!]! @relation(name: "EthBlockTransactions")
+  transactionsRoot: String
+  transactions_count: Int @default(value: 0)
+  Uncles: [EthBlock!]!
+}
+
+type EthContractSource {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  description: Json
+  source: String
+  CreatedBy: User! @relation(name: "EthContractSourcesCreatedBy")
+  Accounts: [EthAccount!]! @relation(name: "EthContractSourceAccounts")
+}
+
+enum EthTransactionType {
+  ContractCreate
+  ContractRead
+  ContractCall
+  SendEth
+  SendToken
+}
+
+type EthTransaction {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  chainId: Int!
+  """
+  Eth or tokens in ether. Equal value
+  """
+  amount: Float
+  input: String
+  index: Int
+  """
+  From. Can be empty when deploying a contract
+  """
+  Sender: EthAccount @relation(name: "EthTransactionSender")
+  """
+  To
+  """
+  Receiver: EthAccount @relation(name: "EthTransactionReceiver")
+  """
+  EthAccount created by this transaction
+  """
+  Account: EthAccount @relation(name: "EthAccountCreatedTransaction")
+  address: String! @unique
+  type: EthTransactionType
+  """
+  Used to obtain the public key
+  """
+  v: String
+  """
+  Used to obtain the public key
+  """
+  r: String
+  """
+  Used to obtain the public key
+  """
+  s: String
+  Block: EthBlock @relation(name: "EthBlockTransactions")
+}
+
+type Project {
+  id: ID! @unique
+  domain: String @unique
+  PrismaResources: [Resource!]! @relation(name: "PrismaProjectResources")
+  PrismaUsers: [User!]! @relation(name: "PrismaProjectUsers")
+}
+
+enum ResourceType {
+  Resource
+  Blog
+  Topic
+  Comment
+}
+
+type Resource {
+  id: ID! @unique
+  code: ID @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  type: ResourceType @default(value: Resource)
+  name: String
+  longtitle: String
+  content: Json
+  """
+  Raw text from content
+  """
+  contentText: String
+  published: Boolean! @default(value: true)
+  deleted: Boolean! @default(value: false)
+  hidemenu: Boolean! @default(value: false)
+  searchable: Boolean! @default(value: true)
+  uri: String @unique
+  isfolder: Boolean! @default(value: true)
+  CreatedBy: User! @relation(name: "ResourceCreatedBy")
+  Parent: Resource @relation(name: "ResourceParent")
+  Childs: [Resource!]! @relation(name: "ResourceParent")
+  Image: File @relation(name: "ResourceImage")
+  """
+  Привязка ресурса к конкретному проекту
+  """
+  PrismaProject: Project @relation(name: "PrismaProjectResources")
+  rating: Float @default(value: 0)
+  positiveVotesCount: Int @default(value: 0)
+  negativeVotesCount: Int @default(value: 0)
+  neutralVotesCount: Int @default(value: 0)
+  CommentTarget: Resource @relation(name: "ResourceComments")
+  Comments: [Resource!]! @relation(name: "ResourceComments")
+  Votes: [Vote!]! @relation(name: "ResourceVotes")
+  Tags: [ResourceTag!]! @relation(name: "ResourcesTagsResource")
+}
+
+type ChatMessage {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  content: Json
+  """
+  Raw text from content
+  """
+  contentText: String
+  CreatedBy: User @relation(name: "ChatMessageCreatedBy")
+  Room: ChatRoom @relation(name: "ChatRoomMessages")
+  ReadedBy: [ChatMessageReaded!]! @relation(name: "ChatMessageReadedByMessage", onDelete: CASCADE)
+}
+
+type ChatMessageReaded {
+  id: ID! @unique
+  createdAt: DateTime!
+  Message: ChatMessage! @relation(name: "ChatMessageReadedByMessage", onDelete: SET_NULL)
+  User: User! @relation(name: "ChatMessageReadedByUser", onDelete: SET_NULL)
+}
+
+type ChatRoom {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  description: String
+  image: String
+  code: ID @unique
+  Members: [User!]! @relation(name: "ChatRoomsMembers")
+  CreatedBy: User! @relation(name: "ChatRoomCreatedBy", onDelete: SET_NULL)
+  Messages: [ChatMessage!]! @relation(name: "ChatRoomMessages")
+  isPublic: Boolean @default(value: false)
+  Invitations: [ChatRoomInvitation!]!
+  CallRequests: [CallRequest!]!
+}
+
+type ChatRoomInvitation {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  CreatedBy: User! @relation(name: "ChatRoomInvitationCreatedBy")
+  User: User! @relation(name: "ChatRoomInvitationInvited")
+  ChatRoom: ChatRoom!
+  Notice: Notice @relation(name: "ChatRoomInvitationNotice", onDelete: CASCADE)
+}
+
+type Team {
+  id: ID! @unique
+}
+
+enum NoticeType {
+  ChatMessage
+  Call
+  CallRequest
+  ChatRoomInvitation
+}
+
+type Notice {
+  id: ID! @unique
+  createdAt: DateTime!
+  type: NoticeType!
+  User: User! @relation(name: "NoticeUser")
+  CreatedBy: User @relation(name: "NoticeUserCreatedBy")
+  ChatMessage: ChatMessage
+  ChatRoomInvitation: ChatRoomInvitation @relation(name: "ChatRoomInvitationNotice")
+}
+
+type NotificationType {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String! @unique
+  code: ID @unique
+  comment: String
+  Users: [User!]! @relation(name: "UserNotificationTypes")
+  CreatedBy: User! @relation(name: "UserNotificationTypesCreated")
+}
+
+type ResourceTag {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: TagStatus! @default(value: Active)
+  Resource: Resource! @relation(name: "ResourcesTagsResource")
+  Tag: Tag! @relation(name: "ResourcesTagsTag")
+  CreatedBy: User! @relation(name: "UserResourceTag")
+}
+
+enum TagStatus {
+  Active
+  Moderated
+  Blocked
+}
+
+type Tag {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String! @unique
+  status: TagStatus! @default(value: Active)
+  Resources: [ResourceTag!]! @relation(name: "ResourcesTagsTag")
+  CreatedBy: User! @relation(name: "UserTags")
+}
+
+"""
+Игра/матч
+"""
+type Game {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  start_date: DateTime
+  end_date: DateTime
+  sequence: Int
+  CreatedBy: User @relation(name: "GameCreatedBy")
+  Tourney: Tourney @relation(name: "TourneyGames")
+  Users: [User!]! @relation(name: "GameUsers")
+  Teams: [Team!]!
+  Parent: Game @relation(name: "Games")
+  Childs: [Game!]! @relation(name: "Games")
+  Results: [GameResult!]! @relation(name: "GameGameResults")
+}
+
+"""
+Результат игры. Достигается игроком и/или командой
+"""
+type GameResult {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  date: DateTime
+  name: String
+  CreatedBy: User @relation(name: "GameResultCreatedBy")
+  User: User @relation(name: "GameResultUser")
+  Team: Team @relation(name: "GameResultTeam")
+  Game: Game! @relation(name: "GameGameResults")
+  value: Float
+}
+
+type Tournament {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  code: ID @unique
+  CreatedBy: User @relation(name: "TournamentCreatedBy")
+  Tourneys: [Tourney!]! @relation(name: "TournamentTourneys")
+  Group: TournamentGroup @relation(name: "TournamentGroupTournaments")
+}
+
+type TournamentGroup {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  code: ID @unique
+  CreatedBy: User @relation(name: "TournamentGroupCreatedBy")
+  Tournaments: [Tournament!]! @relation(name: "TournamentGroupTournaments")
+}
+
+"""
+Отдельный турнир в рамках турнамента
+"""
+type Tourney {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  code: ID @unique
+  """
+  Дата начала турнира
+  """
+  date: DateTime
+  """
+  Дата окончания турнира
+  """
+  date_till: DateTime
+  CreatedBy: User @relation(name: "TourneyCreatedBy")
+  Tournament: Tournament @relation(name: "TournamentTourneys")
+  Users: [User!]! @relation(name: "TourneyUsers")
+  Games: [Game!]! @relation(name: "TourneyGames")
+}
+
+type Vote {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  Resource: Resource! @relation(name: "ResourceVotes")
+  User: User! @relation(name: "UserVotes")
+  value: Float!
+}
+
+type CallRequest {
+  id: ID! @unique
+  called_descriptions: Json!
+  caller_descriptions: Json!
+  status: CallRequestStatus @default(value: Created)
+  startedAt: DateTime
+  endedAt: DateTime
+  Called: User! @relation(name: "CallRequestCalled", onDelete: CASCADE)
+  Caller: User @relation(name: "CallRequestCaller", onDelete: CASCADE)
+  Room: ChatRoom
+}
+
+enum CallRequestStatus {
+  Created
+  Rejected
+  Accepted
+  Started
+  Canceled
+  Missed
+  Ended
+  Error
+  Billed
+}
+
+type Beer {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  beer_id: Int @unique
+  name: String
+  url_name: String
+  description: String
+  editor_content: Json
+  country: String
+  image: String @default(value: "empty.jpeg")
+  num_comments: Int @default(value: 0)
+  num_photos: Int @default(value: 0)
+  manufacturer: String
+  region: String
+  manufacture_years: String
+  container: Int
+  alcohol: String
+  wort_percent: String
+  components: String
+  bitter: Int
+  type_id: Int
+  color: String
+  is_request: Int
+  rating: Float
+  add_user_id: Int
+  created_at: Int
+  gallery: Json
+  places: [PlaceBeer!]! @relation(name: "PlaceBeerBeer")
+  """
+  Фильтрованное
+  """
+  filtered: Boolean
+  pasteurized: Boolean
+}
+
+type Account {
+  id: ID! @unique
+  balance: Float! @default(value: 0)
+  User: User! @relation(name: "UserAccount")
+  Transactions: [Transaction!]! @relation(name: "AccountTransactions")
+}
+
+type Transaction {
+  id: ID! @unique
+  createdAt: DateTime!
+  amount: Float!
+  Account: Account! @relation(name: "AccountTransactions")
+  CreatedBy: User! @relation(name: "TransactionCreatedBy")
+}
+
+type Tarif {
+  id: ID! @unique
+  name: String!
+  active: Boolean @default(value: true)
+  maxPriceItems: Int
+  price: Float
+  UserTarifs: [UserTarif!]! @relation(name: "TarifUserTarifs")
+  allowIcon: Boolean
+  allowBanner: Boolean
+}
+
+type UserTarif {
+  id: ID! @unique
+  User: User! @relation(name: "UserTarifs")
+  Tarif: Tarif! @relation(name: "TarifUserTarifs")
+  createdAt: DateTime!
+  dateTill: DateTime
+}
+
+type TarifRequest {
+  id: ID! @unique
+  User: User!
+  Tarif: Tarif!
+  createdAt: DateTime!
+  executed: Boolean! @default(value: false)
+}
+
+type City {
+  id: ID! @unique
+  city_id: Int @unique
+  name: String! @unique
+  alias: String! @unique
+  lat: Float!
+  lng: Float!
+}
+
+type Comment {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  comment_id: Int @unique
+  object_id: Int
+  type_id: Int! @default(value: 1)
+  editor_content: Json!
+  is_checked: Int! @default(value: 0)
+  name: String
+  created_by: User @relation(name: "UserComments")
+  parent: ID
+}
+
+type CommentType {
+  id: ID! @unique
+  name: String! @unique
+  code: Int! @unique
+}
+
+type Photo {
+  id: ID! @unique
+  photo_id: Int @unique
+  user_id: Int
+  type_id: Int
+  name: String
+  description: String
+  num_comments: Int
+  created_at: DateTime
+  updated_at: DateTime
+  file_name: String
+}
+
+type Place {
+  id: ID! @unique
+  updatedAt: DateTime!
+  createdAt: DateTime!
+  place_id: Int @unique
+  name: String!
+  description: String
+  address: String
+  lng: Float
+  lat: Float
+  website: String
+  phone: String
+  work_hours: String
+  metro: String
+  content: Json
+  schedules: Json
+  url_name: String
+  image: String
+  gallery: Json
+  is_bar: Boolean @default(value: false)
+  is_shop: Boolean @default(value: false)
+  is_brewery: Boolean @default(value: false)
+  active: Boolean @default(value: true)
+  email: String
+  beers: [PlaceBeer!]! @relation(name: "PlaceBeerPlace")
+  Owner: User @relation(name: "UserOwnedPlaces")
+  Letters: [Letter!]! @relation(name: "PlaceLetters", onDelete: CASCADE)
+  best: Boolean
+  is_request: Int
+}
+
+type PlaceBeer {
+  id: ID! @unique
+  price: Float
+  Place: Place! @relation(name: "PlaceBeerPlace")
+  Beer: Beer! @relation(name: "PlaceBeerBeer")
+}
+
+type Topic {
+  id: ID! @unique
+  topic_id: Int @unique
+  updatedAt: DateTime!
+  createdAt: DateTime!
+  created_at: DateTime!
+  created_by: User! @relation(name: "UserTopics")
+  name: String!
+  editor_content: Json
+  url_name: String @unique
+  type_id: Int!
+  published: Boolean @default(value: true)
+  description: String
+}
