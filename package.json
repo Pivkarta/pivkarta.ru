@@ -108,7 +108,7 @@
     "nodemon": "latest",
     "react-scripts": "~2.1.2",
     "source-map-explorer": "~2.0.1",
-    "terser": "3.14.1"
+    "terser": "4.8.1"
   },
   "resolutions": {
     "@prisma-cms/connector": "1.1.2",
@@ -157,7 +157,7 @@
     "react-router-dom": "4.3.1",
     "sharp": "~0.21.0",
     "apollo-link-dedup": "1.0.15",
-    "terser": "3.14.1"
+    "terser": "4.8.1"
   },
   "browserslist": [
     ">0.2%",
